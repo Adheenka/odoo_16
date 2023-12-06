@@ -12,7 +12,7 @@
     'depends': ['base', 'stock','purchase'],
     'data': [
         'security/ir.model.access.csv',
-        'view/approval_system.xml',
+        'view/owl.xml',
         'view/purchase_submit_button.xml',
 
     ],
