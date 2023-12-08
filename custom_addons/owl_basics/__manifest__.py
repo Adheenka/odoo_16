@@ -5,7 +5,7 @@
     'summary': 'Manage owl',
     'sequence': -93,
     'description': """
-        This module adds an approval workflow for purchase orders odoo16.
+        This module adds an approval workflow for purchase orders odoo.
     """,
     'author': 'abrus',
     'website': 'https://www.example.com',
