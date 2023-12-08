@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu Structure -->
+    <menuitem id="menu_owl_study_root"
+              name="Owl leaning"
+
+              sequence="100"/>
+
+</odoo>
