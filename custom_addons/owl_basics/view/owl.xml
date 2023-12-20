@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- views.xml -->
+<odoo>
+    <data>
+        <!-- Form view definition -->
+        <record id="view_owl_study_form" model="ir.ui.view">
+            <field name="name">owl.study.form</field>
+            <field name="model">owl.study</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date_of_birth"/>
+
+
+                            <!-- Add other fields as needed -->
+                        </group>
+                        <group>
+                            <field name="country"/>
+                            <field name="date_fetch"/>
+
+                            <!-- Add other fields as needed -->
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="view_owl_study_tree" model="ir.ui.view">
+            <field name="name">owl.study.tree</field>
+            <field name="model">owl.study</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date_of_birth"/>
+                    <field name="country"/>
+
+                    <!-- Add other fields as needed -->
+                </tree>
+            </field>
+        </record>
+
+        <!-- Menu item definition -->
+
+
+        <!-- Action definition -->
+        <record id="action_view_owl_study" model="ir.actions.act_window">
+            <field name="name">Owl Study</field>
+            <field name="res_model">owl.study</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to manage purchase approvals.
+                </p>
+            </field>
+        </record>
+        <menuitem id="menu_owl_study"
+                  name="Material  Requisition"
+                  parent="menu_owl_study_root" action="action_view_owl_study" sequence="0"/>
+    </data>
+</odoo>
+
+
+
+
+

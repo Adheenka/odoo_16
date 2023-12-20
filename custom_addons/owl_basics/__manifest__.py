@@ -1,21 +1,28 @@
 {
-    'name': 'Approval system',
+    'name': 'learing owl',
     'version': '1.0',
     'category': 'Purchases',
-    'summary': 'Manage purchase approvals',
-    'sequence': -95,
+    'summary': 'Manage owl',
+    'sequence': -93,
     'description': """
         This module adds an approval workflow for purchase orders odoo.
     """,
     'author': 'abrus',
     'website': 'https://www.example.com',
-    'depends': ['base', 'stock','purchase'],
+    'depends': ['base', 'stock', 'web'],
     'data': [
         'security/ir.model.access.csv',
+        'view/menu.xml',
         'view/owl.xml',
-        'view/purchase_submit_button.xml',
+
 
     ],
+    'assets': {
+        'web.assets_qweb': ['owl_basics/static/src/xml/*',
+                            ],
+        'web.assets_backend': ['owl_basics/static/src/js/*',
+                               ],
+    },
     'demo': [],
     'installable': True,
     'application': True,
