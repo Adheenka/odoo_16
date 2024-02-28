@@ -1,4 +1,4 @@
-from odoo import models, fields, api, http
+from odoo import models, fields, api, _
 
 
 class OwlStudy(models.Model):

@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-""" explication """
+#
 
 from odoo import models, fields, api
 
