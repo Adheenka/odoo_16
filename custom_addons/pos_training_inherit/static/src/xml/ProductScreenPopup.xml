@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_training_inherit.CustomerDetailsPopup" owl="1"> 
+        <div class="popup cash-move-popup">
+            <main class="body">
+            <header>
+                <div class="text">
+                    <t t-esc="props.title" />
+                </div>
+            </header>
+                <div class="cash-move">
+                    <div class="input-amount">
+                        <input t-model="state.inputValue" t-ref="details" type="text"/>
+                    </div>
+                    <span class="error-message"><t t-esc="add_details.error"/></span>  
+                </div>
+            </main>
+            <footer class="footer cash-move">
+                <div class="button confirm disable highlight dynamic-size" t-on-click="confirm">
+                    <t t-esc="props.save" />
+                </div>
+
+                <div class="button cancel disable highlight dynamic-size" t-on-click="cancel">
+                    <t t-esc="props.cancelText" />
+                </div>
+            </footer>
+        </div>
+        
+    </t>
+</templates>

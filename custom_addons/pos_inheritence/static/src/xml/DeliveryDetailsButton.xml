@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates id="template" owl="1">
+
+    <t t-name="DeliveryDetailsButton" owl="1">
+        <div class="control-button">
+             <i class="fa fa-truck" role="img" aria-label="DeliveryDetailsButton" title="DeliveryDetailsButton"/>
+            Delivery Details
+        </div>
+    </t>
+
+</templates>

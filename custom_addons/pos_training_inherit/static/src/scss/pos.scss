@@ -1,0 +1,34 @@
+.pos .pos-topheader{
+    background-color: #020c61;
+}
+
+.pos .leftpane .pads {
+    border-top: solid 1px blue;
+}
+.num {
+    background-color: rgb(7, 35, 66);
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    width: 15px;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    top: 0; 
+    left: 0; 
+}
+.number {
+    background-color: rgb(228, 99, 99);
+    padding: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    width: 15px;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    top: 0; 
+    left: 0; 
+}
+
