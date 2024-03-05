@@ -46,6 +46,7 @@
         'views/property_owner.xml',
         'views/res_partner_details.xml',
         'views/pdc_payment.xml',
+
         # 'views/property_templates.xml',
         # 'views/property_commision_views.xml',
         # 'views/property_sale_views.xml',

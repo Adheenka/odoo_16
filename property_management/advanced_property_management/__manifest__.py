@@ -44,6 +44,7 @@
         'views/property_tag_views.xml',
         'views/property_search_pannel_views.xml',
         'views/property_templates.xml',
+        'views/assets.xml',
         'views/property_commision_views.xml',
         'views/property_sale_views.xml',
         'views/property_rental_views.xml',
@@ -58,6 +59,7 @@
         'web.assets_frontend': [
             'advanced_property_management/static/src/js/property_website.js',
             'advanced_property_management/static/src/js/property_item.js',
+            'advanced_property_management/static/src/css/style.css',
         ],
     },
     'images': ['/static/description/banner.jpg'],

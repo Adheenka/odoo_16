@@ -1,0 +1,42 @@
+.p {
+
+font-size: 22px;
+
+color: green;
+
+}
+#main-content button {
+    padding: 14px 44px;
+    font-size: 20px;
+    background-color: #282828;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+}
+
+.gallery{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.img-box{
+    width: 200px;
+    height: 500px;
+    border-radius: 15px;
+    background-image: url('images/landing Page/coffee-latte-with-cookies-coffiee-beans.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transition: width 0.5s;
+}
+
+.img-box img{
+    width: 100%;
+}
+
+.img-box:nth-child(1){
+   width: 400px;

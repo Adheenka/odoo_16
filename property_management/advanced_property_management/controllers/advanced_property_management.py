@@ -138,19 +138,19 @@ class ApartmentController(http.Controller):
                     'zip': post.get('zip'),
                     'city': post.get('city'),
 
-                    'country_id': post.get('country_id'),
                 }
 
                 apartment = request.env['property.apartment'].sudo().browse(apartment_id)
                 property_id = apartment.property_id.id
-                country_id = request.env['res.country'].sudo().search([])
-                state_id = request.env['res.country.state'].sudo().search([])
-
+                # country_id = request.env['res.country'].sudo().search([])
+                # state_id = request.env['res.country.state'].sudo().search([])
+                countries = request.env['res.country'].sudo().search([])
+                states = request.env['res.country.state'].sudo().search([])
                 booking_data = {
                     'apartment_id': apartment_id,
                     'property_id': property_id,
-                    # 'country_id': country_id,
-                    # 'state_id': state_id,
+                    'countries': countries,
+                    'states': states,
                     'emergency_contact': name,
                     # 'tenant': tenant,
                     **address_data

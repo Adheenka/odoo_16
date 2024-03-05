@@ -275,7 +275,7 @@
         <div class="col-md-12 introduction">
             <!-- Property Address -->
             <div class="row">
-            <div class="col-sm-4 m-2"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="col-sm-4 m-2"><i class="bi bi-geo-alt"></i></div>
             <div class="col m-2">
                 <t t-esc="property_id.city"/><t t-esc="property_id.state_id.name"/><t t-esc="property_id.zip"/><br/>
                 <t t-esc="property_id.country_id.name"/>
@@ -285,7 +285,7 @@
 
             <!-- Property Price and Rent per Month -->
             <div class="row">
-                <div class="col-sm-4 m-2"><i class="fas fa-inr"></i></div>
+                <div class="col-sm-4 m-2"><i class="fa-inr"></i></div>
                 <div class="col m-2"><t t-esc="property_id.unit_price"/> /-</div>
             </div>
             <div class="row">
