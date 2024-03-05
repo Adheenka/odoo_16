@@ -95,7 +95,8 @@ class Property(models.Model):
     location = fields.Char(string="Location")
     permission_no = fields.Integer(string="Permises No (DEWA)")
 
-    # Add a One2many field to link to apartments (adheen custom code)
+    # Add a One2many field to link to apartments (code by adheen)
+
     apartment_ids = fields.One2many("property.apartment", "property_id", string="Apartments")
 
     emirate_state =  fields.Selection(

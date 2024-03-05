@@ -10,7 +10,7 @@ class Property_Apartment(models.Model):
 
     name = fields.Char(string="Name")
     property_id = fields.Many2one("property.property",string="Property")
-    property_id = fields.Many2one("property.property", string="Property")
+    
     type_residence = fields.Char(
         string="Type of Residence", help="The type of the residence"
     )
@@ -92,8 +92,10 @@ class Property_Apartment(models.Model):
     permission_no = fields.Integer(string="Permises No (DEWA)")
 
 
-    # adheen custom codes
+    # code by adheen
+
     image = fields.Binary(string="Image")
+    property_id = fields.Many2one("property.property", string="Property")
 
     @api.depends('company_id')
     def _compute_company_currency(self):

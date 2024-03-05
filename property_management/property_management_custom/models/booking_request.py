@@ -113,6 +113,12 @@ class Apartment_Booking(models.Model):
     document_ids = fields.One2many("document.line","request_id", string="Upload Documents")
     contract_count = fields.Integer(compute='_compute_apartment_count')
 
+    @api.onchange('country_id')
+    def _onchange_country_id(self):
+        if self.country_id:
+            return {'domain': {'state_id': [('country_id', '=', self.country_id.id)]}}
+        else:
+            return {'domain': {'state_id': []}}
     @api.model
     def create(self, vals):
         """Generating sequence number at the time of creation of record"""

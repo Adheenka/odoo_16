@@ -124,29 +124,36 @@ class ApartmentController(http.Controller):
 
     @http.route('/apartment-confirm-book', type='http', auth='public', website=True)
     def confirm_booking(self, **post):
+        print ("data",post)
         if request.httprequest.method == 'POST':
             try:
                 self._validate_booking_data(post)
 
                 apartment_id = int(post.get('apartment_id'))
 
-                # name = post.get('name')
+                name = post.get('name')
                 address_data = {
                     'street': post.get('street'),
                     'street2': post.get('street2'),
                     'zip': post.get('zip'),
                     'city': post.get('city'),
-                    # 'state_id': int(post.get('state')),  # Assuming state is an ID
-                    # 'country_id': int(post.get('country')),  # Assuming country is an ID
+
+                    'country_id': post.get('country_id'),
                 }
+
                 apartment = request.env['property.apartment'].sudo().browse(apartment_id)
                 property_id = apartment.property_id.id
-                # Create booking record
+                country_id = request.env['res.country'].sudo().search([])
+                state_id = request.env['res.country.state'].sudo().search([])
+
                 booking_data = {
                     'apartment_id': apartment_id,
                     'property_id': property_id,
-                    # 'name': name,
-                    **address_data  # Unpack address data into booking_data
+                    # 'country_id': country_id,
+                    # 'state_id': state_id,
+                    'emergency_contact': name,
+                    # 'tenant': tenant,
+                    **address_data
                 }
 
                 booking = request.env['apartment.booking'].sudo().create(booking_data)
@@ -160,7 +167,7 @@ class ApartmentController(http.Controller):
                 return self.render("advanced_property_management.booking_error_page", {
                     "error_message": str(e)
                 })
-
+    # validation logics
     def _validate_booking_data(self, data):
         # Implement data validation logic here
         # Example:

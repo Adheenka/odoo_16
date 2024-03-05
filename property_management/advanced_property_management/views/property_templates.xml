@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="property_view" name="property_view">
+        <xpath expr="." position="inside">
+        <link rel="stylesheet" href="/advanced_property_management/static/src/css/template.css"/>
+        </xpath>
         <t t-call="website.layout">
+
             <t t-set="title">Properties</t>
             <div class="oe_structure">
                 <br/>
@@ -36,11 +40,11 @@
                                         <t t-if="property.state == 'available'">
                                             <div class="col o_property_item"
                                                  t-att-data-property_id="property.id">
-                                                <div class="card">
+                                                <div class="card" style="width: 16rem; height: 330px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                                                     <t t-if="property.image">
                                                         <img t-att-src="image_data_uri(property.image)"
                                                              class="card-img-top"
-                                                             alt="..."/>
+                                                             alt="..." style="height: 80%; width: 80%;" />
                                                     </t>
                                                     <div class="card-body">
                                                         <h5 class="card-title">
@@ -245,87 +249,70 @@
                     <div class="row" id="property_container">
                         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"/>
                         <script src="https://www.npmjs.com/package/@googlemaps/js-api-loader"/>
-                        <div class="property_item" id="property-item"
-                             t-att-data-state="property_id.state">
-                            <script defer="defer"
-                                    t-attf-src="https://maps.googleapis.com/maps/api/js?key={{api}}&amp;v=weekly"/>
-                            <div class="row p-3 requestBtn"/>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <t t-if="property_id.image">
-                                        <img id="property-image"
-                                             t-att-src="image_data_uri(property_id.image)"
-                                             style="width: -webkit-fill-available;"/>
-                                    </t>
-                                </div>
-                                <div class="col-md-8 introduction">
-                                    <div class="row" id="nameAddress">
-                                        <h2 class="my-0"
-                                            style="text-transform: capitalize;">
-                                            <t t-esc="property_id.name"/>-
-                                            <t t-esc="property_id.property_type"/>
-                                        </h2>
-                                        <br/>
-                                        <div class="col-sm-4 m-2">Address:</div>
-                                        <div class="col m-2">
-                                            <t t-esc="property_id.street"/>
-                                            <br/>
-                                            <t t-esc="property_id.street2"/>
-                                            <br/>
-                                            <t t-esc="property_id.city"/>
-                                            <t t-esc="property_id.state_id.name"/>
-                                            <t t-esc="property_id.zip"/>
-                                            <br/>
-                                            <t t-esc="property_id.country_id.name"/>
-                                        </div>
-                                    </div>
-                                    <t t-if="property_id.unit_price">
-                                        <div class="row">
-                                            <div class="col-sm-4 m-2">Price:
-                                            </div>
-                                            <div class="col m-2"><t
-                                                    t-esc="property_id.unit_price"/>
-                                                /-
-                                            </div>
-                                        </div>
-                                    </t>
-                                    <t t-if="property_id.rent_month">
-                                        <div class="row">
-                                            <div class="col-sm-4 m-2">Rent per
-                                                Month:
-                                            </div>
-                                            <div class="col m-2"><t
-                                                    t-esc="property_id.rent_month"/>
-                                                /-
-                                            </div>
-                                        </div>
-                                    </t>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="property_item" id="property-item" t-att-data-state="property_id.state">
+    <script defer="defer" t-attf-src="https://maps.googleapis.com/maps/api/js?key={{api}}&amp;v=weekly"></script>
+
+    <!-- Property Name -->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2 class="my-0" style="text-transform: capitalize;">
+                <t t-esc="property_id.name"/> - <t t-esc="property_id.property_type"/>
+            </h2>
+        </div>
+    </div>
+
+    <!-- Property Image -->
+    <div class="row">
+        <div class="col-md-12">
+            <t t-if="property_id.image">
+                <img id="property-image" t-att-src="image_data_uri(property_id.image)" style="width: 100%; max-height: 230px;"/>
+            </t>
+        </div>
+    </div>
+
+    <!-- Property Details -->
+    <div class="row">
+        <div class="col-md-12 introduction">
+            <!-- Property Address -->
+            <div class="row">
+            <div class="col-sm-4 m-2"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="col m-2">
+                <t t-esc="property_id.city"/><t t-esc="property_id.state_id.name"/><t t-esc="property_id.zip"/><br/>
+                <t t-esc="property_id.country_id.name"/>
+            </div>
+        </div>
+
+
+            <!-- Property Price and Rent per Month -->
+            <div class="row">
+                <div class="col-sm-4 m-2"><i class="fas fa-inr"></i></div>
+                <div class="col m-2"><t t-esc="property_id.unit_price"/> /-</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 m-2">:</div>
+                <div class="col m-2"><t t-esc="property_id.construct_year"/> /-</div>
+            </div>
+        </div>
+    </div>
+</div>
                     </div>
 
-                <h2 style="padding: 20px; text-align: center;">AVAILABLE APARTMENTS IN THIS PROPERTY</h2>
-                <!-- Loop through apartments -->
-                <t t-foreach="property_id.apartment_ids" t-as="apartment">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <!-- Apartment image -->
-                            <t t-if="apartment.image">
-                                <a t-attf-href="/apartment-details/#{apartment.id}">
-                                    <img class="apartment-image" t-att-src="image_data_uri(apartment.image)" style="width: -webkit-fill-available;"/>
-                                </a>
-                            </t>
-                        </div>
-                        <div class="col-md-8 introduction">
-                            <!-- Apartment name -->
-                            <h2 class="my-0" style="text-transform: capitalize;">
-                                <t t-esc="apartment.name"/>
-                            </h2>
+                   <div class="row">
+    <h3 style="text-align: center;">AVAILABLE APARTMENTS IN THIS PROPERTY</h3>
 
-                        </div>
-                    </div>
-                </t>
+    <t t-foreach="property_id.apartment_ids" t-as="apartment">
+        <t t-if="apartment.image">
+            <div style="box-shadow: 0 4px 8px rgba(0,0,0,0.1);" class="col-md-4 col-sm-6 xsell">
+                <a style="text-decoration: none!important; color:black;" t-attf-href="/apartment-details/#{apartment.id}">
+                    <img style="height: 80%; width: 80%;" alt="" class="img-responsive" width="265" height="400" t-att-src="image_data_uri(apartment.image)"/>
+                    <h4 style="margin-top: 10px; text-align: center;"><t t-esc="apartment.name"/></h4>
+                <p style="text-align: center; color: #7dce94;">Rent: €<t t-esc="apartment.rent_month"/></p>
+                </a>
+            </div>
+        </t>
+    </t>
+
+</div>
                     <t t-if="property_id.total_sq_feet">
                         <div class="row">
                             <div class="col-sm-4 p-3"
@@ -438,10 +425,18 @@
         <div id="wrap">
             <div class="oe_structure">
                 <div class="container">
-                    <form role="form" action="/apartment-confirm-book" method="POST">
+                    <form style="margin: 3em 12em 10em; padding: 2em 12em 10em;background-color: #fbe3e8; border-radius: 1.5%;" role="form" action="/apartment-confirm-book" method="POST">
                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                         <input type="hidden" name="apartment_id" t-att-value="apartment.id"/>
-
+<!--                        <div class="form-group">-->
+<!--    <label for="tenant_id" >Tenant</label>-->
+<!--    <select  name="tenant_id" class="form-control">-->
+<!--        <option value="">Select a Tenant</option>-->
+<!--        <t t-foreach="tenant" t-as="tenant">-->
+<!--            <option t-att-value="tenant.id"><t t-esc="tenant.name"/></option>-->
+<!--        </t>-->
+<!--    </select>-->
+<!--</div>-->
                         <div class="form-group">
                             <label for="inputName" class="control-label">Name</label>
                             <input type="text" name="name" id="inputName" class="form-control" placeholder="Enter your name" required="required"/>
@@ -467,18 +462,28 @@
                             <input type="text" name="city" id="inputCity" class="form-control" placeholder="Enter city"/>
                         </div>
 
-                        <div class="form-group">
-                            <label for="inputState" class="control-label">State</label>
-                            <input type="text" name="state" id="inputState" class="form-control" placeholder="Enter state"/>
-                        </div>
+<!--                         <div class="form-group">-->
+<!--      <label for="inputCountry" class="control-label">Country</label>-->
+<!--      <select name="country_id" id="inputCountry" class="form-control">-->
+<!--        <option value="">Select a Country</option>-->
+<!--        {% for country in countries %}-->
+<!--          <option value="{{ country.id }}">{{ country.name }}</option>-->
+<!--        {% endfor %}-->
+<!--      </select>-->
+<!--    </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="inputState" class="control-label">State</label>-->
+<!--                            <input type="text" name="state" id="inputState" class="form-control" placeholder="Enter state"/>-->
+<!--                        </div>-->
 
-                        <div class="form-group">
-                            <label for="inputCountry" class="control-label">Country</label>
-                            <input type="text" name="country" id="inputCountry" class="form-control" placeholder="Enter country"/>
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <label for="country_id" class="control-label">Country</label>-->
+<!--&lt;!&ndash;                            <input type="text" name="country" id="inputCountry" class="form-control" placeholder="Enter country"/>&ndash;&gt;-->
+<!--                            <input type = "text" name = "country_id" id = "country_id" size = "30" required = "" />-->
+<!--                        </div>-->
 
-                        <div class="clearfix oe_login_buttons">
-                            <button type="submit" class="btn btn-primary pull-left">Confirm Booking</button>
+                        <div style="margin-top:5px; text-align: center;" class="clearfix oe_login_buttons">
+                            <button style="padding: 10px 20px;" type="submit" class="btn btn-primary pull-left">Confirm Booking</button>
                         </div>
                         <br/>
                     </form>
@@ -492,8 +497,8 @@
         <t t-call="website.layout">
             <div class="container">
                <div class="jumbotron text-center">
-                  <h1 class="display-4">Booking Confirmed!</h1>
-                 <p class="lead">Your booking has been successfully confirmed.</p>
+                  <h1 style="color:#9bc400;" class="display-4">Booking Confirmed!</h1>
+                 <p class="lead">Your Apratment booking has been successfully confirmed.</p>
                    <hr class="my-4"/>
                   <p>Thank you for choosing us. Enjoy your stay!</p>
                  <a class="btn btn-primary btn-lg" href="/">Back to Home</a>
