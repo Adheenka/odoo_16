@@ -56,10 +56,14 @@
         'wizards/property_sale_report_views.xml',
     ],
     'assets': {
+        'web.assets_backend': [
+            'advanced_property_management/static/src/css/style.css',
+        ],
         'web.assets_frontend': [
             'advanced_property_management/static/src/js/property_website.js',
             'advanced_property_management/static/src/js/property_item.js',
             'advanced_property_management/static/src/css/style.css',
+
         ],
     },
     'images': ['/static/description/banner.jpg'],

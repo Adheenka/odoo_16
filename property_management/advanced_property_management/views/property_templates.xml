@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="property_view" name="property_view">
-        <xpath expr="." position="inside">
-        <link rel="stylesheet" href="/advanced_property_management/static/src/css/template.css"/>
-        </xpath>
+        <!--        <xpath expr="." position="inside">-->
+        <!--            <link rel="stylesheet" href="/advanced_property_management/static/src/css/template.css"/>-->
+        <!--        </xpath>-->
         <t t-call="website.layout">
 
             <t t-set="title">Properties</t>
@@ -40,11 +40,12 @@
                                         <t t-if="property.state == 'available'">
                                             <div class="col o_property_item"
                                                  t-att-data-property_id="property.id">
-                                                <div class="card" style="width: 16rem; height: 330px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                                                <div class="card"
+                                                     style="width: 16rem; height: 330px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                                                     <t t-if="property.image">
                                                         <img t-att-src="image_data_uri(property.image)"
                                                              class="card-img-top"
-                                                             alt="..." style="height: 80%; width: 80%;" />
+                                                             alt="..." style="height: 80%; width: 80%;"/>
                                                     </t>
                                                     <div class="card-body">
                                                         <h5 class="card-title">
@@ -246,73 +247,95 @@
             <div class="oe_structure">
                 <br/>
                 <div class="container property_container">
-                    <div class="row" id="property_container">
-                        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"/>
-                        <script src="https://www.npmjs.com/package/@googlemaps/js-api-loader"/>
-                        <div class="property_item" id="property-item" t-att-data-state="property_id.state">
-    <script defer="defer" t-attf-src="https://maps.googleapis.com/maps/api/js?key={{api}}&amp;v=weekly"></script>
+                    <div id="property_container" style="width: 100%;">
+                        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+                        <script src="https://www.npmjs.com/package/@googlemaps/js-api-loader"></script>
+                        <div class="card" style="height: 280px; display: inline-block; position: relative; margin: auto;z-index: 1;">
+                            <img t-if="property_id.image" t-att-src="image_data_uri(property_id.image)" class="card-img"
+                                 alt="..."/>
+                            <div class="card-img-overlay" style="position: absolute;
+    
+    left: 0;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;
+    width: 100%;">
+                                <h1 style="text-align: center; color: white; padding-top: 140px;" class="card-title property-name">
+                                    <t t-esc="property_id.name"/>
+                                    -
+                                    <t t-esc="property_id.property_type"/>
+                                </h1>
+                                <div class="property-details" style="margin: 5px 0;">
+                                    <p style="">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <t t-esc="property_id.city"/>,
+                                        <t t-esc="property_id.state_id.name"/>
+                                        <t t-esc="property_id.zip"/>
+                                    </p>
+                                    <p>
+                                        <i class="fas fa-coins"></i>
+                                        <t t-esc="property_id.unit_price"/>
+                                        /-
+                                    </p>
+                                    <p>
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <t t-esc="property_id.construct_year"/>
+                                        /-
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
 
-    <!-- Property Name -->
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h2 class="my-0" style="text-transform: capitalize;">
-                <t t-esc="property_id.name"/> - <t t-esc="property_id.property_type"/>
-            </h2>
-        </div>
-    </div>
-
-    <!-- Property Image -->
-    <div class="row">
-        <div class="col-md-12">
-            <t t-if="property_id.image">
-                <img id="property-image" t-att-src="image_data_uri(property_id.image)" style="width: 100%; max-height: 230px;"/>
-            </t>
-        </div>
-    </div>
-
-    <!-- Property Details -->
-    <div class="row">
-        <div class="col-md-12 introduction">
-            <!-- Property Address -->
-            <div class="row">
-            <div class="col-sm-4 m-2"><i class="bi bi-geo-alt"></i></div>
-            <div class="col m-2">
-                <t t-esc="property_id.city"/><t t-esc="property_id.state_id.name"/><t t-esc="property_id.zip"/><br/>
-                <t t-esc="property_id.country_id.name"/>
-            </div>
-        </div>
-
-
-            <!-- Property Price and Rent per Month -->
-            <div class="row">
-                <div class="col-sm-4 m-2"><i class="fa-inr"></i></div>
-                <div class="col m-2"><t t-esc="property_id.unit_price"/> /-</div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 m-2">:</div>
-                <div class="col m-2"><t t-esc="property_id.construct_year"/> /-</div>
-            </div>
-        </div>
-    </div>
-</div>
                     </div>
 
-                   <div class="row">
-    <h3 style="text-align: center;">AVAILABLE APARTMENTS IN THIS PROPERTY</h3>
+                    <h3 style="text-align: center;">AVAILABLE APARTMENTS IN THIS PROPERTY</h3>
+                    <t t-foreach="property_id.apartment_ids" t-as="apartment">
+                        <t t-if="apartment.image">
+                            <div class="card mb-3"
+                                 style="width: 100%; height: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border: 1px solid black;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <a t-attf-href="/apartment-details/#{apartment.id}">
+                                            <img t-att-src="image_data_uri(apartment.image)"
+                                                 class="img-fluid rounded-start" alt="Apartment Image"/>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h2 class="card-title"
+                                                style="text-transform: uppercase; margin-left: 10px; font-weight: bold; font-family: Arial, sans-serif; margin-top: 10px; text-align:  center; font-size: x-large; ">
+                                                <t t-esc="apartment.name"/>
+                                            </h2>
+                                            <p class="card-text"
+                                               style="font-family: Arial, sans-serif; text-align: center; color: grey;">
+                                                RENT:
+                                                <span style="color: grey;">₹</span>
+                                                <span style="color: grey; font-size: larger;">
+                                                    <t t-esc="apartment.rent_month"/>
+                                                    / Year
+                                                </span>
+                                            </p>
+                                            <div style="text-align: center;">
+                                                <p style="font-style: italic; font-size: larger; margin-top: 5px;">
+                                                    <span>Bedroom:
+                                                        <i class="fa fa-bed"></i>
+                                                        <t t-esc="apartment.bedroom"/>
+                                                    </span>
+                                                    <span style="margin-left: 20px;">Bathroom:
+                                                        <i
+                                                                class="fa fa-bath"></i>
+                                                        <t t-esc="apartment.bathroom"/>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
 
-    <t t-foreach="property_id.apartment_ids" t-as="apartment">
-        <t t-if="apartment.image">
-            <div style="box-shadow: 0 4px 8px rgba(0,0,0,0.1);" class="col-md-4 col-sm-6 xsell">
-                <a style="text-decoration: none!important; color:black;" t-attf-href="/apartment-details/#{apartment.id}">
-                    <img style="height: 80%; width: 80%;" alt="" class="img-responsive" width="265" height="400" t-att-src="image_data_uri(apartment.image)"/>
-                    <h4 style="margin-top: 10px; text-align: center;"><t t-esc="apartment.name"/></h4>
-                <p style="text-align: center; color: #7dce94;">Rent: €<t t-esc="apartment.rent_month"/></p>
-                </a>
-            </div>
-        </t>
-    </t>
 
-</div>
                     <t t-if="property_id.total_sq_feet">
                         <div class="row">
                             <div class="col-sm-4 p-3"
@@ -355,8 +378,9 @@
                                                     style="text-transform: capitalize;">
                                                     <t t-esc="connectivity.name"/>
                                                 </h5>
-                                                <p class="card-text"><t
-                                                        t-esc="connectivity.kilometer"/>
+                                                <p class="card-text">
+                                                    <t
+                                                            t-esc="connectivity.kilometer"/>
                                                     Kms
                                                 </p>
                                             </div>
@@ -386,140 +410,159 @@
         </t>
     </template>
 
-      <!--    apartment view -->
+    <!--    apartment view -->
 
-     <template id="apartment_details_template" name="Apartment Details">
-       <t t-call="website.layout">
-         <div class="container my-5">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="card-title"><t t-esc="apartment.name"/></h1>
-                            <p class="card-text mb-3">Rent per Month: <t t-esc="apartment.rent_month"/></p>
-                            <p class="card-text mb-3">Bedrooms: <t t-esc="apartment.bedroom"/></p>
-                            <p class="card-text mb-3">Bathrooms: <t t-esc="apartment.bathroom"/></p>
-                            <p class="card-text mb-3">Furnishing: <t t-esc="dict(apartment._fields['furnishing'].selection).get(apartment.furnishing)"/></p>
-                            <!-- Add more apartment details here -->
-                            <a t-attf-href="/apartment_booking_form/#{apartment.id}">
-                             <button type="button" class="btn btn-primary">Book This Apartment</button>
-                            </a>
+    <template id="apartment_details_template" name="Apartment Details">
+        <t t-call="website.layout">
+            <div class="container my-5">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h1 class="card-title">
+                                    <t t-esc="apartment.name"/>
+                                </h1>
+                                <p class="card-text mb-3">Rent per Month:
+                                    <t t-esc="apartment.rent_month"/>
+                                </p>
+                                <p class="card-text mb-3">Bedrooms:
+                                    <t t-esc="apartment.bedroom"/>
+                                </p>
+                                <p class="card-text mb-3">Bathrooms:
+                                    <t t-esc="apartment.bathroom"/>
+                                </p>
+                                <p class="card-text mb-3">Furnishing:
+                                    <t t-esc="dict(apartment._fields['furnishing'].selection).get(apartment.furnishing)"/>
+                                </p>
+                                <!-- Add more apartment details here -->
+                                <a t-attf-href="/apartment_booking_form/#{apartment.id}">
+                                    <button type="button" class="btn btn-primary">Book This Apartment</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 text-center">
+                        <div class="card">
+                            <t t-if="apartment.image">
+                                <img class="card-img-top" t-att-src="image_data_uri(apartment.image)"
+                                     alt="Apartment Image"/>
+                            </t>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-6 text-center">
-                    <div class="card">
-                        <t t-if="apartment.image">
-                            <img class="card-img-top" t-att-src="image_data_uri(apartment.image)" alt="Apartment Image"/>
-                        </t>
-                    </div>
-                </div>
             </div>
-          </div>
 
         </t>
-      </template>
+    </template>
     <template id="apartment_booking_form_template" name="Apartment Booking Form">
-    <t t-call="website.layout">
-        <div id="wrap">
-            <div class="oe_structure">
-                <div class="container">
-                    <form style="margin: 3em 12em 10em; padding: 2em 12em 10em;background-color: #fbe3e8; border-radius: 1.5%;" role="form" action="/apartment-confirm-book" method="POST">
-                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                        <input type="hidden" name="apartment_id" t-att-value="apartment.id"/>
-<!--                        <div class="form-group">-->
-<!--    <label for="tenant_id" >Tenant</label>-->
-<!--    <select  name="tenant_id" class="form-control">-->
-<!--        <option value="">Select a Tenant</option>-->
-<!--        <t t-foreach="tenant" t-as="tenant">-->
-<!--            <option t-att-value="tenant.id"><t t-esc="tenant.name"/></option>-->
-<!--        </t>-->
-<!--    </select>-->
-<!--</div>-->
-                        <div class="form-group">
-                            <label for="inputName" class="control-label">Name</label>
-                            <input type="text" name="name" id="inputName" class="form-control" placeholder="Enter your name" required="required"/>
-                        </div>
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <form style="margin: 3em 12em 10em; padding: 2em 12em 10em;background-color: #fbe3e8; border-radius: 1.5%;"
+                              role="form" action="/apartment-confirm-book" method="POST">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <input type="hidden" name="apartment_id" t-att-value="apartment.id"/>
+                            <!--                        <div class="form-group">-->
+                            <!--    <label for="tenant_id" >Tenant</label>-->
+                            <!--    <select  name="tenant_id" class="form-control">-->
+                            <!--        <option value="">Select a Tenant</option>-->
+                            <!--        <t t-foreach="tenant" t-as="tenant">-->
+                            <!--            <option t-att-value="tenant.id"><t t-esc="tenant.name"/></option>-->
+                            <!--        </t>-->
+                            <!--    </select>-->
+                            <!--</div>-->
+                            <div class="form-group">
+                                <label for="inputName" class="control-label">Name</label>
+                                <input type="text" name="name" id="inputName" class="form-control"
+                                       placeholder="Enter your name" required="required"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="inputStreet" class="control-label">Street</label>
-                            <input type="text" name="street" id="inputStreet" class="form-control" placeholder="Enter street" required="required"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="inputStreet" class="control-label">Street</label>
+                                <input type="text" name="street" id="inputStreet" class="form-control"
+                                       placeholder="Enter street" required="required"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="inputStreet2" class="control-label">Street2</label>
-                            <input type="text" name="street2" id="inputStreet2" class="form-control" placeholder="Enter street2"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="inputStreet2" class="control-label">Street2</label>
+                                <input type="text" name="street2" id="inputStreet2" class="form-control"
+                                       placeholder="Enter street2"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="inputZip" class="control-label">Zip</label>
-                            <input type="text" name="zip" id="inputZip" class="form-control" placeholder="Enter zip"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="inputZip" class="control-label">Zip</label>
+                                <input type="text" name="zip" id="inputZip" class="form-control"
+                                       placeholder="Enter zip"/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="inputCity" class="control-label">City</label>
-                            <input type="text" name="city" id="inputCity" class="form-control" placeholder="Enter city"/>
-                        </div>
+                            <div class="form-group">
+                                <label for="inputCity" class="control-label">City</label>
+                                <input type="text" name="city" id="inputCity" class="form-control"
+                                       placeholder="Enter city"/>
+                            </div>
 
-<!--                         <div class="form-group">-->
-<!--      <label for="inputCountry" class="control-label">Country</label>-->
-<!--      <select name="country_id" id="inputCountry" class="form-control">-->
-<!--        <option value="">Select a Country</option>-->
-<!--        {% for country in countries %}-->
-<!--          <option value="{{ country.id }}">{{ country.name }}</option>-->
-<!--        {% endfor %}-->
-<!--      </select>-->
-<!--    </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="inputState" class="control-label">State</label>-->
-<!--                            <input type="text" name="state" id="inputState" class="form-control" placeholder="Enter state"/>-->
-<!--                        </div>-->
+                            <!--                         <div class="form-group">-->
+                            <!--      <label for="inputCountry" class="control-label">Country</label>-->
+                            <!--      <select name="country_id" id="inputCountry" class="form-control">-->
+                            <!--        <option value="">Select a Country</option>-->
+                            <!--        {% for country in countries %}-->
+                            <!--          <option value="{{ country.id }}">{{ country.name }}</option>-->
+                            <!--        {% endfor %}-->
+                            <!--      </select>-->
+                            <!--    </div>-->
+                            <!--                        <div class="form-group">-->
+                            <!--                            <label for="inputState" class="control-label">State</label>-->
+                            <!--                            <input type="text" name="state" id="inputState" class="form-control" placeholder="Enter state"/>-->
+                            <!--                        </div>-->
 
-<!--                        <div class="form-group">-->
-<!--                            <label for="country_id" class="control-label">Country</label>-->
-<!--&lt;!&ndash;                            <input type="text" name="country" id="inputCountry" class="form-control" placeholder="Enter country"/>&ndash;&gt;-->
-<!--                            <input type = "text" name = "country_id" id = "country_id" size = "30" required = "" />-->
-<!--                        </div>-->
+                            <!--                        <div class="form-group">-->
+                            <!--                            <label for="country_id" class="control-label">Country</label>-->
+                            <!--&lt;!&ndash;                            <input type="text" name="country" id="inputCountry" class="form-control" placeholder="Enter country"/>&ndash;&gt;-->
+                            <!--                            <input type = "text" name = "country_id" id = "country_id" size = "30" required = "" />-->
+                            <!--                        </div>-->
 
-                        <div style="margin-top:5px; text-align: center;" class="clearfix oe_login_buttons">
-                            <button style="padding: 10px 20px;" type="submit" class="btn btn-primary pull-left">Confirm Booking</button>
-                        </div>
-                        <br/>
-                    </form>
+                            <div style="margin-top:5px; text-align: center;" class="clearfix oe_login_buttons">
+                                <button style="padding: 10px 20px;" type="submit" class="btn btn-primary pull-left">
+                                    Confirm Booking
+                                </button>
+                            </div>
+                            <br/>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </t>
+        </t>
     </template>
 
     <template id="booking_confirmation_page" name="Booking Confirmation Page">
         <t t-call="website.layout">
             <div class="container">
-               <div class="jumbotron text-center">
-                  <h1 style="color:#9bc400;" class="display-4">Booking Confirmed!</h1>
-                 <p class="lead">Your Apratment booking has been successfully confirmed.</p>
-                   <hr class="my-4"/>
-                  <p>Thank you for choosing us. Enjoy your stay!</p>
-                 <a class="btn btn-primary btn-lg" href="/">Back to Home</a>
-              </div>
-           </div>
+                <div class="jumbotron text-center">
+                    <h1 style="color:#9bc400;" class="display-4">Booking Confirmed!</h1>
+                    <p class="lead">Your Apratment booking has been successfully confirmed.</p>
+                    <hr class="my-4"/>
+                    <p>Thank you for choosing us. Enjoy your stay!</p>
+                    <a class="btn btn-primary btn-lg" href="/">Back to Home</a>
+                </div>
+            </div>
         </t>
-   </template>
+    </template>
 
     <template id="booking_error_page" name="Booking Confirmation Page">
         <t t-call="website.layout">
             <div class="container">
-               <div class="jumbotron text-center">
-                  <h1 class="display-4">sorry</h1>
-                 <p class="lead">Your booking has been successfully confirmed.</p>
-                   <hr class="my-4"/>
-                  <p>Thank you for choosing us. Enjoy your stay!</p>
-                 <a class="btn btn-primary btn-lg" href="/">Back to Home</a>
-              </div>
-           </div>
+                <div class="jumbotron text-center">
+                    <h1 class="display-4">sorry</h1>
+                    <p class="lead">Your booking has been successfully confirmed.</p>
+                    <hr class="my-4"/>
+                    <p>Thank you for choosing us. Enjoy your stay!</p>
+                    <a class="btn btn-primary btn-lg" href="/">Back to Home</a>
+                </div>
+            </div>
         </t>
-   </template>
+    </template>
 
     <!--    Property Auction Template   -->
     <template id="auction_view" name="Action View">
