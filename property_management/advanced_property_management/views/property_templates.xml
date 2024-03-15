@@ -241,7 +241,7 @@
     <!--    Property View Template  -->
     <template id="property_view_item" name="property_view_item">
         <t t-call="website.layout">
-            <t t-set="title">Property-
+            <t t-set="title">Property -
                 <t t-esc="property_id.name"/>
             </t>
             <div class="oe_structure">
@@ -250,17 +250,14 @@
                     <div id="property_container" style="width: 100%;">
                         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
                         <script src="https://www.npmjs.com/package/@googlemaps/js-api-loader"></script>
-                        <div class="card" style="height: 280px; display: inline-block; position: relative; margin: auto;z-index: 1;">
+                        <div class="card"
+                             style="height: 280px; display: inline-block; position: relative; margin: auto;z-index: 1;">
                             <img t-if="property_id.image" t-att-src="image_data_uri(property_id.image)" class="card-img"
                                  alt="..."/>
-                            <div class="card-img-overlay" style="position: absolute;
-    
-    left: 0;
-    transform: translateY(-50%);
-    text-align: center;
-    color: #fff;
-    width: 100%;">
-                                <h1 style="text-align: center; color: white; padding-top: 140px;" class="card-title property-name">
+                            <div class="card-img-overlay" style="position: absolute;left: 0;transform: translateY(-50%);text-align: center;color: #fff;
+                             width: 100%;">
+                                <h1 style="text-align: center; color: white; padding-top: 140px;"
+                                    class="card-title property-name">
                                     <t t-esc="property_id.name"/>
                                     -
                                     <t t-esc="property_id.property_type"/>
@@ -413,48 +410,50 @@
     <!--    apartment view -->
 
     <template id="apartment_details_template" name="Apartment Details">
-        <t t-call="website.layout">
-            <div class="container my-5">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h1 class="card-title">
-                                    <t t-esc="apartment.name"/>
-                                </h1>
-                                <p class="card-text mb-3">Rent per Month:
-                                    <t t-esc="apartment.rent_month"/>
-                                </p>
-                                <p class="card-text mb-3">Bedrooms:
-                                    <t t-esc="apartment.bedroom"/>
-                                </p>
-                                <p class="card-text mb-3">Bathrooms:
-                                    <t t-esc="apartment.bathroom"/>
-                                </p>
-                                <p class="card-text mb-3">Furnishing:
-                                    <t t-esc="dict(apartment._fields['furnishing'].selection).get(apartment.furnishing)"/>
-                                </p>
-                                <!-- Add more apartment details here -->
-                                <a t-attf-href="/apartment_booking_form/#{apartment.id}">
-                                    <button type="button" class="btn btn-primary">Book This Apartment</button>
-                                </a>
+    <t t-call="website.layout">
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <t t-if="apartment.image">
+                                        <img class="card-img-top" t-att-src="image_data_uri(apartment.image)" alt="Apartment Image"/>
+                                    </t>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h1 class="card-title">
+                                        <t t-esc="apartment.name"/>
+                                    </h1>
+                                    <p class="card-text mb-3">
+                                        Rent per Month: <t t-esc="apartment.rent_month"/>
+                                    </p>
+                                    <div class="row mb-3">
+                                        <div class="col-6">
+                                            <span>Bedroom: <i class="fa fa-bed"></i> <t t-esc="apartment.bedroom"/></span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span>Bathroom: <i class="fa fa-bath"></i> <t t-esc="apartment.bathroom"/></span>
+                                        </div>
+                                    </div>
+                                    <p class="card-text mb-3">Furnishing: <i class="fa fa-couch"></i> <t t-esc="dict(apartment._fields['furnishing'].selection).get(apartment.furnishing)"/></p>
+                                    <!-- Add more apartment details here -->
+                                    <a t-attf-href="/apartment_booking_form/#{apartment.id}">
+                                        <button type="button" class="btn btn-primary">Book This Apartment</button>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 text-center">
-                        <div class="card">
-                            <t t-if="apartment.image">
-                                <img class="card-img-top" t-att-src="image_data_uri(apartment.image)"
-                                     alt="Apartment Image"/>
-                            </t>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </t>
+</template>
 
-        </t>
-    </template>
+
+
     <template id="apartment_booking_form_template" name="Apartment Booking Form">
         <t t-call="website.layout">
             <div id="wrap">
