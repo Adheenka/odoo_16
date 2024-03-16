@@ -149,8 +149,8 @@ class ApartmentController(http.Controller):
                 booking_data = {
                     'apartment_id': apartment_id,
                     'property_id': property_id,
-                    'countries': countries,
-                    'states': states,
+                    # 'countries': countries,
+                    # 'states': states,
                     'emergency_contact': name,
                     # 'tenant': tenant,
                     **address_data

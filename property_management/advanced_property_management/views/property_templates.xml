@@ -250,9 +250,9 @@
                     <div id="property_container" style="width: 100%;">
                         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
                         <script src="https://www.npmjs.com/package/@googlemaps/js-api-loader"></script>
-                        <div class="card"
-                             style="height: 280px; display: inline-block; position: relative; margin: auto;z-index: 1;">
-                            <img t-if="property_id.image" t-att-src="image_data_uri(property_id.image)" class="card-img"
+                        <div class=""
+                             style="background-position: top;background-size: 100%;position: relative;z-index: -10;">
+                            <img style="height: 350px;" t-if="property_id.image" t-att-src="image_data_uri(property_id.image)" class="card-img"
                                  alt="..."/>
                             <div class="card-img-overlay" style="position: absolute;left: 0;transform: translateY(-50%);text-align: center;color: #fff;
                              width: 100%;">
@@ -262,8 +262,8 @@
                                     -
                                     <t t-esc="property_id.property_type"/>
                                 </h1>
-                                <div class="property-details" style="margin: 5px 0;">
-                                    <p style="">
+                                <div class="property-details" style="font-style: italic; font-size: larger; margin-top: 5px; margin: 5px 0;">
+                                    <p style="font-style: italic; font-size: larger; margin-top: 5px;">
                                         <i class="fas fa-map-marker-alt"></i>
                                         <t t-esc="property_id.city"/>,
                                         <t t-esc="property_id.state_id.name"/>
@@ -423,25 +423,26 @@
                                     </t>
                                 </div>
                                 <div class="col-lg-6">
-                                    <h1 class="card-title">
+                                    <h1 style="text-transform: uppercase; margin-left: 10px; font-weight: bold; font-family: Arial, sans-serif; margin-top: 10px; text-align:  center; font-size: x-large; " class="card-title">
                                         <t t-esc="apartment.name"/>
                                     </h1>
-                                    <p class="card-text mb-3">
-                                        Rent per Month: <t t-esc="apartment.rent_month"/>
+                                    <p style="font-size: 2.1rem; color: grey; text-align:  center;
+               " class="price card-text mb-3">
+                                         <i class="fa fa-inr"></i> <t t-esc="apartment.rent_month"/>/ month
                                     </p>
-                                    <div class="row mb-3">
-                                        <div class="col-6">
-                                            <span>Bedroom: <i class="fa fa-bed"></i> <t t-esc="apartment.bedroom"/></span>
-                                        </div>
-                                        <div class="col-6">
-                                            <span>Bathroom: <i class="fa fa-bath"></i> <t t-esc="apartment.bathroom"/></span>
-                                        </div>
+                                   <div style="text-align: center;" class="mb-3">
+                                        <span class="detail">Bedroom: <i class="fa fa-bed"></i> <t t-esc="apartment.bedroom"/></span>
+                                        <span class="detail"> &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |  &amp;nbsp;</span>
+                                        <span class="detail">Bathroom: <i class="fa fa-bath"></i> <t t-esc="apartment.bathroom"/></span>
+                                        <span class="detail">  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|&amp;nbsp;  </span>
+                                        <span class="detail">Furnishing: <i class="fa fa-couch"></i> <t t-esc="dict(apartment._fields['furnishing'].selection).get(apartment.furnishing)"/></span>
                                     </div>
-                                    <p class="card-text mb-3">Furnishing: <i class="fa fa-couch"></i> <t t-esc="dict(apartment._fields['furnishing'].selection).get(apartment.furnishing)"/></p>
                                     <!-- Add more apartment details here -->
-                                    <a t-attf-href="/apartment_booking_form/#{apartment.id}">
-                                        <button type="button" class="btn btn-primary">Book This Apartment</button>
-                                    </a>
+                                    <div  style="text-align: center;" class="button-container">
+                                        <a t-attf-href="/apartment_booking_form/#{apartment.id}">
+                                            <button type="button" class="btn btn-primary">Book This Apartment</button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
