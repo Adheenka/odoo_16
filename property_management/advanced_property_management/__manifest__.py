@@ -46,7 +46,7 @@
         'views/property_templates.xml',
         'views/assets.xml',
         'views/property_commision_views.xml',
-        'views/portal_template.xml',
+
         'views/property_sale_views.xml',
         'views/property_rental_views.xml',
         'views/res_partner_views.xml',
