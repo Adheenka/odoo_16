@@ -27,7 +27,7 @@ from odoo.odoo.exceptions import ValidationError, UserError
 
 
 class PropertyController(http.Controller):
-    """A controller class that shows the related functions to the property"""
+    """A controllers class that shows the related functions to the property"""
 
     @http.route('/property', auth='user', website=True)
     def property(self):
@@ -130,7 +130,8 @@ class ApartmentController(http.Controller):
                 self._validate_booking_data(post)
 
                 apartment_id = int(post.get('apartment_id'))
-
+                countries = request.env['res.country'].sudo().search([])
+                states = request.env['res.country.state'].sudo().search([])
                 name = post.get('name')
                 address_data = {
                     'street': post.get('street'),
@@ -142,10 +143,8 @@ class ApartmentController(http.Controller):
 
                 apartment = request.env['property.apartment'].sudo().browse(apartment_id)
                 property_id = apartment.property_id.id
-                # country_id = request.env['res.country'].sudo().search([])
-                # state_id = request.env['res.country.state'].sudo().search([])
-                countries = request.env['res.country'].sudo().search([])
-                states = request.env['res.country.state'].sudo().search([])
+
+
                 booking_data = {
                     'apartment_id': apartment_id,
                     'property_id': property_id,

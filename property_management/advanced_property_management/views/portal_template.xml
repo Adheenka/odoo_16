@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+<!--    <template id="portal_my_home_property_booking" name="property_booking"-->
+<!--              inherit_id="portal.portal_my_home" customize_show="True"-->
+<!--              priority="22">-->
+<!--        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">-->
+<!--            <t t-call="portal.portal_docs_entry">-->
+<!--                <t t-set="title">My Property Booking</t>-->
+<!--                <t t-set="url" t-value="'/property/booking'"/>-->
+<!--                <t t-set="placeholder_count" t-value="'property_booking_count'"/>-->
+<!--            </t>-->
+<!--        </xpath>-->
+<!--    </template>-->
+
+    <template
+        id="portal_property_booking" name="property_booking"
+        inherit_id="portal.portal_my_home"
+        priority="40"
+        customize_show="True"
+    >
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Booking count</t>
+                <t t-set="url" t-value="'/my/request'" />
+                <t t-set="placeholder_count" t-value="'booking_count'" />
+            </t>
+
+        </xpath>
+    </template>
+
+
+
+
+<!--    <template-->
+<!--            id="portal_my_home"-->
+<!--            name="Portal My Home : rental requests"-->
+<!--            inherit_id="portal.portal_my_home"-->
+<!--            priority="40"-->
+<!--            customize_show="True"-->
+<!--    >-->
+<!--        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">-->
+<!--            <t t-call="portal.portal_docs_entry">-->
+<!--                <t t-set="title">Rental Requests</t>-->
+<!--                <t t-set="url" t-value="'/my/request'"/>-->
+<!--                <t t-set="placeholder_count" t-value="'request_count'"/>-->
+<!--            </t>-->
+<!--        </xpath>-->
+<!--    </template>-->
+
+
+    <template id="portal_my_rental" name="My Rental">
+        <t t-call="portal.portal_layout">
+            <!--            <t t-set="breadcrumbs_searchbar" t-value="True"/>-->
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Rental Requests</t>
+            </t>
+            <t t-if="" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Quotation #</th>
+                        <th class="text-end">Quotation Date</th>
+                        <th class="text-end">Valid Until</th>
+                        <th class="text-center"/>
+                        <th class="text-end">Total</th>
+                    </tr>
+                </thead>
+                <!--                <t t-foreach="quotations" t-as="quotation">-->
+                <!--                    <tr>-->
+                <!--                        <td><a t-att-href="quotation.get_portal_url()"><t t-out="quotation.name"/></a></td>-->
+                <!--                        <td class="text-end"><span t-field="quotation.date_order"/></td>-->
+                <!--                        <td class="text-end"><span t-field="quotation.validity_date"/></td>-->
+                <!--                        <td class="text-center">-->
+                <!--                            <span t-if="quotation.state == 'cancel'" class="badge rounded-pill text-bg-secondary">-->
+                <!--                                <i class="fa fa-fw fa-remove"/> Cancelled</span>-->
+                <!--                            <span t-if="quotation.is_expired" class="badge rounded-pill text-bg-secondary">-->
+                <!--                                <i class="fa fa-fw fa-clock-o"/> Expired</span>-->
+                <!--                        </td>-->
+                <!--                        <td class="text-end">-->
+                <!--                            <span t-field="quotation.amount_total"/>-->
+                <!--                        </td>-->
+                <!--                    </tr>-->
+                <!--                </t>-->
+            </t>
+            <!--            <p t-else="">There are currently no quotations for your account.</p>-->
+        </t>
+    </template>
+
+    <!--    <template id="portal_my_home_rental" name="Show Rental Requests" customize_show="True"-->
+    <!--              inherit_id="portal.portal_my_home" priority="35">-->
+    <!--        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">-->
+    <!--            <t t-call="portal.portal_docs_entry">-->
+    <!--                <t t-set="title">Requests</t>-->
+    <!--                <t t-set="url" t-value="'/my/requests'"/>-->
+    <!--            </t>-->
+    <!--        </xpath>-->
+    <!--    </template>-->
+
+</odoo>

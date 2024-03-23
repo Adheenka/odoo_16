@@ -88,7 +88,7 @@ class Apartment_Booking(models.Model):
     pin = fields.Char(string="PIN", copy=False,
         help="PIN used to Check In/Out in the Kiosk Mode of the Attendance application (if enabled in Configuration) and to change the cashier in the Point of Sale application.")
 
-
+    partner_id = fields.Many2one('res.partner', string='Partner')
 
     id_card = fields.Binary(string="ID Card Copy")
     driving_license = fields.Binary(string="Driving License",)

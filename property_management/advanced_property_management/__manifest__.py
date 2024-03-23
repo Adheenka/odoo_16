@@ -30,7 +30,7 @@
     'company': 'Cybrosys Techno Solutions',
     'maintainer': 'Cybrosys Techno Solutions',
     'website': 'https://cybrosys.com',
-    'depends': ['base', 'mail', 'sale_management', 'website',
+    'depends': ['base', 'mail', 'sale_management', 'website','portal',
                 'base_geolocalize'],
     'data': [
         'security/user_groups.xml',
@@ -46,6 +46,7 @@
         'views/property_templates.xml',
         'views/assets.xml',
         'views/property_commision_views.xml',
+        'views/portal_template.xml',
         'views/property_sale_views.xml',
         'views/property_rental_views.xml',
         'views/res_partner_views.xml',
