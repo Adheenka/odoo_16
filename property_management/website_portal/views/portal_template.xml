@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+            id="portal_my_home"
+            name="Portal My Home : rental requests"
+            inherit_id="portal.portal_my_home"
+            priority="40"
+            customize_show="True"
+    >
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Booking count</t>
+                <t t-set="url" t-value="'/my/rental'"/>
+                <t t-set="placeholder_count" t-value="'request_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+
+    <template id="portal_my_rental_tree" name="My Rental">
+        <div class="search_rental">
+            <t t-if="not rental">
+                <h5>There Are Currently No Rentals For Your Account</h5>
+            </t>
+            <t t-if="rental" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Reference</th>
+                        <th class="text-end">Date</th>
+                        <th class="text-end">Property</th>
+                        <th class="text-center"></th>
+                        <th class="text-end">State</th>
+                    </tr>
+                </thead>
+                <t t-foreach="rental" t-as="rental">
+                    <tr>
+                        <td>
+                            <a class="my_rental_link"
+                               t-attf-data-id="{{rental.id}}"
+                               t-attf-href="/my/rental/form/{{rental.id}}">
+                                <t t-esc="rental.name"/>
+                            </a>
+                        </td>
+                        <td class="text-end">
+                            <span t-field="rental.property_id"/>
+                        </td>
+                        <td class="text-end">
+                            <span t-field="rental.tenent_id"/>
+                        </td>
+                        <td class="text-center"></td>
+                        <td class="text-end">
+                            <span t-field="rental.state"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </div>
+    </template>
+
+
+    <!--    <template id="portal_my_home_rental" name="Show Rental Requests" customize_show="True"-->
+    <!--              inherit_id="portal.portal_my_home" priority="35">-->
+    <!--        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">-->
+    <!--            <t t-call="portal.portal_docs_entry">-->
+    <!--                <t t-set="title">Requests</t>-->
+    <!--                <t t-set="url" t-value="'/my/requests'"/>-->
+    <!--            </t>-->
+    <!--        </xpath>-->
+    <!--    </template>-->
+
+</odoo>
