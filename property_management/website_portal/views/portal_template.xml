@@ -11,24 +11,37 @@
             <t t-call="portal.portal_docs_entry">
                 <t t-set="title">Booking count</t>
                 <t t-set="url" t-value="'/my/rental'"/>
+
+<!--                <t t-set="url" t-value="'/my/rental/form/'"/>-->
                 <t t-set="placeholder_count" t-value="'request_count'"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="url" t-value="'/my/rentals'"/>
+
+                <t t-set="title">Students</t>
+
             </t>
         </xpath>
     </template>
 
 
     <template id="portal_my_rental_tree" name="My Rental">
-        <div class="search_rental">
-            <t t-if="not rental">
-                <h5>There Are Currently No Rentals For Your Account</h5>
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Booking</t>
             </t>
+            <t t-if="not survey_inputs">
+                <p>current booking count</p>
+            </t>
+
             <t t-if="rental" t-call="portal.portal_table">
                 <thead>
                     <tr class="active">
                         <th>Reference</th>
-                        <th class="text-end">Date</th>
+
                         <th class="text-end">Property</th>
-                        <th class="text-center"></th>
+                        <th class="text-center">customer name</th>
                         <th class="text-end">State</th>
                     </tr>
                 </thead>
@@ -37,7 +50,7 @@
                         <td>
                             <a class="my_rental_link"
                                t-attf-data-id="{{rental.id}}"
-                               t-attf-href="/my/rental/form/{{rental.id}}">
+                               t-attf-href="/my/rentals/#{rental.id}">
                                 <t t-esc="rental.name"/>
                             </a>
                         </td>
@@ -54,9 +67,113 @@
                     </tr>
                 </t>
             </t>
-        </div>
+        </t>
     </template>
 
+   <template id="portal_my_rental_form_view" inherit_id="portal.portal_sidebar">
+    <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+        <t t-if="page_name == 'rental_form_view'">
+            <section style="background-color: #eee;">
+                <div class="container py-5">
+                    <div class="row">
+                        <!-- Left Column -->
+                        <div class="col-lg-4">
+                            <div class="card mb-4">
+                                <div class="card-body text-center">
+                                    <!-- Display Rental Image -->
+<!--                                    <t t-if="rental.rental_img">-->
+<!--                                        <img t-attf-src="data:image/png;base64,{{rental.rental_img}}" alt="avatar" class="rounded-circle img-fluid" style="width:150px;" />-->
+<!--                                    </t>-->
+<!--                                    &lt;!&ndash; Default Image if Rental Image is not provided &ndash;&gt;-->
+<!--                                    <t t-else="">-->
+<!--                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;" />-->
+<!--                                    </t>-->
+                                    <!-- Download Button -->
+                                    <a t-attf-href="/my/rental/print/{{rental.id}}" class="fa fa-download">Download</a>
+                                    <!-- Rental Name -->
+                                    <h5 class="my-3"><t t-out="rental.name"/></h5>
+                                    <!-- Rental Property Info -->
+                                    <p class="text-muted mb-1"><t t-out="rental.property_id.name"/></p>
+<!--                                    <p class="text-muted mb-4"><t t-out="rental.property_id.address"/></p>-->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Right Column -->
+                        <div class="col-lg-8">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <!-- Rental Full Name -->
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Order Number</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0"><t t-out="rental.name"/></p>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <!-- Rental Property -->
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Apartment</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0"><t t-out="rental.apartment_id"/></p>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <group string="Apartment Address">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Street</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><t t-out="rental.street"/></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Street 2</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><t t-out="rental.street2"/></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">City</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><t t-out="rental.city"/></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">ZIP</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0"><t t-out="rental.zip"/></p>
+                            </div>
+                        </div>
+                    </group>
+                                    <!-- Other Rental Info -->
+                                    <!-- Add more fields as needed -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Chatter Feature -->
+                <div class="container py-5">
+                    <h1>History</h1>
+                    <t t-call="portal.message_thread">
+                        <t t-set="object" t-value="rental" />
+                    </t>
+                </div>
+            </section>
+        </t>
+    </xpath>
+</template>
 
     <!--    <template id="portal_my_home_rental" name="Show Rental Requests" customize_show="True"-->
     <!--              inherit_id="portal.portal_my_home" priority="35">-->
