@@ -239,51 +239,83 @@
         </t>
     </template>
     <!--    Property View Template  -->
+    
     <template id="property_view_item" name="property_view_item">
         <t t-call="website.layout">
             <t t-set="title">Property -
                 <t t-esc="property_id.name"/>
             </t>
+            <div class="property-image-slider">
+                <div class=""
+                     style="background-position: top;background-size: 100%;position: relative;z-index: -10;">
+                    <img style="height: 350px;" t-if="property_id.image"
+                         t-att-src="image_data_uri(property_id.image)" class="card-img"
+                         alt="..."/>
+                    <div class="card-img-overlay" style="position: absolute;left: 0;transform: translateY(-50%);text-align: center;color: #fff;
+                         width: 100%;">
+                        <h1 style="text-align: center; color: white; padding-top: 140px;"
+                            class="card-title property-name">
+                            <t t-esc="property_id.name"/>
+                            -
+                            <t t-esc="property_id.property_type"/>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $(document).ready(function() {
+                $('.property-image-slider').slick({
+                // Customize slider options here (refer to documentation)
+                dots: true, // Enable navigation dots
+                infinite: true, // Enable infinite looping
+                slidesToShow: 1, // Show only one image at a time
+                slidesToScroll: 1, // Transition one image at a time
+                autoplay: true, // Enable autoplay (optional)
+                autoplaySpeed: 2000 // Autoplay speed in milliseconds (optional)
+                });
+                });
+            </script>
             <div class="oe_structure">
                 <br/>
                 <div class="container property_container">
                     <div id="property_container" style="width: 100%;">
                         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
                         <script src="https://www.npmjs.com/package/@googlemaps/js-api-loader"></script>
-                        <div class=""
-                             style="background-position: top;background-size: 100%;position: relative;z-index: -10;">
-                            <img style="height: 350px;" t-if="property_id.image"
-                                 t-att-src="image_data_uri(property_id.image)" class="card-img"
-                                 alt="..."/>
-                            <div class="card-img-overlay" style="position: absolute;left: 0;transform: translateY(-50%);text-align: center;color: #fff;
-                             width: 100%;">
-                                <h1 style="text-align: center; color: white; padding-top: 140px;"
-                                    class="card-title property-name">
-                                    <t t-esc="property_id.name"/>
-                                    -
-                                    <t t-esc="property_id.property_type"/>
-                                </h1>
-                                <div class="property-details"
-                                     style="font-style: italic; font-size: larger; margin-top: 5px; margin: 5px 0;">
-                                    <p style="font-style: italic; font-size: larger; margin-top: 5px;">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        <t t-esc="property_id.city"/>,
-                                        <t t-esc="property_id.state_id.name"/>
-                                        <t t-esc="property_id.zip"/>
-                                    </p>
-                                    <p>
-                                        <i class="fas fa-coins"></i>
-                                        <t t-esc="property_id.unit_price"/>
-                                        /-
-                                    </p>
-                                    <p>
-                                        <i class="fas fa-calendar-alt"></i>
-                                        <t t-esc="property_id.construct_year"/>
-                                        /-
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        <!--                        <div class=""-->
+                        <!--                             style="background-position: top;background-size: 100%;position: relative;z-index: -10;">-->
+                        <!--                            <img style="height: 350px;" t-if="property_id.image"-->
+                        <!--                                 t-att-src="image_data_uri(property_id.image)" class="card-img"-->
+                        <!--                                 alt="..."/>-->
+                        <!--                            <div class="card-img-overlay" style="position: absolute;left: 0;transform: translateY(-50%);text-align: center;color: #fff;-->
+                        <!--                             width: 100%;">-->
+                        <!--                                <h1 style="text-align: center; color: white; padding-top: 140px;"-->
+                        <!--                                    class="card-title property-name">-->
+                        <!--                                    <t t-esc="property_id.name"/>-->
+                        <!--                                    - -->
+                        <!--                                    <t t-esc="property_id.property_type"/>-->
+                        <!--                                </h1>-->
+                        <!--                                <div class="property-details"-->
+                        <!--                                     style="font-style: italic; font-size: larger; margin-top: 5px; margin: 5px 0;">-->
+                        <!--                                    <p style="font-style: italic; font-size: larger; margin-top: 5px;">-->
+                        <!--                                        <i class="fas fa-map-marker-alt"></i>-->
+                        <!--                                        <t t-esc="property_id.city"/>,-->
+                        <!--                                        <t t-esc="property_id.state_id.name"/>-->
+                        <!--                                        <t t-esc="property_id.zip"/>-->
+                        <!--                                    </p>-->
+                        <!--                                    <p>-->
+                        <!--                                        <i class="fas fa-coins"></i>-->
+                        <!--                                        <t t-esc="property_id.unit_price"/>-->
+                        <!--                                        /- -->
+                        <!--                                    </p>-->
+                        <!--                                    <p>-->
+                        <!--                                        <i class="fas fa-calendar-alt"></i>-->
+                        <!--                                        <t t-esc="property_id.construct_year"/>-->
+                        <!--                                        /- -->
+                        <!--                                    </p>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+
 
                     </div>
 
@@ -519,33 +551,33 @@
                                        placeholder="Enter city"/>
                             </div>
 
-<!--                            <div t-attf-class="mb-3 #{error and error.get('country_id') and 'o_has_error' or ''} col-xl-6">-->
-<!--                                <label class="col-form-label" for="country_id">Country</label>-->
-<!--                                <select name="country_id"-->
-<!--                                        t-attf-class="form-select #{error and error.get('country_id') and 'is-invalid' or ''}">-->
-<!--                                    <option value="">Country...</option>-->
-<!--                                    <t t-foreach="countries or []" t-as="country">-->
-<!--                                        <option t-att-value="country.id"-->
-<!--                                                t-att-selected="country.id == int(country_id) if country_id else country.id == partner.country_id.id">-->
-<!--                                            <t t-esc="country.name"/>-->
-<!--                                        </option>-->
-<!--                                    </t>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                            <div t-attf-class="mb-3 #{error and error.get('state_id') and 'o_has_error' or ''} col-xl-6">-->
-<!--                                <label class="col-form-label" for="state_id">State / Province</label>-->
-<!--                                <select name="state_id"-->
-<!--                                        t-attf-class="form-select #{error and error.get('state_id') and 'is-invalid' or ''}">-->
-<!--                                    <option value="">select...</option>-->
-<!--                                    <t t-foreach="states or []" t-as="state">-->
-<!--                                        <option t-att-value="state.id" style="display:none;"-->
-<!--                                                t-att-data-country_id="state.country_id.id"-->
-<!--                                                t-att-selected="state.id == int(state_id) if state_id else state.id == partner.state_id.id">-->
-<!--                                            <t t-esc="state.name"/>-->
-<!--                                        </option>-->
-<!--                                    </t>-->
-<!--                                </select>-->
-<!--                            </div>-->
+                            <!--                            <div t-attf-class="mb-3 #{error and error.get('country_id') and 'o_has_error' or ''} col-xl-6">-->
+                            <!--                                <label class="col-form-label" for="country_id">Country</label>-->
+                            <!--                                <select name="country_id"-->
+                            <!--                                        t-attf-class="form-select #{error and error.get('country_id') and 'is-invalid' or ''}">-->
+                            <!--                                    <option value="">Country...</option>-->
+                            <!--                                    <t t-foreach="countries or []" t-as="country">-->
+                            <!--                                        <option t-att-value="country.id"-->
+                            <!--                                                t-att-selected="country.id == int(country_id) if country_id else country.id == partner.country_id.id">-->
+                            <!--                                            <t t-esc="country.name"/>-->
+                            <!--                                        </option>-->
+                            <!--                                    </t>-->
+                            <!--                                </select>-->
+                            <!--                            </div>-->
+                            <!--                            <div t-attf-class="mb-3 #{error and error.get('state_id') and 'o_has_error' or ''} col-xl-6">-->
+                            <!--                                <label class="col-form-label" for="state_id">State / Province</label>-->
+                            <!--                                <select name="state_id"-->
+                            <!--                                        t-attf-class="form-select #{error and error.get('state_id') and 'is-invalid' or ''}">-->
+                            <!--                                    <option value="">select...</option>-->
+                            <!--                                    <t t-foreach="states or []" t-as="state">-->
+                            <!--                                        <option t-att-value="state.id" style="display:none;"-->
+                            <!--                                                t-att-data-country_id="state.country_id.id"-->
+                            <!--                                                t-att-selected="state.id == int(state_id) if state_id else state.id == partner.state_id.id">-->
+                            <!--                                            <t t-esc="state.name"/>-->
+                            <!--                                        </option>-->
+                            <!--                                    </t>-->
+                            <!--                                </select>-->
+                            <!--                            </div>-->
 
                             <div style="margin-top:5px; text-align: center;" class="clearfix oe_login_buttons">
                                 <button style="padding: 10px 20px;" type="submit" class="btn btn-primary pull-left">
