@@ -161,11 +161,11 @@ class ApartmentLine(models.Model):
 #             "domain": [("property_id", "=", self.id)],
 #             'context': context,
 #         }
-# class PropertyTermsConditions(models.Model):
-#     _name = "property.terms"
-#     _description = "Property Terms Conditions"
-#     _rec_name = "id"
-#
-#     terms_and_conditions_english = fields.Html(string='Terms & Conditions English')
-#     terms_and_conditions_arabic = fields.Html(string='Terms & Conditions Arabic')
-#     prop_rental = fields.Many2one('property.rental')
+class PropertyTermsConditions(models.Model):
+    _name = "property.terms"
+    _description = "Property Terms Conditions"
+    _rec_name = "id"
+
+    terms_and_conditions_english = fields.Html(string='Terms & Conditions English')
+    terms_and_conditions_arabic = fields.Html(string='Terms & Conditions Arabic')
+    prop_rental = fields.Many2one('property.rental')
