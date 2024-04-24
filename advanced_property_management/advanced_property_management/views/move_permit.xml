@@ -1,0 +1,44 @@
+<odoo>
+     <record id="permit_wizard_form_view" model="ir.ui.view">
+        <field name="name">permit.wizard.form.view</field>
+        <field name="model">permit.wizard</field>
+<!--        <field name="inherit_id" ref="helpdesk_extension.close_popup_wizard_form_view"/>-->
+        <field name="arch" type="xml">
+              <form>
+                <sheet>
+                    <group>
+
+
+                     <group>
+                    <field name="tenent_name"/>
+                    <field name ="unit_num" />
+                    <field name="rental_payment"  />
+                    <field name="contract_id"  />
+                </group>
+                <group>
+                    <field name="security_payment"/>
+                    <field name="addc"  />
+                    <field name="tawtheeq"/>
+                </group>
+                <group>
+                    <field name="move_inspection"/>
+                    <field name="move_date" />
+                    <field name="parking_slot"   />
+                </group>
+                    <group string="Car Details">
+                    <field name="car_brand"/>
+                    <field name="car_number" />
+                    <field name="model"   />
+                    <field name="car_color"   />
+                </group>
+                    </group>
+                    <footer>
+                        <button class="oe_highlight" string="Save" type="object" name="submit" />
+						<button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </sheet>
+            </form>
+
+        </field>
+     </record>
+</odoo>

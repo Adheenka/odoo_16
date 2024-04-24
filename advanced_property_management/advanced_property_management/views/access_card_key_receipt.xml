@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="access_card_key_form_view" model="ir.ui.view">
+        <field name="name">access_card_key_form_view</field>
+        <field name="model">access.card.key.receipt</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="button_access_key" string="Print"
+                            type="object" class="btn-primary"
+                            />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+
+                        <br/>
+                    </div>
+                    <group>
+                    <group >
+                    <field name="tenant_name"/>
+                    <field name="contract_id"/>
+                    <field name="mobile_number"/>
+                    <field name="phone_number"/>
+                    <field name="property_name_id"/>
+                    </group>
+                        <group>
+
+                    <field name="building_name_id"/>
+                    <field name="unit_description"/>
+                    <field name="building_number"/>
+                    <field name="unit_no"/>
+                    </group>
+                    </group>
+                    <notebook>
+
+                        <page string="Key Received" name="key_received">
+                            <field name="key_received">
+                                <tree editable="bottom">
+                                    <field name="key_name"/>
+                                    <field name="key_type"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Access Card" name="access_card">
+                            <field name="access_card">
+                                <tree editable="bottom">
+                                    <field name="card_name"/>
+                                    <field name="serial_no"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Additional Card Requested" name="additional_card_requested">
+                            <field name="additional_card_req">
+                                <tree editable="bottom">
+                                    <field name="card_name"/>
+                                    <field name="serial_no"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Other Information" name="Other_Information">
+                            <field name="other_information">
+                                <tree editable="bottom">
+                                    <field name="card_holder_name"/>
+                                    <field name="mobile_no"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="access_card_key_tree_view" model="ir.ui.view">
+        <field name="name">access_card_key_form_view</field>
+        <field name="model">access.card.key.receipt</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="tenant_name"/>
+                <field name="mobile_number"/>
+                <field name="phone_number"/>
+                <field name="property_name_id"/>
+                <field name="building_name_id"/>
+                <field name="unit_description"/>
+                <field name="building_number"/>
+                <field name="unit_no"/>
+            </tree>
+        </field>
+    </record>
+    <record id="access_card_key_action" model="ir.actions.act_window">
+        <field name="name">Access Cards/Key Receipt</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">access.card.key.receipt</field>
+        <field name="view_mode">tree,form</field>
+<!--        <field name="help" type="html">-->
+
+<!--        </field>-->
+    </record>
+    <menuitem id="access_key_receipt_menu" name="Access Cards/Key Receipt" parent="advanced_property_management.property_rental_menu"
+              sequence="9"
+              action="access_card_key_action" />
+</odoo>
