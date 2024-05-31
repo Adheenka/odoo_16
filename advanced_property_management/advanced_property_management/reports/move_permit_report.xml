@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_move_permit">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <style>
+                            .box {
+                            border: 1px solid black;
+                            padding: 10px;
+                            margin: 0 auto;
+                            width: 100%; /* Adjust the width as needed */
+                            display: inline-block;
+                            }
+                            .box1 {
+                            border: 1px solid black;
+                            padding: 0px;
+                            margin: 0 auto;
+                            width: 100%; /* Adjust the width as needed */
+                            display: inline-block;
+                            background-color: #B2BEB5;;
+                            }
+                            .date-label {
+                            display: inline-block;
+                            margin-right: 20px; /* Adjust spacing as needed */
+                            text-align: left;
+                            }
+                            .underline {
+                            border-bottom: 1px solid black;
+                            display: inline-block;
+                            width: 200px; /* Adjust the width as needed */
+                            margin-right: 20px; /* Adjust spacing as needed */
+                            }
+                            .underline1 {
+                            border-bottom: 1px solid black;
+                            display: inline-block;
+                            width: 60%; /* Adjust the width as needed */
+                            margin-right: 20px; /* Adjust spacing as needed */
+                            }
+                            .underline2 {
+                            border-bottom: 1px solid black;
+                            display: inline-block;
+                            width: 20%; /* Adjust the width as needed */
+                            margin-right: 20px; /* Adjust spacing as needed */
+                            }
+                            .arabic-text {
+                            display: inline-block;
+                            vertical-align: top; /* Align with the top of the line */
+                            }
+                            .left-section {
+                            display: inline-block;
+                            text-align: left;
+                            vertical-align: top; /* Align with the top of the line */
+                            }
+                            .center-section {
+                            display: inline-block;
+                            }
+                            .box2 {
+                            display: flex;
+                            justify-content: space-between;
+                            }
+                            .boxone {
+                            width: 40%; /* Adjust width as needed */
+                            height: 100px; /* Adjust height as needed */
+                            background-color: #f0f0f0;
+                            }
+                            .underlinetop {
+                            border-bottom: 1px dashed black;;
+                            display: inline-block;
+                            width: 100%; /* Adjust the width as needed */
+                            <!--                            margin-right: 20px; /* Adjust spacing as needed */-->
+                            }
+                              .red-text {
+                                color: red;
+                            }
+                        </style>
+                        <div>
+                            <!--                            my start-->
+                            <div >
+                                <div >
+                                    <span>Date : <t t-esc="o.move_date"/></span>
+                                    
+                                </div>
+                               <div >
+                                    <b>
+                                   <h6 style="color: black;text-align:center;">MOVE IN PERMIT</h6>
+                                    </b>
+                                </div>
+
+                            </div>
+                            <!--                            alll-->
+
+                            <!--                            all-->
+                            <div class="row" style="background-color: red;">
+                                <div class="col-3 ps-2"
+                                    style="border: 1px solid black;height:36px;text-align:center;font-size:15px;  padding-top: 10px;padding-bottom: 25px;">
+                                    <p>Description</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;height:36px;text-align:center;font-size:15px;  padding-top: 10px;padding-bottom: 25px;">
+                                  <p>Details</p>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;height:36px;font-size:15px;  ">
+                                    <p>Tenant’s Name :</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;height:36px;text-align:center;font-size:15px;   padding-top: 10px;padding-bottom: 25px;">
+                                    <t t-esc="o.renter_id.name"/>
+                                </div>
+<!--                                 <div class="col-3 pe-2"-->
+<!--                                     style="border: none;border-top:none;height:28px;text-align:right;">-->
+
+<!--                                </div>-->
+
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:15px; ">
+                                    <p>Tenant’s Contact No. :</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:15px;  padding-top: 10px;padding-bottom: 25px; ">
+                                    <t t-esc="o.renter_id.phone"/>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:15px;  ">
+                                    <p>Community / Location:</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:15px;  padding-top: 10px;padding-bottom: 25px; ">
+                                     <t t-esc="o.renter_id.street"/> <t t-esc="o.contract_id.renter_id.street2"/> <t t-esc="o.contract_id.renter_id.city"/>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:15px;  ">
+                                    <p>Unit Number:</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:15px;  padding-top: 10px;padding-bottom: 25px;">
+                                        <t t-esc="o.unit_num"/>
+                                </div>
+
+                            </div>
+                             <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:15px;  ">
+                                    <p>Contract Start date:</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:15px;  padding-top: 10px;padding-bottom: 25px;">
+                                        <t t-esc="o.start_date"/>
+                                </div>
+
+                            </div>
+                             <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:15px;  ">
+                                    <p>Rental Payment:</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:15px;  padding-top: 10px;padding-bottom: 25px;">
+                                        <t t-esc="o.rental_payment"/>
+                                </div>
+
+                            </div>
+                             <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:15px;  ">
+                                    <p>Security Payment:</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:15px;  padding-top: 10px;padding-bottom: 25px;">
+                                        <t t-esc="o.security_payment"/>
+                                </div>
+
+                            </div>
+                             <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:15px;  ">
+                                    <p>ADDC Connectedt:</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:15px;  padding-top: 10px;padding-bottom: 25px;">
+                                        <t t-esc="o.addc"/>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:15px;  ">
+                                    <p>Tawtheeq Issued :</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:15px;  padding-top: 10px;padding-bottom: 25px;">
+                                        <t t-esc="o.tawtheeq"/>
+                                </div>
+
+                            </div>
+                             <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:15px;  ">
+                                    <p>Pre-Move-in Inspection  :</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:15px;  padding-top: 10px;padding-bottom: 25px;">
+                                        <t t-esc="o.move_inspection"/>
+                                </div>
+
+                            </div>
+                             <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:15px;  ">
+                                    <p>Move In Date  :</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:15px;  padding-top: 10px;padding-bottom: 25px;">
+                                        <t t-esc="o.move_date"/>
+                                </div>
+                            </div>
+                              <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:15px;  ">
+                                    <p>No. of Car Parking Slots :</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:15px;  padding-top: 10px;padding-bottom: 25px;">
+                                        <t t-esc="o.parking_slot"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;height:71px;font-size:15px; ">
+                                    <p>Car Details:</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;height:36px;font-size:15px;  ">
+                                    <div class="row">
+                                        <div class="col-4 h-28"
+                                             style="border-right: 1px solid black;;height:36px;text-align:center;font-size:15px;width:20%; padding-top: 10px;padding-bottom: 25px; ">
+                                              <p>Brand / Maker  </p>
+                                        </div>
+                                        <div class="col-4 h-28 "
+                                             style="border-right: 1px solid black;;height:36px;text-align:center;font-size:15px;width:20%; padding-top: 10px;padding-bottom: 25px; ">
+                                          <t t-esc="o.car_brand"/>
+                                        </div>
+                                        <div class="col-4 h-28"
+                                            style="border-right: 1px solid black;;height:36px;text-align:center;font-size:15px;width:20%; padding-top: 10px;padding-bottom: 25px;">
+                                              <p>Car Plate No </p>
+                                        </div>
+                                        <div class="col-4 h-28 "
+                                             style="border-right: 1px solid black;;height:36px;text-align:center;font-size:15px;width:40%; padding-top: 10px;padding-bottom: 25px;">
+                                          <t t-esc="o.car_number"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4 h-28"
+                                             style="border-right: 1px solid black;;height:36px;text-align:center;font-size:15px;width:20%;border-bottom: 1px solid black; padding-top: 10px;padding-bottom: 25px;">
+                                              <p>Model </p>
+                                        </div>
+                                        <div class="col-4 h-28 "
+                                             style="border-right: 1px solid black;;height:36px;text-align:center;font-size:15px;width:20%;border-bottom: 1px solid black; padding-top: 10px;padding-bottom: 25px;">
+                                          <t t-esc="o.model"/>
+                                        </div>
+                                        <div class="col-4 h-28"
+                                             style="border-right: 1px solid black;;height:36px;text-align:center;font-size:15px;width:20%;border-bottom: 1px solid black; padding-top: 10px;padding-bottom: 25px;">
+                                              <p>Car Color </p>
+                                        </div>
+                                        <div class="col-4 h-28 "
+                                             style="border-right: 1px solid black;height:36px;text-align:center;font-size:15px;width:40%;border-bottom: 1px solid black; padding-top: 10px;padding-bottom: 25px;">
+                                          <t t-esc="o.car_color"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+                                  <br/>
+                        <div>
+                           <b  style ="font-size:15px;">Terms and conditions,</b>
+                            <p style ="font-size:13px;padding-right: 200px;">
+1. Security will not facilitate any move-in without receiving the signed and stamped move-in permit.
+                                 <br/>
+2. Move in can only take place during permitted hours. Please contract ADA International Real Estate for
+more information.
+                                 <br/>
+3. It is the responsibility of the Residents to ensure no damages are caused to the common areas while
+moving in.
+                                 <br/>
+4. In case of any damages caused to the common areas ADA International Real Estate will deduct the
+cost of repairs from the Security Deposit.
+                                 <br/>
+5. Areas must be cleaned and waste be disposed promptly in a proper manner.
+                                 <br/>
+6. Oversized cartoons and garbage should not be disposed in garbage chute, garbage rooms or common
+areas. Removal of the same is responsibility of the Resident. <br/>
+7. Applicable penalties will be levied in case of non-compliance with any of the above. <br/>
+8. ADA International Real Estate and its associates will not be held liable for any accident/injury,
+necessary safety precautions are to be taken by the Resident and moving company <br/>
+                            </p>
+                                  <br/>
+
+
+<!--We wish you an enjoyable stay.-->
+<!--                             </p>-->
+<!--                            <br/>-->
+<!--                                  <br/>-->
+<!--                                  <br/>-->
+<!--                            <hr style="color: black;"></hr>-->
+<!-- <p style ="font-size:20px;">Yours faithfully,</p>-->
+<!--                            <b style="font-size:20px;">ADAIRE Team-->
+<!--                                <br/>-->
+<!--for and on behalf of ADA-->
+<!--                                <br/>-->
+<!--International Real Estate-->
+<!--                                <br/>-->
+
+<!--                            </b>-->
+
+<!--                        </div>-->
+<!--                        <br/>-->
+<!--                        <br/>-->
+<!--                        <br/>-->
+
+<!--                        <div>-->
+<!--                           <b style="font-size:25px; padding-left: 370px;"><u>Acknowledgement</u></b>-->
+<!--<br/>-->
+<!--     <br/>-->
+<!--      <br/>-->
+
+
+<!--                            <p style ="font-size:20px;">-->
+<!--                                I, tenant of apartment stated above acknowledge the allocation of the car park space(s)-->
+<!--stated above for my use and undertake to park my car(s) at the allocated spaces and not-->
+<!--anywhere else on the Development.-->
+<!--                            </p>-->
+<!--                              <br/>-->
+<!--                        <br/>-->
+<!--                        <br/>-->
+                             <b style="font-size:13px;">Approved By:</b>
+
+                              <br/>
+                        <br/>
+                        <br/>
+                            <b style="font-size:15px;"><u>ADA International Real Estate</u></b>
+                        </div>
+<!--                             <b style="font-size:20px;padding-left: 450px;"><u>Signature:</u></b>-->
+<!--                        </div>-->
+<!--                         <br/>-->
+<!--                        <br/>-->
+<!--                        <br/>-->
+
+<!--<div class="footer">-->
+<!--                    <div class="text-center">-->
+<!--                        <ul class="list-inline">-->
+<!--                            <li>-->
+<!--                                <span style="font-size:13px;">Email :</span><span style="font-size:13px;" t-field="o.company_id.partner_id.email"/>-->
+<!--                                <span  style="font-size:13px;">Phone : </span><span  style="font-size:13px;" t-field="o.company_id.partner_id.phone"/>-->
+<!--                                <span  style="font-size:13px;" >Web : </span><span  style="font-size:13px;" t-field="o.company_id.partner_id.website"/>-->
+<!--                                <span  style="font-size:13px;" >Tax ID : </span><span  style="font-size:13px;" t-field="o.company_id.partner_id.vat"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                Page:-->
+<!--                                <span class="page"/>-->
+<!--                                /-->
+<!--                                <span class="topage"/>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

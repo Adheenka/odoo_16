@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <odoo>
+       <!-- <data>-->
+
+
+            
+
+            <report
+            id="report_contract_rental"
+            model="property.rental"
+            string="Property Rental Report"
+            report_type="qweb-pdf"
+            name="property_management_custom.report_property_rental_pdf"
+            file="property_management_custom.report_property_rental_pdf"
+            menu ="False"/>
+    <report
+            id="report_contract_rental_second"
+            model="property.rental"
+            string="Property Rental Report"
+            report_type="qweb-pdf"
+            name="property_management_custom.report_property_rental_second_pdf"
+            file="property_management_custom.report_property_rental_second_pdf"
+            menu ="False"/>
+
+	<report
+            id="report_access_card_key"
+            model="access.card.key.receipt"
+            string="Access Cards/Key Receipt "
+            report_type="qweb-pdf"
+            name="property_management_custom.report_access_card_key_pdf"
+            file="property_management_custom.report_access_card_key_pdf"
+            />
+      <report
+            id="report_parking_allocation"
+            model="parking.allocation"
+            string="Car Parking Spaces Allocation"
+            report_type="qweb-pdf"
+            name="property_management_custom.report_parking_allocation_pdf"
+            file="property_management_custom.report_parking_allocation_pdf"
+            menu ="False"/>
+
+    <record id="action_report_move_permit" model="ir.actions.report">
+           <field name="name">property_management_custom.report_move_permit</field>
+           <field name="model">property.rental</field>
+           <field name="report_type">qweb-pdf</field>
+           <field name="report_name">property_management_custom.report_move_permit</field>
+           <field name="report_file">property_management_custom.report_move_permit</field>
+      </record>
+<!--
+        </data>
+-->
+    </odoo>
