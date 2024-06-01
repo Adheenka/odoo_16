@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><!-- views/crm_lead_views.xml -->
+
+
+<!-- views/crm_lead_views.xml -->
+
+<odoo>
+    <record id="view_crm_lead_form_waste_type" model="ir.ui.view">
+        <field name="name">crm.lead.form.waste.type</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+<!--            <xpath expr="//field[@name='function']" position="after">-->
+<!--                <field name="waste_type"/>-->
+<!--                <field name="volume"/>-->
+<!--            </xpath>-->
+             <xpath expr="//sheet//group" position="after">
+                <group>
+                    <field name="waste_type"/>
+                    <field name="volume"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_tree_waste_type" model="ir.ui.view">
+        <field name="name">crm.lead.tree.waste.type</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="waste_type"/>
+                <field name="volume"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
