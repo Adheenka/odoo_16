@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<odoo>
+    <record id="view_pickup_schedule_wizard" model="ir.ui.view">
+        <field name="name">pickup.schedule.wizard.form</field>
+        <field name="model">pickup.schedule.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Schedule Pickup">
+                <group>
+                    <field name="sale_order_id" invisible="1"/>
+                    <field name="pickup_date"/>
+                    <field name="pickup_point"/>
+                    <field name="vehicle_id"/>
+                    <field name="driver_id"/>
+                    <field name="equipment_ids" widget="many2many_tags"/>
+                </group>
+                <footer>
+                    <button string="Confirm" type="object" name="action_confirm" class="oe_highlight"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

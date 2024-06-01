@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="view_sale_order_form_waste_type" model="ir.ui.view">
+        <field name="name">sale.order.form.waste.type</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+             <xpath expr="//header/button[@id='create_invoice']" position="after">
+                <button name="action_pickup_scheduled" type="object" string="Pickup Scheduled" class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//sheet//group" position="after">
+                <group>
+                    <field name="waste_type"/>
+                    <field name="volume"/>
+                </group>
+            </xpath>
+            <xpath expr="//header//field[@name='state']" position="replace">
+                <field name="state" widget="statusbar" statusbar_visible="draft,sent,sale,pickup_scheduled,waste_dumped,cancel"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
