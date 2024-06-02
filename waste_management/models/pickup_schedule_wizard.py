@@ -22,9 +22,20 @@ class PickupScheduleWizard(models.TransientModel):
             else:
                 record.driver_id = False
 
+    # def action_confirm(self):
+    #     sale_order = self.sale_order_id
+    #     sale_order.write({
+    #         'state': 'pickup_scheduled',
+    #         # Optionally, store other wizard fields in sale order or perform other actions
+    #     })
     def action_confirm(self):
+        self.ensure_one()
         sale_order = self.sale_order_id
         sale_order.write({
+            # 'pickup_date': self.pickup_date,
+            # 'pickup_point': self.pickup_point,
+            'vehicle_id': self.vehicle_id.id,
+            'driver_id': self.driver_id.id,
             'state': 'pickup_scheduled',
-            # Optionally, store other wizard fields in sale order or perform other actions
         })
+        return {'type': 'ir.actions.act_window_close'}

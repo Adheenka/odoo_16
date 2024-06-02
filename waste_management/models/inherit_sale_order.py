@@ -11,7 +11,8 @@ class SaleOrder(models.Model):
         ('pickup_scheduled', 'Pickup Scheduled'),
         ('waste_dumped', 'Waste Dumped')
     ])
-
+    driver_id = fields.Many2one('res.partner', string='Driver')
+    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle')
     def action_pickup_scheduled(self):
         self.ensure_one()
         return {
@@ -25,3 +26,7 @@ class SaleOrder(models.Model):
                 'default_volume': self.volume,
             }
         }
+
+    def action_waste_dumped(self):
+        self.ensure_one()
+        self.write({'state': 'waste_dumped'})

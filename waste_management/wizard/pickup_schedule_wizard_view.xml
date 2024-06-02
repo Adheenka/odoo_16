@@ -7,18 +7,24 @@
         <field name="model">pickup.schedule.wizard</field>
         <field name="arch" type="xml">
             <form string="Schedule Pickup">
+                <sheet>
                 <group>
+                    <group>
                     <field name="sale_order_id" invisible="1"/>
                     <field name="pickup_date"/>
                     <field name="pickup_point"/>
+                     </group>
+                    <group>
                     <field name="vehicle_id"/>
                     <field name="driver_id"/>
                     <field name="equipment_ids" widget="many2many_tags"/>
+                    </group>
                 </group>
                 <footer>
                     <button string="Confirm" type="object" name="action_confirm" class="oe_highlight"/>
                     <button string="Cancel" class="btn-secondary" special="cancel"/>
                 </footer>
+                </sheet>
             </form>
         </field>
     </record>

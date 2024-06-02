@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!-- views/crm_lead_views.xml -->
-
-
-<!-- views/crm_lead_views.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
     <record id="view_crm_lead_form_waste_type" model="ir.ui.view">
@@ -13,11 +10,11 @@
 <!--                <field name="waste_type"/>-->
 <!--                <field name="volume"/>-->
 <!--            </xpath>-->
-             <xpath expr="//sheet//group" position="after">
-                <group>
+             <xpath expr="//sheet//group[@name='lead_partner']" position="after">
+                 <group>
                     <field name="waste_type"/>
                     <field name="volume"/>
-                </group>
+                 </group>
             </xpath>
         </field>
     </record>

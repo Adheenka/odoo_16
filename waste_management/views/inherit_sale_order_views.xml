@@ -6,8 +6,29 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+             <xpath expr="//field[@name='state']" position="replace">
+                <field name="state" widget="statusbar" statusbar_visible="draft,sent,sale,pickup_scheduled,waste_dumped"/>
+            </xpath>
              <xpath expr="//header/button[@id='create_invoice']" position="after">
-                <button name="action_pickup_scheduled" type="object" string="Pickup Scheduled" class="oe_highlight"/>
+               <button name="action_pickup_scheduled" type="object" string="Pickup Scheduled" class="oe_highlight"
+                        attrs="{'invisible': [('state', 'in', ['pickup_scheduled', 'waste_dumped'])]}"/>
+            </xpath>
+
+            <xpath expr="//header" position="inside">
+                <button name="action_waste_dumped" type="object" string="Waste Dumped" class="oe_highlight"
+                        attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>
+            </xpath>
+             <!-- Control Visibility of Buttons Based on State -->
+            <xpath expr="//header/button[@id='create_invoice']" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', 'not in', ['pickup_scheduled', 'waste_dumped'])]}</attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='action_quotation_send'][@states='draft']" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', 'not in', ['pickup_scheduled', 'waste_dumped'])]}</attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='action_cancel']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': ['|', ('state', 'not in', ['draft', 'sent','sale','pickup_scheduled']), ('id', '=', False)]}
+                </attribute>
             </xpath>
             <xpath expr="//sheet//group" position="after">
                 <group>
@@ -15,9 +36,14 @@
                     <field name="volume"/>
                 </group>
             </xpath>
-            <xpath expr="//header//field[@name='state']" position="replace">
-                <field name="state" widget="statusbar" statusbar_visible="draft,sent,sale,pickup_scheduled,waste_dumped,cancel"/>
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+<!--                <field name="waste_type" attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>-->
+<!--                <field name="volume" attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>-->
+                <field name="driver_id" attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>
+                <field name="vehicle_id" attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>
             </xpath>
+
         </field>
     </record>
 </odoo>
