@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <form string="Schedule Pickup">
                 <sheet>
+
                 <group>
                     <group>
                     <field name="sale_order_id" invisible="1"/>
