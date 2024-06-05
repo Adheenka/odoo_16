@@ -86,8 +86,22 @@
 <!--                <field name="volume" attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>-->
                 <field name="driver_id" attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>
                 <field name="vehicle_id" attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>
+                    <field name="pickup_point" attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>
             </xpath>
 
         </field>
     </record>
+
+<!--    <record id="view_order_tree_inherit" model="ir.ui.view">-->
+<!--        <field name="name">sale.order.tree.inherit</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_order_tree"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--&lt;!&ndash;             <xpath expr="//tree" position="before">&ndash;&gt;-->
+<!--                <xpath expr="//div[hasclass('o_cp_buttons')]" position="inside">-->
+<!--                <button name="action_print_xlsx_report" type="object" string="Print XLSX Report" class="btn btn-primary" style="margin-left: 10px;"/>-->
+<!--            </xpath>-->
+<!--&lt;!&ndash;            </xpath>&ndash;&gt;-->
+<!--        </field>-->
+<!--    </record>-->
 </odoo>

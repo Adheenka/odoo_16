@@ -32,8 +32,8 @@ class PickupScheduleWizard(models.TransientModel):
         self.ensure_one()
         sale_order = self.sale_order_id
         sale_order.write({
-            # 'pickup_date': self.pickup_date,
-            # 'pickup_point': self.pickup_point,
+            'pickup_date': self.pickup_date,
+            'pickup_point': self.pickup_point,
             'vehicle_id': self.vehicle_id.id,
             'driver_id': self.driver_id.id,
             'state': 'pickup_scheduled',
