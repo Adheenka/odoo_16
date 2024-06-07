@@ -6,5 +6,12 @@ class WasteEquipment(models.Model):
     _name = 'waste.equipment'
     _description = 'Waste Equipment'
 
-    name = fields.Char(string='Name', required=True)
+    equipment_name = fields.Char(string='Name', required=True)
     description = fields.Text(string='Description')
+
+    def name_get(self):
+        result = []
+        for rec in self:
+            name = rec.equipment_name
+            result.append((rec.id, name))
+        return result

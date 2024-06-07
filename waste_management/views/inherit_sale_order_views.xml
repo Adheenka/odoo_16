@@ -89,19 +89,32 @@
                     <field name="pickup_point" attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>
             </xpath>
 
+<!--            jafer code-->
+             <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="attributes">
+                <attribute name="domain">[('categ_id', '=', waste_category)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="before">
+                <field name="waste_category" invisible="1"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Fleet Details">
+                    <group>
+                        <group>
+                            <field name="driver_id"/>
+                            <field name="vehicle_id"/>
+                            <field name="receiving_id"/>
+                        </group>
+                        <group>
+                            <field name="pickup_point"/>
+                            <field name="pickup_date"/>
+                            <field name="equipment_id"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
         </field>
     </record>
 
-<!--    <record id="view_order_tree_inherit" model="ir.ui.view">-->
-<!--        <field name="name">sale.order.tree.inherit</field>-->
-<!--        <field name="model">sale.order</field>-->
-<!--        <field name="inherit_id" ref="sale.view_order_tree"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--&lt;!&ndash;             <xpath expr="//tree" position="before">&ndash;&gt;-->
-<!--                <xpath expr="//div[hasclass('o_cp_buttons')]" position="inside">-->
-<!--                <button name="action_print_xlsx_report" type="object" string="Print XLSX Report" class="btn btn-primary" style="margin-left: 10px;"/>-->
-<!--            </xpath>-->
-<!--&lt;!&ndash;            </xpath>&ndash;&gt;-->
-<!--        </field>-->
-<!--    </record>-->
+
 </odoo>

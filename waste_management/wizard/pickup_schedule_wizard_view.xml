@@ -18,7 +18,8 @@
                     <group>
                     <field name="vehicle_id"/>
                     <field name="driver_id"/>
-                    <field name="equipment_ids" widget="many2many_tags"/>
+<!--                    <field name="equipment_ids" widget="many2many_tags"/>-->
+                        <field name="equipment_id"/>
                     </group>
                 </group>
                 <footer>

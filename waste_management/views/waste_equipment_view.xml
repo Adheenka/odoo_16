@@ -6,7 +6,7 @@
         <field name="model">waste.equipment</field>
         <field name="arch" type="xml">
             <tree string="Waste Equipment">
-                <field name="name"/>
+                <field name="equipment_name"/>
                 <field name="description"/>
             </tree>
         </field>
@@ -19,7 +19,7 @@
         <field name="arch" type="xml">
             <form string="Waste Equipment">
                 <group>
-                    <field name="name"/>
+                    <field name="equipment_name"/>
                     <field name="description"/>
                 </group>
             </form>

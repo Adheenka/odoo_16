@@ -12,7 +12,8 @@ class PickupScheduleWizard(models.TransientModel):
     vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', required=True)
     vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle')
     driver_id = fields.Many2one('res.partner', string='Driver', compute='_compute_driver_id', store=True)
-    equipment_ids = fields.Many2many('waste.equipment', string='Equipments')
+    equipment_id = fields.Many2one('waste.equipment', string='Equipments')
+    receiving_id = fields.Many2one('waste.receiving', string='Waste Receiving Facility')
 
     @api.depends('vehicle_id')
     def _compute_driver_id(self):
@@ -37,5 +38,7 @@ class PickupScheduleWizard(models.TransientModel):
             'vehicle_id': self.vehicle_id.id,
             'driver_id': self.driver_id.id,
             'state': 'pickup_scheduled',
+            'receiving_id': self.receiving_id,
+            'equipment_id': self.equipment_id,
         })
         return {'type': 'ir.actions.act_window_close'}
