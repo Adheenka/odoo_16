@@ -1,43 +1,4 @@
-<!--<odoo>-->
-<!--    <record id="view_wizard_sale_order_report_form" model="ir.ui.view">-->
-<!--        <field name="name">wizard.sale.order.report.form</field>-->
-<!--        <field name="model">wizard.sale.order.report</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <form string="Sale Order Report">-->
-<!--                <group>-->
-<!--                    <field name="start_date"/>-->
-<!--                    <field name="end_date"/>-->
-<!--                </group>-->
-<!--                <footer>-->
-<!--                    <button string="Print" type="object" name="action_print_report" class="btn-primary"/>-->
-<!--                    <button string="Cancel" class="btn-secondary" special="cancel"/>-->
-<!--                </footer>-->
-<!--            </form>-->
-<!--        </field>-->
-<!--    </record>-->
-
-<!--    <record id="action_wizard_sale_order_report" model="ir.actions.act_window">-->
-<!--        <field name="name">Sale Order Report</field>-->
-<!--        <field name="res_model">wizard.sale.order.report</field>-->
-<!--        <field name="view_mode">form</field>-->
-<!--        <field name="target">new</field>-->
-<!--    </record>-->
-<!--    <menuitem id="menu_trip_details" name="Trip Details" parent="crm.crm_menu_report"-->
-<!--              action="action_wizard_sale_order_report"/>-->
-<!--</odoo>-->
 <odoo>
-    <!-- Define the report action -->
-    <record id="action_print_xlsx_report" model="ir.actions.server">
-        <field name="name">Print XLSX Report</field>
-        <field name="model_id" ref="model_sale_order"/>
-        <field name="binding_model_id" ref="model_sale_order"/>
-        <field name="state">code</field>
-        <field name="code">
-            action = env['sale.order'].action_print_xlsx_report(data)
-        </field>
-    </record>
-
-    <!-- Ensure the form view for the wizard is defined -->
     <record id="view_wizard_sale_order_report_form" model="ir.ui.view">
         <field name="name">wizard.sale.order.report.form</field>
         <field name="model">wizard.sale.order.report</field>
@@ -55,15 +16,54 @@
         </field>
     </record>
 
-    <!-- Define the wizard action -->
     <record id="action_wizard_sale_order_report" model="ir.actions.act_window">
         <field name="name">Sale Order Report</field>
         <field name="res_model">wizard.sale.order.report</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
-
-    <!-- Define the menu item to access the wizard -->
     <menuitem id="menu_trip_details" name="Trip Details" parent="crm.crm_menu_report"
               action="action_wizard_sale_order_report"/>
 </odoo>
+<!--<odoo>-->
+<!--    &lt;!&ndash; Define the report action &ndash;&gt;-->
+<!--    <record id="action_print_xlsx_report" model="ir.actions.server">-->
+<!--        <field name="name">Print XLSX Report</field>-->
+<!--        <field name="model_id" ref="model_sale_order"/>-->
+<!--        <field name="binding_model_id" ref="model_sale_order"/>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">-->
+<!--            action = env['sale.order'].action_print_xlsx_report(data)-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Ensure the form view for the wizard is defined &ndash;&gt;-->
+<!--    <record id="view_wizard_sale_order_report_form" model="ir.ui.view">-->
+<!--        <field name="name">wizard.sale.order.report.form</field>-->
+<!--        <field name="model">wizard.sale.order.report</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Sale Order Report">-->
+<!--                <group>-->
+<!--                    <field name="start_date"/>-->
+<!--                    <field name="end_date"/>-->
+<!--                </group>-->
+<!--                <footer>-->
+<!--                    <button string="Print" type="object" name="action_print_report" class="btn-primary"/>-->
+<!--                    <button string="Cancel" class="btn-secondary" special="cancel"/>-->
+<!--                </footer>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Define the wizard action &ndash;&gt;-->
+<!--    <record id="action_wizard_sale_order_report" model="ir.actions.act_window">-->
+<!--        <field name="name">Sale Order Report</field>-->
+<!--        <field name="res_model">wizard.sale.order.report</field>-->
+<!--        <field name="view_mode">form</field>-->
+<!--        <field name="target">new</field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Define the menu item to access the wizard &ndash;&gt;-->
+<!--    <menuitem id="menu_trip_details" name="Trip Details" parent="crm.crm_menu_report"-->
+<!--              action="action_wizard_sale_order_report"/>-->
+<!--</odoo>-->

@@ -39,10 +39,7 @@
     <menuitem id="menu_waste_receiving" name="Waste Receiving Facility" parent="crm.crm_menu_config"
               action="action_waste_receiving"/>
 
-     <menuitem id="menu_waste_equipment"
-              name="Waste Equipment"
-              parent="crm.crm_menu_config"
-              action="action_waste_receiving"/>
+
 
 
 </odoo>
