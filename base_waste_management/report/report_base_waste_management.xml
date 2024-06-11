@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_base_waste_management">
+        <t t-call="web.html_container">
+            <t t-call="base_waste_management.report_base_waste_management_document"/>
+        </t>
+    </template>
+
+    <template id="report_base_waste_management_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="oe_structure"/>
+                <h2 class="mt-4">
+                    Waste Management Report
+                </h2>
+                <table class="table table-sm o_main_table table-border mt-4">
+                    <thead>
+                        <tr>
+                            <th>Pick Up Date</th>
+                            <th>TripSheet Number</th>
+                            <th>Customer</th>
+                            <th>Service Address</th>
+                            <th>Waste Type</th>
+                            <th>Vehicle</th>
+                            <th>Driver</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>VAT 5%</th>
+                            <th>Amount</th>
+                            <th>Waste Receiving Facility</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <t t-foreach="doc.order_line" t-as="line">
+                                <tr>
+                                    <td>
+                                        <span t-field="doc.date_order"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.partner_id.display_name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.partner_id.contact_address"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.product_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.vehicle_id.display_name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.driver_id.display_name"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="line.product_uom_qty"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="line.price_unit"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="line.price_tax"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="line.price_subtotal"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="doc.receiving_id.display_name"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>
+
+
+

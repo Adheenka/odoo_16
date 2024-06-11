@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="button_near_create.buttons" inherit_id="web.ListView.buttons">
+        <xpath expr="//button[contains(@class, 'o_list_button_add')]" position="after">
+            <button type="button" class="btn btn-primary print_xlsx_report">
+                Print XLSX Report
+            </button>
+        </xpath>
+    </template>
+</odoo>

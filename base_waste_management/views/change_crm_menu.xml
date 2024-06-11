@@ -1,0 +1,8 @@
+<!-- base_waste_management/views/menu.xml -->
+<odoo>
+    <record id="crm.crm_menu_root" model="ir.ui.menu">
+        <field name="name">Base Management</field>
+        <field name="sequence">25</field>
+        <field name="web_icon">base_waste_management,static/description/icon.png</field>
+    </record>
+</odoo>

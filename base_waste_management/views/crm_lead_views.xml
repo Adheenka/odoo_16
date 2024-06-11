@@ -1,0 +1,93 @@
+<!-- views/crm_lead_views.xml -->
+<odoo>
+    <record id="view_crm_lead_form_inherited" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherited</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='lead_partner']" position="inside">
+                <field name="waste_category_id"/>
+                <field name="volume"/>
+            </xpath>
+            <xpath expr="//group[@name='opportunity_partner']" position="inside">
+                <field name="waste_category_id"/>
+                <field name="volume"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_form_inherited" model="ir.ui.view">
+        <field name="name">sale.order.form.inherited</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='order_details']" position="inside">
+                <field name="waste_category_id"/>
+                <field name="volume"/>
+            </xpath>
+            <xpath expr="//field[@name='state']" position="replace">
+                <field name="state" widget="statusbar"
+                       statusbar_visible="draft,sent,sale,pick_up_scheduled,waste_dumped"/>
+            </xpath>
+
+            <button name="action_confirm" position="after">
+                <button name="action_open_pickup_wizard" string="Schedule Pick Up"
+                        attrs="{'invisible': [('state', 'not in', 'sale')]}" type="object" class="btn-primary"/>
+                <button name="action_waste_dump" string="Waste Dump"
+                        attrs="{'invisible': [('state', 'not in', 'pick_up_scheduled')]}" type="object"
+                        class="btn-primary"/>
+            </button>
+            <button name="action_quotation_send" position="attributes">
+                <attribute name="states">draft,pick_up_scheduled,waste_dumped</attribute>
+            </button>
+            <button name="action_cancel" position="attributes">
+                <attribute name="states">draft,pick_up_scheduled,waste_dumped</attribute>
+            </button>
+            <button id="create_invoice_percentage" position="attributes">
+                <attribute name="states">draft,pick_up_scheduled,waste_dumped</attribute>
+            </button>
+
+            <!--            <xpath expr="//button[@name='action_confirm']" position="after">-->
+            <!--                <button name="action_open_pickup_wizard" string="Schedule Pick Up"-->
+            <!--                        attrs="{'invisible': [('state', 'not in', 'sale')]}" type="object" class="btn-primary"/>-->
+            <!--                <button name="action_waste_dump" string="Waste Dump"-->
+            <!--                        attrs="{'invisible': [('state', 'not in', 'pick_up_scheduled')]}" type="object"-->
+            <!--                        class="btn-primary"/>-->
+            <!--            </xpath>-->
+            <!--            <xpath expr="//button[@name='action_quotation_send']" position="attributes">-->
+            <!--                <attribute name="states">draft,pick_up_scheduled,waste_dumped</attribute>-->
+            <!--            </xpath>-->
+            <!--            <xpath expr="//button[@name='action_cancel']" position="attributes">-->
+            <!--                <attribute name="states">draft,pick_up_scheduled,waste_dumped</attribute>-->
+            <!--            </xpath>-->
+            <!--            <xpath expr="//button[@name='358']" position="attributes">-->
+            <!--                <attribute name="states">draft,pick_up_scheduled,waste_dumped</attribute>-->
+            <!--            </xpath>-->
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="attributes">
+                <attribute name="domain">[('categ_id', '=', waste_category)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="before">
+                <field name="waste_category" invisible="1"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Fleet Details">
+                    <group>
+                        <group>
+                            <field name="driver_id"/>
+                            <field name="vehicle_id"/>
+                            <field name="receiving_id"/>
+                        </group>
+                        <group>
+                            <field name="pickup_point"/>
+                            <field name="pickup_date"/>
+                            <field name="equipment_id"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>

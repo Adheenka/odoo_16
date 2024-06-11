@@ -1,0 +1,27 @@
+<!-- my_sale_order_extension/views/fleet_menu.xml -->
+<odoo>
+    <!-- Define the action for the equipment menu item -->
+    <record id="action_fleet_equipment" model="ir.actions.act_window">
+        <field name="name">Equipment</field>
+        <field name="res_model">fleet.equipment</field>
+        <field name="view_mode">tree,form</field>
+<!--        <field name="view_id" ref="view_fleet_equipment_tree"/>-->
+    </record>
+
+    <record id="action_waste_receiving" model="ir.actions.act_window">
+        <field name="name">Waste Receiving Facility</field>
+        <field name="res_model">waste.receiving</field>
+        <field name="view_mode">tree,form</field>
+<!--        <field name="view_id" ref="view_waste_receiving_tree"/>-->
+    </record>
+
+
+    <!-- Define the menu item for the equipment under Fleet configuration -->
+    <menuitem id="menu_fleet_equipment" name="Equipment" parent="fleet.fleet_configuration"
+              action="action_fleet_equipment"/>
+    <menuitem id="menu_waste_receiving" name="Waste Receiving Facility" parent="crm.crm_menu_config"
+              action="action_waste_receiving"/>
+
+
+
+</odoo>
