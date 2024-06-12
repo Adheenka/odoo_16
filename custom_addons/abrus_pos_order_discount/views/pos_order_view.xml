@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="abr_pos_order_line_discount" model="ir.ui.view">
+            <field name="name">pos order</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lines']/tree/field[@name='price_unit']"
+                       position="after">
+                    <field name="discount_for" string="Void"/>
+                    <field name="discount_remark" string="Void Reason"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

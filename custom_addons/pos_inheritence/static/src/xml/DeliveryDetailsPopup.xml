@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="DeliveryDetailsPopup" owl="1">
+          <div role="dialog" class="modal-dialog">
+            <div class="popup popup-confirm">
+                <div class="popup-header" style="background-color: #C9CCD2; height: 30px;">
+                    <span class="popup-title">Delivery Details</span>
+                    <i class="popup-icon fa fa-truck"/>
+                </div>
+                <main class="body">
+                    <div class="delivery-details-fields">
+<!--                        <div class="delivery-detail-input">-->
+<!--                            <label for="delivery_country">Delivery Country:</label>-->
+<!--                            <input t-att-value="state.delivery_country"/>-->
+<!--                        </div>-->
+                         <div class="delivery-detail-input">
+                            <label for="delivery_country">Delivery Country:</label>
+                            <select style="width: 80%; height: 30px;" id="delivery_country" t-model="state.delivery_country">
+                                <t t-foreach="env.pos.countries" t-as="country" t-key="country.id">
+                                    <option t-att-value="country.id"><t t-esc="country.name"/></option>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="delivery-detail-input">
+                                <label for="delivery_type">Delivery Type:</label>
+                            <select  style="width: 80%; height: 30px;" id="delivery_type" t-model="state.delivery_type">
+                                <option value="domestic">Domestic</option>
+                                <option value="international">International</option>
+                            </select>
+                        </div>
+
+                        <div class="delivery-detail-input">
+                            <label for="expected_delivery_date">Expected Delivery Date:</label>
+                            <input type="date" t-att-value="state.expected_delivery_date"/>
+                        </div>
+                        <!-- Add more input fields for other delivery details as needed -->
+                    </div>
+                </main>
+                <footer class="footer">
+                    <div class="button confirm">
+                        <button t-on-click="confirm">Confirm</button>
+                    </div>
+                    <div class="button cancel">
+                        <button t-on-click="cancel">Cancel</button>
+                    </div>
+                </footer>
+            </div>
+          </div>
+    </t>
+</templates>
+
+
+        <!--<?xml version="1.0" encoding="utf-8"?>-->
+        <!--<templates id="template" xml:space="preserve">-->
+        <!--    <t t-name="DeliveryDetailsPopup" owl="1">-->
+        <!--        <Draggable>-->
+        <!--        <div class="popup-widget delivery-details-popup">-->
+        <!--            <div class="popup-header">-->
+        <!--                <span class="popup-title">Delivery Details</span>-->
+        <!--                <i class="popup-icon fa fa-truck"/>-->
+        <!--            </div>-->
+        <!--            <div class="popup-content">-->
+        <!--                <div class="delivery-details-fields">-->
+        <!--                    <div class="delivery-detail-input">-->
+        <!--                        <label for="delivery_country">Delivery Country:</label>-->
+        <!--                        <input t-att-value="state.delivery_country"/>-->
+        <!--                    </div>-->
+        <!--                    <div class="delivery-detail-input">-->
+        <!--                        <label for="delivery_type">Delivery Type:</label>-->
+        <!--                        <input t-att-value="state.delivery_type"/>-->
+        <!--                    </div>-->
+        <!--                    <div class="delivery-detail-input">-->
+        <!--                        <label for="expected_delivery_date">Expected Delivery Date:</label>-->
+        <!--                        <input type="date" t-att-value="state.expected_delivery_date"/>-->
+        <!--                    </div>-->
+        <!--                    &lt;!&ndash; Add more input fields for other delivery details as needed &ndash;&gt;-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--            <div class="popup-footer">-->
+        <!--                <button class="confirm">Confirm</button>-->
+        <!--                <button class="cancel">Cancel</button>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        </Draggable>-->
+        <!--    </t>-->
+        <!--</templates>-->
+
+
+        <!--<templates id="template" xml:space="preserve">-->
+        <!--    <t t-name="DeliveryDetailsPopup" owl="1">-->
+        <!--        <div role="dialog" class="modal-dialog">-->
+        <!--             <Draggable>-->
+        <!--        <div class="popup popup-textarea">-->
+        <!--            <header>-->
+        <!--                <h2>Delivery Details</h2>-->
+        <!--            </header>-->
+        <!--            <main>-->
+        <!--               <div class='client-detail'>-->
+        <!--                        <div class='label'>Delivery Country</div>-->
+        <!--                    <div class="input-group">-->
+        <!--                                <input t-model="state.delivery_country_name"-->
+        <!--                                                                     type="text" placeholder="Select a Country"/>-->
+
+        <!--                    </div>-->
+        <!--                </div>-->
+
+
+        <!--                 <div class='client-detail'>-->
+        <!--                    <div class='label'>delivey type</div>-->
+
+        <!--                    <input id="delivery_type" class="detail delivery_type" type='text' t-att-value="props.inputDeliveryType" placeholder="input deliver type"/>-->
+        <!--                </div>-->
+        <!--                <div>-->
+        <!--                    <label for="expected_delivery_date">Expected Delivery Date:</label>-->
+        <!--                    <input type="date" id="expected_delivery_date"/>-->
+        <!--                </div>-->
+        <!--            </main>-->
+        <!--            <footer>-->
+        <!--                <div class="button confirm" t-on-click="confirm">Confirm</div>-->
+        <!--                <div class="button cancel" t-on-click="cancel">Cancel</div>-->
+        <!--            </footer>-->
+        <!--        </div>-->
+        <!--            </Draggable>-->
+        <!--        </div>-->
+        <!--    </t>-->
+        <!--</templates>-->
+
+
+        <!--</templates>-->
+

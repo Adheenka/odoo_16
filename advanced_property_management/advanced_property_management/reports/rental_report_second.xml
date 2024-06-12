@@ -1,0 +1,1569 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_property_rental_second_pdf">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <style>
+                            .box {
+                            border: 1px solid black;
+                            padding: 10px;
+                            margin: 0 auto;
+                            width: 100%; /* Adjust the width as needed */
+                            display: inline-block;
+                            }
+                            .box1 {
+                            border: 1px solid black;
+                            padding: 0px;
+                            margin: 0 auto;
+                            width: 100%; /* Adjust the width as needed */
+                            display: inline-block;
+                            background-color: #B2BEB5;;
+                            }
+                            .date-label {
+                            display: inline-block;
+                            margin-right: 20px; /* Adjust spacing as needed */
+                            text-align: left;
+                            }
+                            .underline {
+                            border-bottom: 1px solid black;
+                            display: inline-block;
+                            width: 200px; /* Adjust the width as needed */
+                            margin-right: 20px; /* Adjust spacing as needed */
+                            }
+                            .underline1 {
+                            border-bottom: 1px solid black;
+                            display: inline-block;
+                            width: 60%; /* Adjust the width as needed */
+                            margin-right: 20px; /* Adjust spacing as needed */
+                            }
+                            .underline2 {
+                            border-bottom: 1px solid black;
+                            display: inline-block;
+                            width: 20%; /* Adjust the width as needed */
+                            margin-right: 20px; /* Adjust spacing as needed */
+                            }
+                            .arabic-text {
+                            display: inline-block;
+                            vertical-align: top; /* Align with the top of the line */
+                            }
+                            .left-section {
+                            display: inline-block;
+                            text-align: left;
+                            vertical-align: top; /* Align with the top of the line */
+                            }
+                            .center-section {
+                            display: inline-block;
+                            }
+                            .box2 {
+                            display: flex;
+                            justify-content: space-between;
+                            }
+                            .boxone {
+                            width: 40%; /* Adjust width as needed */
+                            height: 100px; /* Adjust height as needed */
+                            background-color: #f0f0f0;
+                            }
+                            .underlinetop {
+                            border-bottom: 1px dashed black;;
+                            display: inline-block;
+                            width: 100%; /* Adjust the width as needed */
+                            <!--                            margin-right: 20px; /* Adjust spacing as needed */-->
+                            }
+                        </style>
+
+
+                        <div>
+                            <!--                            my start-->
+                            <div class="row mb-4">
+                                <div class="col-6">
+                                    <strong>RESIDENTIAL TENANCY AGREEMENT</strong>
+                                    <br/>
+                                    <strong>عقد إيجار سكن</strong>
+                                </div>
+                                <div class="col-6">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 " style="background-color: red;">
+                                    <div class="row ps-2"
+                                         style="border: 1px solid black; border-right: none;border-bottom: none;;height:28px;color:white">
+                                        <p>Date:</p>
+                                    </div>
+                                    <div class="row ps-2"
+                                         style="border: 1px solid black; border-right: none;border-bottom: none;border-top: none;;height:28px;color:white">
+                                        <p>Agreement Number:</p>
+                                    </div>
+                                    <div class="row ps-2"
+                                         style="border: 1px solid black; border-right: none;border-top:none;padding-bottom:2px;height:28px;color:white">
+                                        <p>Property Details:</p>
+                                    </div>
+                                </div>
+                                <div class="col-6" style="text-align:center">
+                                    <div class="row"
+                                         style="border: 1px solid black;border-right: none;border-bottom: none; ;height:28px;text-align:center">
+
+                                    </div>
+                                    <div class="row"
+                                         style="border: 1px solid black; border-right: none;border-bottom: none;height:28px;text-align:center">
+                                        <p>
+                                            <t t-esc="o.name"/>
+                                        </p>
+                                    </div>
+                                    <div class="row "
+                                         style="border: 1px solid black; border-left: none;border-right: none;background-color: red;;height:28px;text-align:center">
+
+                                    </div>
+                                </div>
+                                <div class="col-3" style="background-color: red;">
+                                    <div class="row pe-2"
+                                         style="border: 1px solid black;border-bottom: none;height:28px;text-align:right;;color:white ">
+                                        <p>التاري خ</p>
+                                    </div>
+                                    <div class="row pe-2"
+                                         style="border: 1px solid black;border-bottom: none;height:28px;text-align:right;;color:white ">
+                                        <p>رقم التفاقية</p>
+                                    </div>
+                                    <div class="row pe-2"
+                                         style="border: 1px solid black; border-left: none;height:28px;text-align:right;;color:white">
+                                        <p>بيانات العقار</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>Property Name:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;text-align:center">
+                                    <t t-esc="o.property_id.name"/>
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;;border-top:none;height:28px;text-align:right;">
+                                    <p>إسم العقار</p>
+                                </div>
+                            </div>
+                            <!--                            alll-->
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>Landlord:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;text-align:center">
+                                    <t t-esc="o.apartment_id.owner_id.owners_name"/>
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>المالك</p>
+                                </div>
+                            </div>
+                            <!--                            all-->
+                            <div class="row" style="background-color: red;">
+                                <div class="col-6 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;color:white">
+                                    <p>Unit Details</p>
+                                </div>
+                                <div class="col-6 pe-2"
+                                     style="border: 1px solid black; none;border-top:none;height:28px;text-align:right;;color:white">
+                                    <p>بيانات الوحدة</p>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>Building Number:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;text-align:center">
+
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>رقم المبن</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>Apartment Number:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;text-align:center">
+
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>رقم الشقة</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>No. of Bedrooms:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <div class="row">
+                                        <div class="col-4 h-28"
+                                             style="border-right: 1px solid black;;height:28px;text-align:center">
+                                            <p>Bedroom</p>
+                                        </div>
+                                        <div class="col-4 h-28"
+                                             style="border-right: 1px solid black;;height:28px;text-align:center">
+                                            <t t-esc="o.apartment_id.bedroom"/>
+                                        </div>
+                                        <div class="col-4 " style="height:28px;text-align:right;">
+                                            <p>غرفة نوم</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>عدد غرف النوم</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>Location:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <div class="row">
+                                        <div class="col-6 h-28"
+                                             style="border-right: 1px solid black;;height:28px;text-align:center">
+                                            <t t-esc="o.apartment_id.location"/>
+                                        </div>
+                                        <div class="col-6" style="height:28px;text-align:right;">
+                                            <p>المنرية ، أبو ظب</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>المنطقة</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>Parking Entitlement:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <div class="row">
+                                        <div class="col-6 h-28"
+                                             style="border-right: 1px solid black;;height:28px;text-align:center">
+
+                                        </div>
+                                        <div class="col-6" style="height:28px;text-align:center">
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>المواقف</p>
+                                </div>
+                            </div>
+                            <div class="row" style="background-color: red;">
+                                <div class="col-6 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;color:white">
+                                    <p>Tenant’s Details</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black; none;border-top:none;height:28px;color:white">
+                                    <p></p>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>Tenant's Name:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <div class="row">
+                                        <div class="col-6 h-28"
+                                             style="border-right: 1px solid black;;height:28px;text-align:center">
+                                            <t t-esc="o.renter_id.name"/>
+                                        </div>
+                                        <div class="col-6 " style="height:28px;text-align:right;">
+                                            <p>أليكس بييينكو</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>إسم المستأجر</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>Mobile No.:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;text-align:center">
+                                    <t t-esc="o.renter_id.mobile"/>
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>رقم هاتف</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>Email Address:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;text-align:center">
+                                    <t t-esc="o.renter_id.email"/>
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>البريد الإلكتروني</p>
+                                </div>
+                            </div>
+                            <div class="row" style="background-color: red;">
+                                <div class="col-6 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;color:white">
+                                    <p>Rental Details</p>
+                                </div>
+                                <div class="col-6 pe-2"
+                                     style="border: 1px solid black; none;border-top:none;height:28px;text-align:right;;color:white">
+                                    <p>بيانات الجار</p>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>Contract Start Date:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;text-align:center">
+                                    <t t-esc="o.start_date"/>
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>تاريخ بدء العقد</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>Contract Expiry Date:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;text-align:center">
+                                    <t t-esc="o.end_date"/>
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>تاريخ انتهاء العقد</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>Contract Period:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <div class="row">
+                                        <div class="col-6 h-28"
+                                             style="border-right: 1px solid black;;height:28px;text-align:center">
+
+                                        </div>
+                                        <div class="col-6 " style="height:28px;text-align:center">
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>مدة التعاقد</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>Rent Per Annum:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;text-align:center">
+                                    <t t-esc="o.rent_price"/>
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>الجار السنوي</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>Security Deposit:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;text-align:center">
+                                    <t t-esc="o.security_amount"/>
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>مبلغ التأمين</p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px">
+                                    <p>No. of Payment:</p>
+                                </div>
+                                <div class="col-6"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;text-align:center">
+
+                                </div>
+                                <div class="col-3 pe-2"
+                                     style="border: 1px solid black;border-top:none;height:28px;text-align:right;">
+                                    <p>عدد الدفعات</p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6 ps-2"
+                                     style="background-color: red;border: 1px solid black;border-right: none;border-bottom: none;height:28px;color:white;border-top:none;">
+                                    <p>Payment Details</p>
+                                </div>
+                                <div class="col-6 pe-2"
+                                     style="background-color: red;border: 1px solid black;border-bottom: none;height:28px;text-align:right;;color:white;border-top:none;">
+                                    <p>تفاصيل العقد</p>
+                                </div>
+                            </div>
+                            <div class="row" style="height:100px;">
+                                <div class="col-6 ps-2" style="border: 1px solid black;border-right: none;height:100px">
+                                    <strong>One (1) Payment:</strong>
+                                    <p class="ps-3">
+                                        <ul>
+                                            <li>
+                                                1'st payment-AED:115,000cheque dated 14/2/2024
+                                            </li>
+                                        </ul>
+                                    </p>
+
+
+                                </div>
+                                <div class="col-6 pe-2"
+                                     style="direction:rtl;border: 1px solid black;;height:100px;text-align:right;">
+                                    <strong>واحد ( 1) دفعات</strong>
+                                    <p class="ps-3">
+                                        الدفعة الأولى – 115,000 AED – شيك بتاريخ 14/02/2024
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-6">
+                                    <p class="ps-2">ADA International Real Estate
+                                        <br/>
+                                        Document No:
+                                        <t t-esc="o.name"/>
+                                        <br/>
+                                        Effective Date: 12/3/3
+
+                                    </p>
+                                </div>
+                                <div class="col-6">
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:45px">
+                                <div class="col-6 ps-2"
+                                     style="border: 1px solid black;border-right:none;height:28px;background:red;color:white;text-align:left;border-bottom:none;">
+                                    <p>Tenancy Contract Terms and Conditions</p>
+                                </div>
+                                <div class="col-6 pe-2"
+                                     style="border: 1px solid black;height:28px;background:red;color:white;text-align:right;border-bottom:none;">
+                                    <p>ط وأحكام عقد اليجار</p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;">
+                                        <p class="ps-3 pe-2" style="color:red" >
+                                            FIRST: The Tenant hereby covenants with the Landlord as follows:
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pe-2  pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;direction:rtl">
+                                        <p class="pe-3 ps-2" style="color:red">
+                                            ول :يتعهد المستأجر تجاه المالك بموجب هذا العقد بما يل:
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+                                          <span >The Tenant shall pay the Rent and other charges in the manner as set out in this Tenancy Contract.</span>
+                                        </p>
+
+                                </div>
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                             يدفع المستأجر قيمة اليجار والرسوم الخرى بالطريقة المنصوص عليها ف عقد اليجار
+                                        </p>
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+                                          <span >The Tenant shall pay a security deposit of AED 5,750 and shall
+allow the Landlord to utilize the security deposit to set off any
+rent due hereunder or requisite any remedy, breach or default
+under this Tenancy Contract by the Tenant, including but not
+limited, pay any cost and expenses incurred for reinstating the
+Property to its original condition.</span>
+                                        </p>
+
+                                </div>
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+يدفع المستأجر مبلغ التأمي  وقدره, 5,750درهم إمارات ويسمح للمالك بالستفادة من مبلغ
+ التأم ي
+ف خصم قيمة اليجار المستحقة بموجب هذا العقد أو المطالبة بأي تعويض أو إخلل أو تقص ي يرتكبه المستأجر بموجب عقد اليجار هذا بما
+ف ذلك عل سبيل المثال ل الحص ، دفع أي تكاليف أو نفقات يدفعها المالك لعادة العقار لحالته الصلية                                       </p>
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+                                          <span >The Tenant shall pay all applicable fees and taxes in
+accordance with the laws of Abu Dhabi and the UAE.</span>
+                                        </p>
+
+                                </div>
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+يدفع المستأجر الرسوم والضرائب المطبقة وفق لقوانين أبوظبي ودولة المارات .العربية المتحدة                                        </p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+The Tenant shall strictly observe and comply with the
+community rules and regulations, where the Property is
+located, at all times including any revisions or amendments
+from time to time.                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            يخضع المستأجر ويلتزم التزاما تاما بقوانيين ولوائح المجمع السكبي الذي يقع فيه العقار ف جميع الوقات بما ف ذلك أي تنقيحات أو تعديلت تطرأ عليها من حين لخر.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+The Tenant shall maintain and keep the Property clean, safe
+and hygienic and not permit any works to be undertaken at
+the Property which may be or become a nuisance or
+annoyance to or in any way interfere with the quiet comfort of
+other residents.                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            يلي المستأجر بالمحافظة عل نظافة العقار وسلمته ونظافته وكما يلتزم بان ل سمح بإجراء أي أعمال
+ف العقار قد تسبب الزعاج أو الضوضاء أو تزعج راحة .المستأجرين الخرين بأية طريقة كانت.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+The Tenant shall keep the Property and all fixtures and fittings
+therein, in good and working condition. In event of any
+damages to any fixtures and fittings for whatsoever reason,
+the Tenant shall repair at its own cost under the Landlord’s
+supervision or pay the Landlord, without delay, the expenses
+to repair those damages if the Landlord undertakes the repair
+works associated with the damages.                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                             يلتزم المستأجربالمحافظة عل سلمة العقار وجميع قطع الثاث التجهيزات المتواجدة بها وأن تكون بكل الوقات بحالة جيدة وصالحة .وف حالة تصرر  أي قطع أثاث أو تجهيزات  ليي سبب مهما كان نوعه، يتول المستأجر إصل حها عل نفقته الخاصة تحت اشراف المالك أو يدفع للمالك بدون تأخ ي تكاليف إصلح.تلك الاضرار إذا تول المالك إجراء أعمال التصليح المتعلقة بتلك الاضرار.
+
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+The Tenant shall permit the Landlord, its agents or its
+employees at all reasonable hours to enter and inspect the
+Property with reasonable notice.                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+يسمح المستأجر للمالك ووكلئه وموظفيه بالدخول لمعاينة العقار بعد تقديم إخطار بذلك
+. ف ج ميع الوقات المعقولة                                        </p>
+                                </div>
+                            </div>
+                             <div class="row ">
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+                                            The Tenant shall bear whole responsibility for and indemnify
+the Landlord against any loss, damage, death or injury caused
+to any person or the Property whether directly or indirectly
+due to the act, omission or negligence of the Tenant and its
+visitors.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            يتحمل المستأجر المسؤولية كاملة وي يأ ذمة المالك من أي خسائر أو أضارار أو وفيات أو إصابة يتعرض لها أي شخص أو العقار إذا نجمت بشكل مبارشر أو غير مبارشعن أي  تصف أو إغفال أو إهمال من جانب المستأجر أو زائريه
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+                                            The Tenant shall indemnify the Landlord against any loss,
+damage, death or injury caused to any person or property
+whether directly or indirectly due to any act, omission, or
+negligence of the Tenant or Tenant's employees, agents,
+visitors or clients.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            يغوض  المستأجر المالك عن أي خسائر أو أضارار أو وفيات أو إصابة يتعرض لها أي شخص أو العقار إذا نجمت بشكل مباشر أو غ غير  مبارشعن أي أفعال أو إغفال أو إهمال يرتكبه المستأجر أو موظفيه أو وكلئه أو زائريه أو عملئه
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+                                            The Tenant shall not to reassign, transfer or sublet the whole
+or part of the Property to a third party, partner or company
+without the prior written consent of the Landlord. In case the
+Tenant breaches this clause, then the Landlord shall have the
+right to terminate the Tenancy Contract and evict the Property
+immediately.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            ل يجوز للمستأجر التنازل عن العقار أو أي جز ء منه أو نقل ملكيته أو تأج يه من الباطن لي طرف أو شريك أو شركه دون الحصول عل الموافقة الخطية المسبقة من المالك .وإذا أخل المستأجر بهذا البند، يحق للمالك حينها إنهاء عقد اليجار وإخلء العقار عل الفور ودون الحاجة لنذار.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+                                            The Tenant shall not carry out any improvements or
+alterations to the Property without the prior written approval
+of the Landlord. Upon the expiration or termination of the
+Tenancy Contract, improvements or alterations to the
+Property consented to by the Landlord shall become the
+Landlord's property, without any payment or compensation to
+the Tenant. The Landlord reserves the right to request the
+Tenant to reinstate the Property to its original condition at the
+Tenant's own cost and expense.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            ل يجوز للمستأجر إدخال أي تط ويرات أو تغي يات عل العقار بدو ن الحصول عل الموافقة الخطية المسبقة من المالك .وتصبح جميع التطويرات أو تغييرات عل العقار بدو ن الحصول عل الموافقة الخطية المسبقة من المالك .وتصبح جميع التطويرات أو تغييرات التي تطرأ عل العقار بموافقة المالك ملكية خالصة للمالك عقب انتهاء عقد اليجار أو إنهائه دون تحمل أي دفعات أو تعويضات للمستأجر .ويحتفظ المالك بالحق
+ف مطالبة المستأجر بإعادة الع قار لحالته الصلية عل نفقة .المستأجر
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+                                            The Tenant shall not to keep or store or allow in the Property
+any arms, ammunition, gunpowder, explosives or any
+hazardous or prohibited products.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            ل يجوز للمستأجر الحتفاظ بأي أسلحة أو ذخائر أو مسحوق البارود أو متفجرات أو أي منتجات خطرة أو اي مواد محظورة أو تخزينها أو السماح بذلك داخل العقار
+                                        </p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+                                            The Tenant shall not use the Property for any illegal, unlawful
+or immoral purposes.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                             ل يجوز للمستأجر استخدام العقار لي أغراض غ ي قانونية و/أو غير و/أو غ ي أخلقية.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+                                            The Tenant hereby confirms that the Property is inspected and
+shall lease the Property from the Landlord solely and is wholly
+responsible for the structural and material integrity and safety
+of the Property including all installation, alternation,
+renovation, maintenance or other works carried out and shall
+keep all of the same in good and substantial repair and
+condition and, without limitation for the rest of the Tenancy
+Contract.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            يؤكد المستأجر بموجب عقد اليجار الماثل أنه قد عاين العقار وأنه قد استأجر العقار من المالك وحده دون غ يه ويتحمل المسؤولية كاملة عن السلمة الهيكلية والمادية للعقار وسلمته والحفاظ عليه
+ف حالة جيدة وإجراء .الصلحات بكافة اشكالها دون المساس بعقد اليجار
+                                        </p>
+                                </div>
+                            </div>
+                             <div class="row ">
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+                                         All shared facilities in the community, where the Property is
+located, are for the Tenant’s use only. Visitors or guests of the
+Tenant are strictly not permitted to use these shared facilities.
+The uses of shared facilities are at the Tenant’s risk and the
+Tenant shall be responsible for all damages arising out their
+use.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            تخصص جميع المرافق المشتركه الموجودة ف المجمع الذي يقع فيه العقار لستخدام المستأجرين فقط . ول يسمح لزائري المستأجر أو ضيوفه باستخدام هذه المرافق المشتركه. ويتحمل المستأجر مخاطر استخدام المرافق المشتركه, كما يتحمل مسؤولية جميع الضار التي تنشأ عن هذا الستخدام.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none">
+                                        <p  class="ps-3 pe-2">
+                                                The Tenant takes responsibility of the keys to the Property,
+building and parking access cards after the handover. If any of
+the keys, key cylinder, or access cards is damaged, they will be
+replaced at the Tenant’s cost.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            تحمل المستأجر مسؤولية الحفاظ عل جميع مفاتيح العقار وبطاقات دخول المبات وموقف السيارات فور استلمها،
+وف حالة تلف او فقدان أي مفتاح أو  .أسطوانة أي مفتاح أو بطاقات الدخول، يتم استبدالها عل نفقة المستأجر.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6 pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;color:red">
+                                        <p  class="ps-3 pe-2">
+                                            SECOND: The Landlord and the Tenant hereby covenants as
+follows:
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;color:red">
+                                        <p  class="ps-2 pe-3">
+                                            ثاني :يتعهد المالك والمستأجر بموجب عقد اليجار الماثل بمايلي:
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6 pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+                                            Tenant shall pay all utilities (ADDC, internet, cable) bills for the
+Property.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            يدفع المستأ جر قيمة كل فوات ي الخدمات )رسوم شركه ابو ظبي للتوزي ع والانترنت والكابلت والميدات (ف العقار
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6 pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+Landlord is entitled to increase the rent in accordance with
+UAE laws and regulations and Abu Dhabi Municipal laws.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            يحق للمالك زيادة قيمة اليجار وفق لقوانين ولوائح دولة المارات العربية المتحدة لقوانين بلدية ابو ظبي.
+
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6 pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+The Landlord shall provide a written notice to the Tenant prior
+to any increase in rent.
+                                        </p>
+
+                                </div>
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            يتعهد المالك بارسال إخطار خط إل المستأجر قبل زيادة  قيمة اليجار
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6  pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+Should the Tenant vacate or abandon the Property without
+having paid the due rent or without first notifying the
+Landlord of vacating the Property, the Landlord shall have the
+right to open and access the Property with the Landlord
+reserving the right to seek monetary compensation in the
+courts of Abu Dhabi.
+                                        </p>
+
+                                </div>
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            إذا قام المستأجر بإخلء أو ترك العقار دون سداد قيمة اليجار المستحقة أو دون إخطار المالك مسبقا بإخلء العقار, يحق للمالك فتح العقار والدخول إليه مع احتفاظه بالحق ف المطالبة بالتعويضات المادية أمام محاكم ابو ظبي.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6  pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+The Tenant shall give a written notice period of two (2)
+months prior to the expiry date of the Tenancy Contract to
+inform, in writing, to the Landlord of the Tenant’s intention to
+renew or terminate this Tenancy Contract. Should the Tenant
+fail to provide such notice and remain in possession of the
+Property; the Tenant shall be liable to pay the Landlord a hold
+over penalty of AED 500 per day after the Tenancy Contract
+expiry date in addition to all other loss and expenses incurred
+by the Landlord. No such payment or acceptance by the
+Landlord shall operate as, constitute or deemed to be renewal
+or extension of this Tenancy Contract. Notwithstanding this,
+the Landlord shall be entitled to advertise, enter and show
+prospective tenants the Property during the notice period
+with the Landlord giving 24 hours’ notice to the Tenant of
+their intention to do so.
+                                        </p>
+
+                                </div>
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            ييتعهد المستأجربارسال إخطار خطيا مدته شهرين قبل تاري خ انتهاء عقد اليجار لخطار المالك بنيته لتجديد أو إنهاء عقد اليجار .وإذا عجز المستأجر عن إرسال هذا الخطار واستمرت حيازته للعقار، يتحمل المستأجر مسؤولية دفع غرامة قدرها 500 درهم إمارات يومي عقب تاري خ انتهاء عقد اليجار بال ضافة إل جميع التكاليف والنفقات التي يدفعها المالك .ول تفسر هذه الدفعات أو قبول المالك لها عل أنها تجديد أو تمديد لعقد اليجار .وبخلف ما سبق، يحق للمالك العلن عن العقار وإدخال المستأجرين المحتمل ي إليها خلل مدة الخطار مع إرسال المالك إل المستأ جر إخطا ر مدته أربعة وعشيرين ساعة بنيته للقيام بذلك.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6  pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+Major maintenance including but not limited to structural,
+electrical, plumbing and air-conditioning is the responsibility
+of the Landlord.
+                                        </p>
+
+                                </div>
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            تحمل المالك إجراء عمليات الصيانة العامة التي تشمل ول تقتصعل عمليات الصيانة الهيكلية والكهربائية والصرف  الصحي وتكييف الهواء.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6  pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+The Tenant shall provide their own phone and internet
+                                        </p>
+
+                                </div>
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            يتحمل المستأجر تكلفة تمديد خدمات الهاتف والانترنت الخاص به
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6   pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+Insuring the Tenant’s personal belongings of the premises is
+the Tenant's responsibility.
+                                        </p>
+
+                                </div>
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            تحمل المستأجر مسؤولية تامين مقتنياته الشخصية
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6  pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+None of the carpets within the Property are to be glued or
+nailed to tiles
+                                        </p>
+
+                                </div>
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            ل يجوز لصق أي سجاد بالبلط داخل العقار
+                                        </p>
+                                </div>
+                            </div><div class="row">
+                                <div class="col-6   pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+The Tenant agrees to leave the Property in a good, clean and
+tidy condition at the end of the Tenancy Contract.
+                                        </p>
+
+                                </div>
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            يوافق المستأجرعل مغادرة العقار وهو بحالة جيدة ونظيفة بنهاية عقد اليجار
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6  pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+Prior to the release of the security deposit, Property
+inspection will be carried out. Any repairs or damages, with
+general wear and tear accepted, shall be deducted from the
+security deposit. Such deductions from the security deposit
+must be evidenced with the receipts by the Landlord. In the
+event the cost of repair to the damages exceeds the value of
+the security deposit all required documentation allowing the
+Tenant to vacate the Property shall be held by the Landlord
+until all monies due the Landlord are paid in full.
+                                        </p>
+
+                                </div>
+                                <div class="col-6  pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            تم إجر اء معاينة العقار وجميع الصلحات والضرار قبل استرداد مبلغ التامين وتخصم قيمة الهلك وال ستهلك العادي من  مبلغ تامين .ويتم إثبات تلك الخصومات من مبلغ التامين بإيصالت الستلم التي يقدمها المالك .وإذا تجاوزت تكلفة تصليح تلك والضرار قيمة مبلغ التامين يحجب المالك جميع المستندات التي يحتاجها المستأجرلخلء العقار لهين دفع  جميع المبالغ المستحقة بال كامل للمستأجر.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6  pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+At the time of vacating the Property, the Tenant shall produce
+the original security deposit receipt and original clearances of
+ADDC, Chilled water, Gas and Etisalat bills in order to collect
+the security deposit.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            يقدم  المستأجر إيصال مبلغ التامين الص ل وجميع المخالصات الصلية الخاصة بفواتير شركه أبو ظبي للتوزيع ومبردات  المياه والغاز والتصالت بغية  تحصيل مبلغ التامين.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+In the event the tenant wishes to break the lease contract, the
+tenant shall provide 30 days’ notice in writing to the
+owner/managing agent. The tenant will incur two month’s
+rent penalty from the date the tenant has vacated the
+property. The property will be inspected during the handover.
+Refund of the security deposit will be done within 15 working
+days after the property handover, provided the tenant has the
+left the unit the same condition as he/she received it.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            إذا رغب المستأجر ف إنهاء عقد اليجار ف اي وقت، يرسل المستأجر إخطار كتابيا قبل ثلثي يوم غل القل إل المالك أو الوكيل الداري .ويتحمل المستأجرغرامة قيمتها تعادل قيمة اليجار لشهرين اعتبار من تاري خ إخلء المستأجر للعقار .وسيتم معاينة العقار أثناء التسليم.وسيتم اسيداد مبلغ التامين ف موعد غايته خمسة عرس يوم عمل بعد تسليم العقار برسط أن يغادر المستأجر العقار وهو عل حالته التي استلمها بها.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+The Parties shall sign Tawtheeq Contract and/or any other
+document as may be imposed by Abu Dhabi Municipality or
+any other competent authority.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            يوقع الطرفان عقد توثيق و/أو أي مستندات أخرى تفرضها بلدية ابو ظبي أو أي هيئة مختصة أخرى.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;color:red">
+                                        <p  class="ps-3 pe-2">
+                                            THIRD: Termination:
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;color:red">
+                                        <p  class="ps-2 pe-3">
+                                            ثالث :النهاء:
+
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+The Landlord shall be entitled to terminate the Tenancy
+Contract and evict the Property with thirty (30) days of written
+notice if:<br/>
+a. The Tenant fails to pay the Rent or any part thereof in the
+prescribed amount and manner: or <br/>
+b. The Tenant breaches any of the terms and conditions as set
+out in this Tenancy Contract.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none">
+                                        <p  class="ps-2 pe-3">
+                                       حق للمالك إنهاء عقد اليجار وإخلء العقار ف  غضون ثلثين يوما من إرسال الخطار إذا  <br/> أ- عجز ز المستأجر عن دفع قيمة اليجا ر أو أي جزء منه بالقيمة والطريقة المنصوص عليهما<br/>.ب- أخل المستأجر بالرسوط والحكام المنصوص عليها ف عقد اليجار
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+The Tenant shall not move all or part of his furniture out of
+the Property until he obtains a “Permit to Vacate” from the
+Landlord which will be issued only after all due rents, payment
+and utilities are fully paid up by the Tenant.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            ل يجوز للمستأجر نقل أي قطع أثاث تخصه أو أي جزء منها خارج العقار إل بعد حصوله عل "تصي ح بالخلء "من المالك والذي سيتم إصداره فقط بعد دفع جميع القيم ال يجارية المستحقة، ويدفع المستأجر جميع الدفعات وفواتير .المر افق بالكامل.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+No failure or delay by the Landlord in exercising any right,
+power or remedy under this Tenancy Contract shall operate as
+a waiver thereof, nor shall any single or partial exercise of the
+same preclude any further exercise thereof or the exercise of
+any other right, power or remedy. Without limiting the
+foregoing, no waiver by the Landlord of any breach of any
+provision thereof shall be deemed to be a waiver of any
+subsequent breach of that or any other provision thereof.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                                                                                                    ل يفسي عجز المالك أو تأخره عن ممارسة أي حق أو سلطة أو سبل إنصاف ممنوحة له بموجب عقد اليجار الماثل  عل أنه تنازل عنه،، ول يخول الممارسة الفردية أو الجزئية لتلك الحقوق أو الصلحيات دون ممارسة أي حق أو سلطة أو سبل إنصاف أخرى .ول نظر  لتنازل المالك عن أي خلل بأحكام العقد الماثل عل أنه تنازلعن أي انتهاك لحق بهذا الحكم أو أي حكم آخر من أحكام هذا العقد.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+All notices and correspondences shall be in the English
+language unless Arabic is required and is agreed by the Parties
+and is deemed as duly served to the Landlord and the Tenant
+when it is served personally or sent by registered mail or
+postage prepaid to the address of the party shown on the first
+page of this Tenancy Contract. In case of any discrepancies in
+the interpretation of this Tenancy Contract, the English
+language shall prevail.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            تكون جميع الخطارات والمراسلت باللغة انجليزي ما لم يطلب ذلك باللغة العربية ووافق عليها الطرفان، وينظر لهذه الخطارات أو المراسلت عل أنه قد تم تسليمها للمالك والمستأجر إذا قدمت شخصيا أو تم إرسالها بال ييد المسجل أو ال ييد السي ع مسبق الدفع عل عنوان كل طرف الموضح
+ف الصفحة الول  من عقد اليجار الماثل .
+ وف حالة وجود أي تناقض
+ف تفس ي عقد اليجار، يكون للنص باللغة انجليزيه أو لوية التطبيق.
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+The Tenancy Contract including all amendments embodies the
+entire understanding and agreement between the Landlord
+and the Tenant and there are no other arrangements between
+the Landlord and the Tenant relating to the subject matter of
+the Tenancy Contract. No amendment or modification of this
+Tenancy Contract shall be valid or binding unless agreed by
+the Landlord and is made in writing.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                             ي عقد اليجار بجميع التعديلت مجمل التفاهم والتفاق بين المالك والمستأجر، ول يوجد أي اتفاقيات أخرى بين ي المالك والمستأجر تتعلق بموضوع عقد اليجار .ول يسى العمل بمو جب أي تغي ي أو تعديل يطرأ عل عقد اليجار الماثل أو والالتزام به ما لم يواف ق عليه المالك خطيا
+                                        </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 pb-3 "
+                                         style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;border-top:none;">
+                                        <p  class="ps-3 pe-2">
+The Tenancy Contract shall be governed and construed in
+accordance with, the laws of the United Arab Emirates as
+applied in the Emirate of Abu Dhabi.
+                                        </p>
+
+                                </div>
+                                <div class="col-6 pb-3"
+                                         style="border: 1px solid black;text-align:right;border-bottom:none;border-top:none;">
+                                        <p  class="ps-2 pe-3">
+                                            خضع عقد اليجار ويفسر وفقا لقوانين دولة  المارات ت العربية المتحدة السارية المفعول ف إمارة ابو ظبي
+                                        </p>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                            <div class="row">
+                                <div class="col-6 ps-2"
+                                     style="border: 1px solid black;height:28px;background:red;color:white;text-align:left;border-bottom:none;border-right:none;">
+                                    <p>Fee Schedule</p>
+                                </div>
+                                <div class="col-6 pe-2"
+                                     style="border: 1px solid black;height:28px;background:red;color:white;text-align:right;border-bottom:none;">
+                                    <p>جدول الرسوم</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;">
+                                    <p class="ps-3 pe-2">
+                                        Contract administration Fees
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-right:none;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                        AED 500
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                        رسو م إدارية لتجديد عقد ال يجار
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;">
+                                    <p class="ps-3 pe-2">
+                                        Tawtheeq Registration Fee
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-right:none;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                        AED 500
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                        رسو م التوثيق
+                                    </p>
+                                </div>
+                            </div>
+
+                             <div class="row">
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;">
+                                    <p class="ps-3 pe-2">
+                                        Fine for late renewal effective 10 days after the expiry of the lease agreement
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-right:none;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                        AED 500
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                         غرامة عن تأخ ي تجديد عقد ال يجار بعد 10 أيام من تاري خ إنتهاء العقد
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;">
+                                    <p class="ps-3 pe-2">
+                                        For lease extension for less than 12 months
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-right:none;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                        AED 1,000
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                        ف حالة تجديد العقد فية اقل من  12
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;">
+                                    <p class="ps-3 pe-2">
+                                        Break of Lease if approved by the landlord
+                                        to break of Lease (administration charges
+                                        are AED 1,000/- plus two (2) months rental
+                                        retention).
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-right:none;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                        AED 1,000
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                         ف حالة موافقة الم ؤجر عل انهاء العقد قبل تاري خ إنتهائه الفعل، يكون المستأجر ملزما بدفع مبلغ1000   درهم
+إمارات بمثابة رسوم إدارية بالضافة خصم شهرين من ال يجار السنو ي
+                                    </p>
+                                </div>
+                            </div>
+
+                        <div class="row">
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;">
+                                    <p class="ps-3 pe-2">
+                                        Per dishonoured cheque plus all additional
+                                        expenses, including legal expenses, incurred
+                                        by the Landlord in connection with recovery
+                                        of the amount of each dishonoured cheque;
+                                        cheque to be settled within 72 hrs from
+                                        the notification date and Legal action will be
+                                        taken if not settled within 7 days Maximum
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-right:none;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                            AED 500
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                        رسوم الشيك المرتجع عن كل شيك مضافا إليها جميع النفقات الضافية و القانونية،الب يتحملها الم ؤ جر فيم يتعلق باسيداد مبلغ كل شيك مرتجع يجب سداد الشيك خلل 72 ساعة من تاري خ الخطار وسيتم إتخاذ الجراء
+القانوت الزم إذا لم يتم السداد خلل7 أيام من تاري خ الخطار
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;">
+                                    <p class="ps-3 pe-2">
+                                       Fees for cheque postponement for 1 to 15 days
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-right:none;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                            AED 500
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-bottom:none;">
+                                    <p class="pe-3 ps-2">رسوم تأجيل إيداع الشيك لمدة من 1 إل 15
+يوما
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:left;border-right:none;border-bottom:none;">
+                                    <p class="ps-3 pe-2">
+                                        Fees for cheque postponement for 16 days most at month one t
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-right:none;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                            AED 1,000
+                                    </p>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;text-align:right;border-bottom:none;">
+                                    <p class="pe-3 ps-2">
+                                        رسوم تأجيل إيداع الشيك لمدة من 12يوما ال شهر كحد أقص
+
+
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 ps-2"
+                                     style="border: 1px solid black;height:48px;background:red;color:white;text-align:left;border-bottom:none;border-right:none;">
+                                    <p>
+                                        We understand, accept and shall abide by all the terms and
+                                        conditions stated in this Tenancy Contract
+                                    </p>
+                                </div>
+                                <div class="col-6 pe-2"
+                                     style="border: 1px solid black;height:48px;background:red;color:white;text-align:right;border-bottom:none;">
+                                    <p>نفهم ونوافق عل ونلتزم باالشروط والحكام المنصوص عليها ف عقد اليجار</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"
+                                     style="border: 1px solid black;color:red;;background:red;color:white;border-bottom:none;height:28px">
+                                    <div class="row">
+                                        <div class="col-6 ps-2" style="text-align:left">
+                                            Landlord
+                                        </div>
+                                        <div class="col-6 pe-2" style="text-align:right">
+                                            المالك
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;color:red;background:red;color:white;border-right:none;;border-bottom:none;height:28px">
+                                    <div class="row">
+                                        <div class="col-6 ps-2" style="text-align:left">
+                                            Tenant
+                                        </div>
+                                        <div class="col-6 pe-2" style="text-align:right">
+                                            المستأجر
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4"
+                                     style="border: 1px solid black;color:red;background:red;color:white;border-bottom:none;height:28px">
+                                    <div class="row">
+                                        <div class="col-6 ps-2" style="text-align:left">
+                                            Witness
+                                        </div>
+                                        <div class="col-6 pe-2" style="text-align:right;direction: rtl">
+                                            الشهود
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4" style="border: 1px solid black;text-align:left;border-right:none;">
+                                    <div class="row" style="height:80px">
+                                        <div class="col-6 ps-3" style="text-align:left">
+                                            Name:
+                                        </div>
+                                        <div class="col-6 pe-2" style="text-align:right;direction: rtl">
+                                            السم:
+                                        </div>
+                                    </div>
+                                    <div class="row" style="height:80px">
+                                        <div class="col-6 ps-3" style="text-align:left">
+                                            Signature:
+                                        </div>
+                                        <div class="col-6 pe-2" style="text-align:right;direction: rtl">
+                                            التوقيح:
+                                        </div>
+                                    </div>
+                                    <div class="row" style="height:80px">
+                                        <div class="col-6 ps-3" style="text-align:left">
+                                            Date:
+                                        </div>
+                                        <div class="col-6 pe-2" style="text-align:right;direction: rtl">
+                                            التاري خ :
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4" style="border: 1px solid black;text-align:right;border-right:none;">
+                                   <div class="row" style="height:80px">
+                                        <div class="col-6 ps-3" style="text-align:left">
+                                            Name:
+                                        </div>
+                                        <div class="col-6 pe-2" style="text-align:right;direction: rtl">
+                                            السم:
+                                        </div>
+                                    </div>
+                                    <div class="row" style="height:80px">
+                                        <div class="col-6 ps-3" style="text-align:left">
+                                            Signature:
+                                        </div>
+                                        <div class="col-6 pe-2" style="text-align:right;direction: rtl">
+                                            التوقيح:
+                                        </div>
+                                    </div>
+                                    <div class="row" style="height:80px">
+                                        <div class="col-6 ps-3" style="text-align:left">
+                                            Date:
+                                        </div>
+                                        <div class="col-6 pe-2" style="text-align:right;direction: rtl">
+                                            التاري خ :
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4" style="border: 1px solid black;text-align:right;">
+                                   <div class="row" style="height:80px">
+                                        <div class="col-6 ps-3" style="text-align:left">
+                                            Name:
+                                        </div>
+                                        <div class="col-6 pe-2" style="text-align:right;direction: rtl">
+                                            السم:
+                                        </div>
+                                    </div>
+                                    <div class="row" style="height:80px">
+                                        <div class="col-6 ps-3" style="text-align:left">
+                                            Signature:
+                                        </div>
+                                        <div class="col-6 pe-2" style="text-align:right;direction: rtl">
+                                            التوقيح:
+                                        </div>
+                                    </div>
+                                    <div class="row" style="height:80px">
+                                        <div class="col-6 ps-3" style="text-align:left">
+                                            Date:
+                                        </div>
+                                        <div class="col-6 pe-2" style="text-align:right;direction: rtl">
+                                            التاري خ :
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

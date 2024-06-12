@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="view_sale_order_form_waste_type" model="ir.ui.view">
+        <field name="name">sale.order.form.waste.type</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+             <xpath expr="//field[@name='state']" position="replace">
+                <field name="state" widget="statusbar" statusbar_visible="draft,sent,sale,pickup_scheduled,waste_dumped"/>
+            </xpath>
+             <xpath expr="//header/button[@id='create_invoice']" position="after">
+               <button name="action_pickup_scheduled" type="object" string="Pickup Scheduled" class="oe_highlight"
+                        attrs="{'invisible': [('state', 'in', ['pickup_scheduled', 'waste_dumped'])]}"/>
+            </xpath>
+
+            <xpath expr="//header" position="inside">
+                <button name="action_waste_dumped" type="object" string="Waste Dumped" class="oe_highlight"
+                        attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>
+            </xpath>
+
+            <xpath expr="//header/button[@id='create_invoice']" position="attributes">
+                <attribute name="attrs">{'invisible': [('invoice_status', '!=', 'to invoice'), ('state', '!=', 'pickup_scheduled')]}</attribute>
+            </xpath>
+
+            <xpath expr="//header/button[@id='create_invoice_percentage']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('invoice_status', '!=', 'no'), ('state', 'not in', ['sale', 'waste_dumped'])]}</attribute>
+            </xpath>
+
+            <xpath expr="//header/button[@name='action_quotation_send'][@states='draft']" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', 'not in', ['pickup_scheduled', 'waste_dumped'])]}</attribute>
+            </xpath>
+
+            <xpath expr="//header/button[@name='action_quotation_send'][@states='sent,sale']" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', 'not in', ['pickup_scheduled', 'waste_dumped'])]}</attribute>
+            </xpath>
+
+            <xpath expr="//header/button[@name='action_confirm'][@data-hotkey='v']" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', 'not in', ['draft']), ('state', 'in', ['pickup_scheduled', 'waste_dumped'])]}</attribute>
+            </xpath>
+
+            <xpath expr="//header/button[@name='action_cancel']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ['draft', 'sent', 'sale', 'waste_dumped']), ('id', '=', False)]}</attribute>
+            </xpath>
+
+            <xpath expr="//header/button[@name='action_draft']" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', '!=', 'cancel'), ('state', '!=', 'waste_dumped')]}</attribute>
+            </xpath>
+
+<!--            <xpath expr="//header/button[@name='payment_action_capture']" position="attributes">-->
+<!--                <attribute name="attrs">{'invisible': [('authorized_transaction_ids', '=', []), ('state', '!=', 'waste_dumped')]}</attribute>-->
+<!--            </xpath>-->
+
+<!--            <xpath expr="//header/button[@name='payment_action_void']" position="attributes">-->
+<!--                <attribute name="attrs">{'invisible': [('authorized_transaction_ids', '=', []), ('state', '!=', 'waste_dumped')]}</attribute>-->
+<!--            </xpath>-->
+
+             <!-- Control Visibility of Buttons Based on State -->
+<!--            <xpath expr="//header/button[@id='create_invoice']" position="attributes">-->
+<!--                <attribute name="attrs">{'invisible': [('state', 'not in', ['pickup_scheduled', 'waste_dumped'])]}</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//header/button[@name='action_quotation_send'][@states='draft']" position="attributes">-->
+<!--                <attribute name="attrs">{'invisible': [('state', 'not in', ['pickup_scheduled', 'waste_dumped'])]}</attribute>-->
+<!--            </xpath>-->
+<!--             <xpath expr="//header/button[@name='action_confirm'][@data-hotkey='v']" position="attributes">-->
+<!--                <attribute name="attrs">{'invisible': [('state', 'not in', ['draft']), ('state', 'in', ['pickup_scheduled', 'waste_dumped'])]}</attribute>-->
+<!--            </xpath>-->
+
+<!--            <xpath expr="//header/button[@name='action_cancel']" position="attributes">-->
+<!--                <attribute name="attrs">-->
+<!--                    {'invisible': ['|', ('state', 'not in', ['draft', 'sent','sale','pickup_scheduled']), ('id', '=', False)]}-->
+<!--                </attribute>-->
+<!--            </xpath>-->
+
+
+
+            <xpath expr="//sheet//group" position="after">
+                <group>
+                    <field name="waste_type"/>
+                    <field name="volume"/>
+                </group>
+            </xpath>
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+<!--                <field name="waste_type" attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>-->
+<!--                <field name="volume" attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>-->
+                <field name="driver_id" attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>
+                <field name="vehicle_id" attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>
+                    <field name="pickup_point" attrs="{'invisible': [('state', '!=', 'pickup_scheduled')]}"/>
+            </xpath>
+
+<!--            jafer code-->
+             <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="attributes">
+                <attribute name="domain">[('categ_id', '=', waste_category)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="before">
+                <field name="waste_category" invisible="1"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Fleet Details">
+                    <group>
+                        <group>
+                            <field name="driver_id"/>
+                            <field name="vehicle_id"/>
+                            <field name="receiving_id"/>
+                        </group>
+                        <group>
+                            <field name="pickup_point"/>
+                            <field name="pickup_date"/>
+                            <field name="equipment_id"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>

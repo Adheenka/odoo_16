@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+pos_training_inherit.access_sales_location,access_sales_location,pos_training_inherit.model_sales_location,,1,1,1,1

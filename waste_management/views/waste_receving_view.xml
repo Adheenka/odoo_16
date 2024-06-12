@@ -1,0 +1,45 @@
+<odoo>
+   <record id="view_waste_receiving_tree" model="ir.ui.view">
+        <field name="name">waste.receiving.tree</field>
+        <field name="model">waste.receiving</field>
+        <field name="arch" type="xml">
+            <tree string="Waste Receiving Facility">
+                <field name="waste_receiving_facility"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view for the equipment model -->
+    <record id="view_waste_receiving_form" model="ir.ui.view">
+        <field name="name">waste.receiving.form</field>
+        <field name="model">waste.receiving</field>
+        <field name="arch" type="xml">
+            <form string="Waste Receiving Facility">
+                <sheet>
+                    <group>
+                        <field name="waste_receiving_facility"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_waste_receiving" model="ir.actions.act_window">
+        <field name="name">Waste Receiving Facility</field>
+        <field name="res_model">waste.receiving</field>
+        <field name="view_mode">tree,form</field>
+<!--        <field name="view_id" ref="view_waste_receiving_tree"/>-->
+    </record>
+
+
+    <!-- Define the menu item for the equipment under Fleet configuration -->
+
+    <menuitem id="menu_waste_receiving" name="Waste Receiving Facility" parent="crm.crm_menu_config"
+              action="action_waste_receiving"/>
+
+
+
+
+</odoo>

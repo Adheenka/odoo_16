@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_waste_equipment_tree" model="ir.ui.view">
+        <field name="name">waste.equipment.tree</field>
+        <field name="model">waste.equipment</field>
+        <field name="arch" type="xml">
+            <tree string="Waste Equipment">
+                <field name="equipment_name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_waste_equipment_form" model="ir.ui.view">
+        <field name="name">waste.equipment.form</field>
+        <field name="model">waste.equipment</field>
+        <field name="arch" type="xml">
+            <form string="Waste Equipment">
+                <group>
+                    <field name="equipment_name"/>
+                    <field name="description"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open Waste Equipment Views -->
+    <record id="action_waste_equipment" model="ir.actions.act_window">
+        <field name="name">Waste Equipment</field>
+        <field name="res_model">waste.equipment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Add Waste Equipment Menu under CRM Configuration -->
+    <menuitem id="menu_waste_equipment"
+              name="Waste Equipment"
+              parent="crm.crm_menu_config"
+              action="action_waste_equipment"/>
+</odoo>

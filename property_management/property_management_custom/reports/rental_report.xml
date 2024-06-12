@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_property_rental_pdf">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                            <div class="page">
+                                <h4>
+                                    <strong>
+                                        <p style="text-align:center;">
+                                        <u> CONTRACT DETAILS</u>
+                                        </p>
+                                    </strong>
+                                </h4>
+                            </div>
+                        <div style="width:60%;">
+                            <table style="border-color: #f9f9f9; ">
+<!--                                <tr>-->
+<!--                                    <th width="28%"></th>-->
+<!--                                    <th width="2%"></th>-->
+<!--                                    <th width="70%"></th>-->
+
+<!--                                </tr>-->
+
+                                <tr>
+                                    <td style="color:#000000; border:none;font-size:14px;"><b>Renter</b>
+
+                                    </td>
+                                    <td style=" border:none; padding:0 13px;">:</td>
+                                    <td style="color:#000000; border:none; font-size:14px;">
+                                        <span t-field="o.renter_id"></span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="color:#000000; border:none;font-size:14px;"><b>Property</b>
+
+                                    </td>
+                                    <td style="border:none;padding:0 13px;border:none">:</td>
+                                    <td style=" color:#000000; border:none; font-size:14px;">
+                                        <span t-field="o.property_id"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style=" color:#000000; border:none; font-size:14px;"><b>Apartment</b>
+
+                                    </td>
+                                    <td style="border:none;padding:0 13px;">:</td>
+                                    <td style=" color:#000000; border:none;font-size:14px;">
+                                        <span t-field="o.apartment_id"></span>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+
+                        </div>
+ <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+
+                      <div>
+
+<h5>
+                                    <strong>
+                                        <p style="text-align:left;">
+                                        <u> Contract Details:</u>
+                                        </p>
+                                    </strong>
+                                </h5>
+
+                    </div>
+                        <div style="width:60%;">
+                            <table style="border-color: #f9f9f9; ">
+<!--                                <tr>-->
+<!--                                    <th width="28%"></th>-->
+<!--                                    <th width="2%"></th>-->
+<!--                                    <th width="70%"></th>-->
+
+<!--                                </tr>-->
+
+                                <tr>
+                                    <td style="color:#000000; border:none;font-size:14px;"><b>Rent Price</b>
+
+                                    </td>
+                                    <td style=" border:none; padding:0 13px;">:</td>
+                                    <td style="color:#000000; border:none; font-size:14px;">
+                                        <span t-field="o.rent_price"></span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="color:#000000; border:none;font-size:14px;"><b>Contract Start date</b>
+
+                                    </td>
+                                    <td style="border:none;padding:0 13px;border:none">:</td>
+                                    <td style=" color:#000000; border:none; font-size:14px;">
+                                        <span t-field="o.start_date"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style=" color:#000000; border:none; font-size:14px;"><b>Contract End date</b>
+
+                                    </td>
+                                    <td style="border:none;padding:0 13px;">:</td>
+                                    <td style=" color:#000000; border:none;font-size:14px;">
+                                        <span t-field="o.end_date"></span>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+
+                        </div>
+ <br/>
+                    <br/>
+                    <br/>
+
+                      <div>
+
+<h5>
+                                    <strong>
+                                        <p style="text-align:left;">
+                                        <u> Terms and conditions:</u>
+
+                                        </p>
+                                    </strong>
+
+                                </h5> <span t-field="o.note"/>
+
+                    </div>
+                       <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+
+                        <div class="footer">
+                    <div class="text-center">
+
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div class="o_boxed_header" style="width:100%">
+                    <center>
+                         Page:
+                        <span class="page"/>
+
+                    </center>
+                </div>
+                    </div>
+                    </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

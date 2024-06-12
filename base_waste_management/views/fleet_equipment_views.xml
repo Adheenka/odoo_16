@@ -1,0 +1,59 @@
+<!-- my_sale_order_extension/views/fleet_equipment_views.xml -->
+<odoo>
+    <!-- Tree view for the equipment model -->
+    <record id="view_fleet_equipment_tree" model="ir.ui.view">
+        <field name="name">fleet.equipment.tree</field>
+        <field name="model">fleet.equipment</field>
+        <field name="arch" type="xml">
+            <tree string="Equipment">
+                <field name="equipment_name"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view for the equipment model -->
+    <record id="view_fleet_equipment_form" model="ir.ui.view">
+        <field name="name">fleet.equipment.form</field>
+        <field name="model">fleet.equipment</field>
+        <field name="arch" type="xml">
+            <form string="Equipment">
+                <sheet>
+                    <group>
+                        <field name="equipment_name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_waste_receiving_tree" model="ir.ui.view">
+        <field name="name">waste.receiving.tree</field>
+        <field name="model">waste.receiving</field>
+        <field name="arch" type="xml">
+            <tree string="Waste Receiving Facility">
+                <field name="waste_receiving_facility"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view for the equipment model -->
+    <record id="view_waste_receiving_form" model="ir.ui.view">
+        <field name="name">waste.receiving.form</field>
+        <field name="model">waste.receiving</field>
+        <field name="arch" type="xml">
+            <form string="Waste Receiving Facility">
+                <sheet>
+                    <group>
+                        <field name="waste_receiving_facility"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+
+</odoo>

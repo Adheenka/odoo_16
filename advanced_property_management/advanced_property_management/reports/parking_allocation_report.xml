@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_parking_allocation_pdf">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <style>
+                            .box {
+                            border: 1px solid black;
+                            padding: 10px;
+                            margin: 0 auto;
+                            width: 100%; /* Adjust the width as needed */
+                            display: inline-block;
+                            }
+                            .box1 {
+                            border: 1px solid black;
+                            padding: 0px;
+                            margin: 0 auto;
+                            width: 100%; /* Adjust the width as needed */
+                            display: inline-block;
+                            background-color: #B2BEB5;;
+                            }
+                            .date-label {
+                            display: inline-block;
+                            margin-right: 20px; /* Adjust spacing as needed */
+                            text-align: left;
+                            }
+                            .underline {
+                            border-bottom: 1px solid black;
+                            display: inline-block;
+                            width: 200px; /* Adjust the width as needed */
+                            margin-right: 20px; /* Adjust spacing as needed */
+                            }
+                            .underline1 {
+                            border-bottom: 1px solid black;
+                            display: inline-block;
+                            width: 60%; /* Adjust the width as needed */
+                            margin-right: 20px; /* Adjust spacing as needed */
+                            }
+                            .underline2 {
+                            border-bottom: 1px solid black;
+                            display: inline-block;
+                            width: 20%; /* Adjust the width as needed */
+                            margin-right: 20px; /* Adjust spacing as needed */
+                            }
+                            .arabic-text {
+                            display: inline-block;
+                            vertical-align: top; /* Align with the top of the line */
+                            }
+                            .left-section {
+                            display: inline-block;
+                            text-align: left;
+                            vertical-align: top; /* Align with the top of the line */
+                            }
+                            .center-section {
+                            display: inline-block;
+                            }
+                            .box2 {
+                            display: flex;
+                            justify-content: space-between;
+                            }
+                            .boxone {
+                            width: 40%; /* Adjust width as needed */
+                            height: 100px; /* Adjust height as needed */
+                            background-color: #f0f0f0;
+                            }
+                            .underlinetop {
+                            border-bottom: 1px dashed black;;
+                            display: inline-block;
+                            width: 100%; /* Adjust the width as needed */
+                            <!--                            margin-right: 20px; /* Adjust spacing as needed */-->
+                            }
+                              .red-text {
+        color: red;
+    }
+                        </style>
+
+
+                        <div>
+                            <!--                            my start-->
+                            <div class="row mb-4">
+                               <div class="col-6 red-text">
+                                    <h2  style="color: red;">Car Parking Spaces Allocation</h2>
+                                    <h4><t t-esc="o.property_name.name"/></h4>
+                                </div>
+                                <div class="col-6">
+
+                                </div>
+                            </div>
+
+
+
+                            <!--                            alll-->
+
+                            <!--                            all-->
+<!--                            <div class="row" style="background-color: red;">-->
+<!--                                <div class="col-6 ps-2"-->
+<!--                                     style="border: 1px solid black;border-right: none;border-top:none;height:28px;color:white">-->
+<!--                                    <p>Unit Details</p>-->
+<!--                                </div>-->
+
+
+<!--                            </div>-->
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;height:36px;font-size:18px; ">
+                                    <p>Property Name :</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;height:36px;text-align:center;font-size:20px;  padding-top: 10px;padding-bottom: 18px;">
+                                    <t t-esc="o.property_name.name"/>
+                                </div>
+<!--                                 <div class="col-3 pe-2"-->
+<!--                                     style="border: none;border-top:none;height:28px;text-align:right;">-->
+
+<!--                                </div>-->
+
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:18px;">
+                                    <p>Apartment Name :</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:18px; padding-top: 10px;padding-bottom: 25px; ">
+                                    <t t-esc="o.apartment_name.name"/>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:18px; ">
+                                    <p>Building Number:</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:18px; padding-top: 10px;padding-bottom: 25px; ">
+                                     <t t-esc="o.building_name"/>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:18px; ">
+                                    <p>Unit Description:</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:18px; padding-top: 10px;padding-bottom: 25px;">
+                                        <t t-esc="o.unit_description"/>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-right: none;border-top:none;height:36px;font-size:18px;">
+                                    <p>Building Number:</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;font-size:18px; ">
+                                    <div class="row">
+                                        <div class="col-4 h-28"
+                                             style="border-right: 1px solid black;;height:36px;text-align:center;font-size:18px;  padding-top: 10px;padding-bottom: 25px;">
+                                             <t t-esc="o.building_num"/>
+                                        </div>
+                                        <div class="col-4 h-28"
+                                             style="border-right: 1px solid black;;height:36px;text-align:center;font-size:18px; ">
+                                              <p>Unit No. </p>
+                                        </div>
+                                        <div class="col-4 h-28" style="height:36px;text-align:center;font-size:18px;  padding-top: 10px;padding-bottom: 25px;">
+                                          <t t-esc="o.unit_num"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                             <div class="row">
+                                <div class="col-3 ps-2"
+                                     style="border: 1px solid black;border-top:none;height:36px;font-size:18px;">
+                                    <p>Car Space (s) No:</p>
+                                </div>
+                                <div class="col-9"
+                                     style="border: 1px solid black;border-top:none;height:36px;text-align:center;font-size:18px; padding-top: 10px;padding-bottom: 25px;">
+                                     <t t-esc="o.car_space_num"/>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+
+
+                        </div>
+                        <br/>
+                                  <br/>
+                        <div>
+                            <p style ="font-size:18px;">Dear Valued Tenant,</p>
+                            <p style ="font-size:18px;">
+                                We would like to take this opportunity to thank you for leasing an apartment at the  <t t-esc="o.property_name.name"/> and to extend a warm welcome to you.
+The parking space(s) detailed above have been allocated for only your exclusive use as a
+Tenant in the Community. Please also ensure that you use only the space(s) allocated to
+you and nowhere else, so as not to cause any inconvenience to other residents within the
+Community.
+Please acknowledge the allocation of car parking space(s) detailed above by endorsing this
+letter below.
+                                  <br/>
+
+
+We wish you an enjoyable stay.
+                             </p>
+
+                                  <br/>
+                            <hr style="color: black;"></hr>
+ <p style ="font-size:18px;">Yours faithfully,</p>
+                            <b style="font-size:18px;">ADAIRE Team
+
+for and on behalf of ADA
+                                <br/>
+International Real Estate
+                                <br/>
+
+                            </b>
+
+                        </div>
+                        <br/>
+
+
+                        <div>
+                           <b style="font-size:18px; padding-left: 370px;"><u>Acknowledgement</u></b>
+<br/>
+
+
+                            <p style ="font-size:18px;">
+                                I, tenant of apartment stated above acknowledge the allocation of the car park space(s)
+stated above for my use and undertake to park my car(s) at the allocated spaces and not
+anywhere else on the Development.
+                            </p>
+                              <br/>
+                             <b style="font-size:18px;"><u>Name:</u></b>
+  <br/>
+                              <br/>
+                            <b style="font-size:18px;"><u>Date:</u></b>
+                             <b style="font-size:18px;padding-left: 450px;"><u>Signature:</u></b>
+                        </div>
+                         <br/>
+
+<!--<div class="footer">-->
+<!--                    <div class="text-center">-->
+<!--                        <ul class="list-inline">-->
+<!--                            <li>-->
+<!--                                <span style="font-size:13px;">Email :</span><span style="font-size:13px;" t-field="o.company_id.partner_id.email"/>-->
+<!--                                <span  style="font-size:13px;">Phone : </span><span  style="font-size:13px;" t-field="o.company_id.partner_id.phone"/>-->
+<!--                                <span  style="font-size:13px;" >Web : </span><span  style="font-size:13px;" t-field="o.company_id.partner_id.website"/>-->
+<!--                                <span  style="font-size:13px;" >Tax ID : </span><span  style="font-size:13px;" t-field="o.company_id.partner_id.vat"/>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                Page:-->
+<!--                                <span class="page"/>-->
+<!--                                /-->
+<!--                                <span class="topage"/>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

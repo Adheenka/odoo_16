@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.pickup.schedule.wizard,access_pickup_schedule_wizard,waste_management.model_pickup_schedule_wizard,base.group_user,1,1,1,1
+access.waste.equipment,access_waste_equipment,waste_management.model_waste_equipment,base.group_user,1,1,1,1
+access_waste_receiving,access_waste_receiving,waste_management.model_waste_receiving,base.group_user,1,1,1,1
+access_wizard_sale_order_report,access_wizard_sale_order_report,waste_management.model_wizard_sale_order_report,base.group_user,1,1,1,1

@@ -42,6 +42,6 @@
 
     <menuitem id="menu_owl_odoo" name="OWL" sequence="10" web_icon="odoo_owl,static/description/icon.svg">
         <menuitem id="menu_owl_odoo_list" name="Todo list" sequence="10" action="odoo_todo_list_action"/>
-        <menuitem id="menu_owl_odoo_list_js" name="Todo list OWL" sequence="10" action="action_odoo_owl_todo_list_js"/>
+        <menuitem id="menu_owl_odoo_list_js" name="Todo OWL" sequence="10" action="action_odoo_owl_todo_list_js"/>
     </menuitem>
 </odoo>

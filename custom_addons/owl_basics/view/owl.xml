@@ -41,7 +41,10 @@
         </record>
 
         <!-- Menu item definition -->
-
+        <record id="action_owl_study_js" model="ir.actions.client">
+            <field name="name">Study OWL</field>
+            <field name="tag">owl_basics.action_owl_study_js</field>
+        </record>
 
         <!-- Action definition -->
         <record id="action_view_owl_study" model="ir.actions.act_window">

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Template for the order button in the pos session-->
+<templates id="pos_selectProductBom_template"
+           inherit_id="point_of_sale.template" xml:space="preserve">
+        <t t-name="PosDiscountLineButton" owl="1">
+        <span class="control-button pos_void_cancelled odoo-theme-color">
+            <span>Void</span>
+        </span>
+    </t>
+    <t t-name="PosDiscountLineButtonPopup" owl="1">
+            <div class="modal-dialog">
+            <Draggable>
+                <div class="popup" style="height: 400px;">
+                    <header class="title drag-handle">
+                        Void
+                    </header>
+                    <div class='div-container' style="height: 250px;">
+                        <div>
+                            <select id="wa_no_line"
+                                    t-att-value="props.cus_reason"
+                                    class="selectpicker"
+                                    style="width: 70%;height: 36px;margin: 13px;"
+                                    title="Choose the reason..">
+                                <option value="">Please Select here...</option>
+                                <option value="wastage">Wastage</option>
+                                <option value="no_make">No Make</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                          <textarea t-att-value="props.reason"
+                                    class="form-control rounded-0"
+                                    placeholder="Remarks...."
+                                    style="width: 66%;" id="cus_remarks"
+                                    rows="3">
+
+                          </textarea>
+                        </div>
+
+
+                    </div>
+                    <footer class="footer">
+
+                        <div class="button cancel odoo-theme-button"
+                             t-on-click="update_order_line">
+                            Ok
+                        </div>
+                        <div class="button " t-on-click="reset_order_line">
+                            Reset
+                        </div>
+                        <div class="button cancel" t-on-click="cancel">
+                            Close
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+        </div>
+    </t>
+</templates>

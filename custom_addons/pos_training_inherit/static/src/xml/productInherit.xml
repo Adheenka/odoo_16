@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pos_training_inherit_product_count" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
+        <xpath expr="//article[hasclass('product')]" position="inside">
+            <t t-if="props.product.qty_available &gt; 0">
+                <div class="num">
+                    <t t-out="props.product.qty_available"/>
+                </div>
+            </t>
+            <t t-else="">
+                <div class="number">
+                    <t t-out="props.product.qty_available"/>
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>

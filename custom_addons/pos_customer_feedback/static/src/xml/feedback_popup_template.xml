@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="FeedbackPopup" owl="1">
+        <Draggable>
+            <div class="popup popup-textarea" t-ref="input-data">
+                <header class="title drag-handle">
+                    <t t-esc="props.title"/>
+                </header>
+                <div class="popup-textarea-wrap">
+                    <div t-on-change="RatingChange">
+                        <form class="rating">
+                            <label>
+                                <input type="radio" name="stars" value="1"/>
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="stars" value="2"/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="stars" value="3"/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="stars" value="4"/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="stars" value="5"/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                            </label>
+                        </form>
+                       <textarea t-model="state.commentValue" t-ref="comment" placeholder="Type your Comments"/>
+                    <!-- Delivery Type Input with Options -->
+                    <select t-model="state.deliveryType" t-ref="deliveryType" class="delivery-type-select">
+                        <option value="">Select Delivery Type</option>
+                        <option value="domestic">Domestic</option>
+                        <option value="international">International</option>
+                    </select>
+                    <!-- Delivery Country Input with Optional Flag -->
+                    <input t-model="state.deliveryCountry" t-optional="true" t-ref="deliveryCountry" type="text" placeholder="Delivery Country"/>
+                    <!-- Dropdown for Delivery Country -->
+                    <select t-if="env.pos.countries.length > 0" t-model="state.deliveryCountry" t-ref="deliveryCountry" class="delivery-country-select">
+                        <option value="">Select Country (Optional)</option>
+                        <t t-foreach="env.pos.countries" t-as="country" t-key="country.id">
+                            <option t-att-value="country.id">
+                                <t t-esc="country.name"/>
+                            </option>
+                        </t>
+                    </select>
+                    <!-- Expected Delivery Date Input -->
+<!--                    <input t-model="state.expectedDeliveryDate" t-ref="expectedDeliveryDate" type="date" placeholder="Expected Delivery Date"/>-->
+                    </div>
+                </div>
+                <footer class="footer">
+                    <div class="button confirm highlight" t-on-click="confirm">
+                        <t t-esc="props.confirmText"/>
+                    </div>
+                    <div class="button cancel" t-on-click="cancel">
+                        <t t-esc="props.cancelText"/>
+                    </div>
+                </footer>
+            </div>
+        </Draggable>
+    </t>
+</templates>

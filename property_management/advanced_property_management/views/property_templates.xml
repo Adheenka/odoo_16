@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="property_view" name="property_view">
+        <!--        <xpath expr="." position="inside">-->
+        <!--            <link rel="stylesheet" href="/advanced_property_management/static/src/css/template.css"/>-->
+        <!--        </xpath>-->
+        <t t-call="website.layout">
+
+            <t t-set="title">Properties</t>
+            <div class="oe_structure">
+                <br/>
+                <div class="container">
+                    <div class="row" id="property_container">
+                        <div class="col-md-3">
+                            <ul class="list-group" id="property_options">
+                                <li class="list-group-item active property_action_buttons"
+                                    data-action="0" aria-current="true">
+                                    Properties
+                                </li>
+                                <li class="list-group-item property_action_buttons"
+                                    data-action="2">
+                                    Sales
+                                </li>
+                                <li class="list-group-item property_action_buttons"
+                                    data-action="3">
+                                    Rental
+                                </li>
+                                <li class="list-group-item property_action_buttons"
+                                    id="auction_button" data-action="1">
+                                    Auction
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-9" id="property_option_view">
+                            <!--    View all properties     -->
+                            <div class="property_item_view"
+                                 id="property_item_view">
+                                <div class="row row-cols-1 row-cols-md-3 g-4 o_properties">
+                                    <t t-foreach="property_ids" t-as="property">
+                                        <t t-if="property.state == 'available'">
+                                            <div class="col o_property_item"
+                                                 t-att-data-property_id="property.id">
+                                                <div class="card"
+                                                     style="width: 16rem; height: 330px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                                                    <t t-if="property.image">
+                                                        <img t-att-src="image_data_uri(property.image)"
+                                                             class="card-img-top"
+                                                             alt="..." style="height: 80%; width: 80%;"/>
+                                                    </t>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">
+                                                            <t t-esc="property.name"/>
+                                                            -
+                                                            <t t-esc="property.code"/>
+                                                        </h5>
+                                                        <p class="card-text"
+                                                           style="text-transform: capitalize;">
+                                                            <t t-esc="property.property_type"/>
+                                                        </p>
+                                                        <br/>
+                                                        <t t-if="property.state == 'sold'">
+                                                            <span id="p_type"
+                                                                  style="text-transform: capitalize;"
+                                                                  class="badge badge-pill bg-danger">
+                                                                <t t-esc="property.state"/>
+                                                            </span>
+                                                        </t>
+                                                        <t t-if="property.state == 'for sale'">
+                                                            <span id="p_type"
+                                                                  style="text-transform: capitalize;"
+                                                                  class="badge badge-pill bg-success">
+                                                                <t t-esc="property.state"/>
+                                                            </span>
+                                                        </t>
+                                                        <t t-if="property.state == 'for_rent'">
+                                                            <span id="p_type"
+                                                                  style="text-transform: capitalize;"
+                                                                  class="badge badge-pill bg-primary">
+                                                                <t t-esc="property.state.replace('_', ' ')"/>
+                                                            </span>
+                                                        </t>
+                                                        <t t-if="property.state == 'booked'">
+                                                            <span id="p_type"
+                                                                  style="text-transform: capitalize;"
+                                                                  class="badge badge-pill bg-warning">
+                                                                <t t-esc="property.state"/>
+                                                            </span>
+                                                        </t>
+                                                        <t t-if="property.state == 'available'">
+                                                            <span id="p_type"
+                                                                  style="text-transform: capitalize;"
+                                                                  class="badge badge-pill bg-info">
+                                                                <t t-esc="property.state"/>
+                                                            </span>
+                                                        </t>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </t>
+                                </div>
+                            </div>
+                            <!--    property sales list     -->
+                            <div class="property_sales_view"
+                                 id="property_sales_view"
+                                 style="display: none;">
+                                <div class="row row-cols-1 row-cols-md-3 g-4">
+                                    <t t-if="property_ids">
+                                        <t t-foreach="property_ids"
+                                           t-as="property">
+                                            <t t-if="property.state == 'available'">
+                                                <t t-if="property.sale_rent == 'for_sale'">
+                                                    <div class="col o_property_item"
+                                                         t-att-data-property_id="property.id">
+                                                        <div class="card">
+                                                            <span t-field="property.image"
+                                                                  t-options="{'widget': 'image', 'alt-field': 'name', 'zoom': 'image'}"/>
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">
+                                                                    <t t-esc="property.name"/>
+                                                                    -
+                                                                    <t t-esc="property.code"/>
+                                                                </h5>
+                                                                <p class="card-text"
+                                                                   style="text-transform: capitalize;">
+                                                                    <t t-esc="property.property_type"/>
+                                                                    <br/>
+                                                                    <t t-if="property.state == 'sold'">
+                                                                        <span id="p_type"
+                                                                              style="text-transform: capitalize;"
+                                                                              class="badge badge-pill bg-danger">
+                                                                            <t t-esc="property.state"/>
+                                                                        </span>
+                                                                    </t>
+                                                                    <t t-if="property.sale_rent == 'for_sale'">
+                                                                        <span id="p_type"
+                                                                              style="text-transform: capitalize;"
+                                                                              class="badge badge-pill bg-success">
+                                                                            <t t-esc="property.sale_rent"/>
+                                                                        </span>
+                                                                    </t>
+                                                                    <t t-if="property.sale_rent == 'for_tenancy'">
+                                                                        <span id="p_type"
+                                                                              style="text-transform: capitalize;"
+                                                                              class="badge badge-pill bg-primary">
+                                                                            <t t-esc="property.sale_rent"/>
+                                                                        </span>
+                                                                    </t>
+                                                                    <t t-if="property.state == 'available'">
+                                                                        <span id="p_type"
+                                                                              style="text-transform: capitalize;"
+                                                                              class="badge badge-pill bg-info">
+                                                                            <t t-esc="property.state"/>
+                                                                        </span>
+                                                                    </t>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                            </t>
+                                        </t>
+                                    </t>
+                                    <t t-else="">
+                                        <h3 class="m-5">No Property For Sale!</h3>
+                                    </t>
+                                </div>
+                            </div>
+                            <!--    Property rental list   -->
+                            <div class="property_rental_view"
+                                 id="property_rental_view"
+                                 style="display: none;">
+                                <div class="row row-cols-1 row-cols-md-3 g-4">
+                                    <t t-foreach="property_ids" t-as="property">
+                                        <t t-if="property.state == 'available'">
+                                            <t t-if="property.sale_rent == 'for_tenancy'">
+                                                <div class="col o_property_item"
+                                                     t-att-data-property_id="property.id">
+                                                    <div class="card">
+                                                        <span t-field="property.image"
+                                                              t-options="{'widget': 'image', 'alt-field': 'name', 'zoom': 'image'}"/>
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">
+                                                                <t t-esc="property.name"/>
+                                                                -
+                                                                <t t-esc="property.code"/>
+                                                            </h5>
+                                                            <p class="card-text"
+                                                               style="text-transform: capitalize;">
+                                                                <t t-esc="property.property_type"/>
+                                                                <br/>
+                                                                <t t-if="property.state == 'sold'">
+                                                                    <span id="p_type"
+                                                                          style="text-transform: capitalize;"
+                                                                          class="badge badge-pill bg-danger">
+                                                                        <t t-esc="property.state"/>
+                                                                    </span>
+                                                                </t>
+                                                                <t t-if="property.sale_rent == 'for_sale'">
+                                                                    <span id="p_type"
+                                                                          style="text-transform: capitalize;"
+                                                                          class="badge badge-pill bg-success">
+                                                                        <t t-esc="property.sale_rent"/>
+                                                                    </span>
+                                                                </t>
+                                                                <t t-if="property.sale_rent == 'for_tenancy'">
+                                                                    <span id="p_type"
+                                                                          style="text-transform: capitalize;"
+                                                                          class="badge badge-pill bg-primary">
+                                                                        <t t-esc="property.sale_rent"/>
+                                                                    </span>
+                                                                </t>
+                                                                <t t-if="property.state == 'available'">
+                                                                    <span id="p_type"
+                                                                          style="text-transform: capitalize;"
+                                                                          class="badge badge-pill bg-info">
+                                                                        <t t-esc="property.state"/>
+                                                                    </span>
+                                                                </t>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </div>
+                            </div>
+                            <!--    Property auction list   -->
+                            <div class="property_auction_view"
+                                 id="property_auction_view"
+                                 style="display: none;">
+                                <div class="auction_cards"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    <!--    Property View Template  -->
+    
+    <template id="property_view_item" name="property_view_item">
+        <t t-call="website.layout">
+            <t t-set="title">Property -
+                <t t-esc="property_id.name"/>
+            </t>
+            <div class="property-image-slider">
+                <div class=""
+                     style="background-position: top;background-size: 100%;position: relative;z-index: -10;">
+                    <img style="height: 350px;" t-if="property_id.image"
+                         t-att-src="image_data_uri(property_id.image)" class="card-img"
+                         alt="..."/>
+                    <div class="card-img-overlay" style="position: absolute;left: 0;transform: translateY(-50%);text-align: center;color: #fff;
+                         width: 100%;">
+                        <h1 style="text-align: center; color: white; padding-top: 140px;"
+                            class="card-title property-name">
+                            <t t-esc="property_id.name"/>
+                            -
+                            <t t-esc="property_id.property_type"/>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $(document).ready(function() {
+                $('.property-image-slider').slick({
+                // Customize slider options here (refer to documentation)
+                dots: true, // Enable navigation dots
+                infinite: true, // Enable infinite looping
+                slidesToShow: 1, // Show only one image at a time
+                slidesToScroll: 1, // Transition one image at a time
+                autoplay: true, // Enable autoplay (optional)
+                autoplaySpeed: 2000 // Autoplay speed in milliseconds (optional)
+                });
+                });
+            </script>
+            <div class="oe_structure">
+                <br/>
+                <div class="container property_container">
+                    <div id="property_container" style="width: 100%;">
+                        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+                        <script src="https://www.npmjs.com/package/@googlemaps/js-api-loader"></script>
+                        <!--                        <div class=""-->
+                        <!--                             style="background-position: top;background-size: 100%;position: relative;z-index: -10;">-->
+                        <!--                            <img style="height: 350px;" t-if="property_id.image"-->
+                        <!--                                 t-att-src="image_data_uri(property_id.image)" class="card-img"-->
+                        <!--                                 alt="..."/>-->
+                        <!--                            <div class="card-img-overlay" style="position: absolute;left: 0;transform: translateY(-50%);text-align: center;color: #fff;-->
+                        <!--                             width: 100%;">-->
+                        <!--                                <h1 style="text-align: center; color: white; padding-top: 140px;"-->
+                        <!--                                    class="card-title property-name">-->
+                        <!--                                    <t t-esc="property_id.name"/>-->
+                        <!--                                    - -->
+                        <!--                                    <t t-esc="property_id.property_type"/>-->
+                        <!--                                </h1>-->
+                        <!--                                <div class="property-details"-->
+                        <!--                                     style="font-style: italic; font-size: larger; margin-top: 5px; margin: 5px 0;">-->
+                        <!--                                    <p style="font-style: italic; font-size: larger; margin-top: 5px;">-->
+                        <!--                                        <i class="fas fa-map-marker-alt"></i>-->
+                        <!--                                        <t t-esc="property_id.city"/>,-->
+                        <!--                                        <t t-esc="property_id.state_id.name"/>-->
+                        <!--                                        <t t-esc="property_id.zip"/>-->
+                        <!--                                    </p>-->
+                        <!--                                    <p>-->
+                        <!--                                        <i class="fas fa-coins"></i>-->
+                        <!--                                        <t t-esc="property_id.unit_price"/>-->
+                        <!--                                        /- -->
+                        <!--                                    </p>-->
+                        <!--                                    <p>-->
+                        <!--                                        <i class="fas fa-calendar-alt"></i>-->
+                        <!--                                        <t t-esc="property_id.construct_year"/>-->
+                        <!--                                        /- -->
+                        <!--                                    </p>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+
+
+                    </div>
+
+                    <h3 style="text-align: center;">AVAILABLE APARTMENTS IN THIS PROPERTY</h3>
+                    <t t-foreach="property_id.apartment_ids" t-as="apartment">
+                        <t t-if="apartment.image">
+                            <div class="card mb-3"
+                                 style="width: 100%; height: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border: 1px solid black;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <a t-attf-href="/apartment-details/#{apartment.id}">
+                                            <img t-att-src="image_data_uri(apartment.image)"
+                                                 class="img-fluid rounded-start" alt="Apartment Image"/>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h2 class="card-title"
+                                                style="text-transform: uppercase; margin-left: 10px; font-weight: bold; font-family: Arial, sans-serif; margin-top: 10px; text-align:  center; font-size: x-large; ">
+                                                <t t-esc="apartment.name"/>
+                                            </h2>
+                                            <p class="card-text"
+                                               style="font-family: Arial, sans-serif; text-align: center; color: grey;">
+                                                RENT:
+                                                <span style="color: grey;">₹</span>
+                                                <span style="color: grey; font-size: larger;">
+                                                    <t t-esc="apartment.rent_month"/>
+                                                    / Year
+                                                </span>
+                                            </p>
+                                            <div style="text-align: center;">
+                                                <p style="font-style: italic; font-size: larger; margin-top: 5px;">
+                                                    <span>Bedroom:
+                                                        <i class="fa fa-bed"></i>
+                                                        <t t-esc="apartment.bedroom"/>
+                                                    </span>
+                                                    <span style="margin-left: 20px;">Bathroom:
+                                                        <i
+                                                                class="fa fa-bath"></i>
+                                                        <t t-esc="apartment.bathroom"/>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+
+
+                    <t t-if="property_id.total_sq_feet">
+                        <div class="row">
+                            <div class="col-sm-4 p-3"
+                                 style="font-size: 1.3rem;">Total Square Feet:
+                            </div>
+                            <div class="col m-2"
+                                 style="font-size: 1.3rem;text-transform: capitalize;">
+                                <t t-esc="property_id.total_sq_feet"/>
+                            </div>
+                        </div>
+                    </t>
+                    <div class="row">
+                        <div class="col-sm-4 p-3" style="font-size: 1.3rem;">
+                            Facilities:
+                        </div>
+                        <div class="col m-2" style="font-size: 1rem;">
+                            <t t-foreach="property_id.facility_ids"
+                               t-as="facility">
+                                &amp;nbsp;
+                                <span class="badge badge-pill badge-success"
+                                      style="background-color: var(--cyan);">
+                                    <t t-esc="facility.facility"/>
+                                </span>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 p-3" style="font-size: 1.3rem;">
+                            Nearby Connectivity:
+                        </div>
+                        <div class="col" style="font-size: 1rem;">
+                            <div class="row">
+                                <t t-foreach="property_id.nearby_connectivity_ids"
+                                   t-as="connectivity">
+                                    <div class="col-sm-2">
+                                        <div class="card"
+                                             style="width: max-content;">
+                                            <div class="card-body">
+                                                <h5 class="card-title"
+                                                    style="text-transform: capitalize;">
+                                                    <t t-esc="connectivity.name"/>
+                                                </h5>
+                                                <p class="card-text">
+                                                    <t
+                                                            t-esc="connectivity.kilometer"/>
+                                                    Kms
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p-3">
+                        <a class="btn btn-primary btn_cta" id="loadMap"
+                           style="width:auto;"
+                           t-att-data-lat="property_id.latitude"
+                           t-att-data-lng="property_id.longitude">Locate
+                        </a>
+                        <div id="map-view"
+                             style="width:70%;height:450px;display:none;"/>
+                    </div>
+                    <div class="row p-3">
+                        <a href="/property"
+                           class="btn btn-primary btn_cta  btnBack"
+                           style="width:auto;">Back
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!--    apartment view -->
+
+    <template id="apartment_details_template" name="Apartment Details">
+        <t t-call="website.layout">
+            <div class="container my-5">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <t t-if="apartment.image">
+                                            <img class="card-img-top" t-att-src="image_data_uri(apartment.image)"
+                                                 alt="Apartment Image"/>
+                                        </t>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h1 style="text-transform: uppercase; margin-left: 10px; font-weight: bold; font-family: Arial, sans-serif; margin-top: 10px; text-align:  center; font-size: x-large; "
+                                            class="card-title">
+                                            <t t-esc="apartment.name"/>
+                                        </h1>
+                                        <p style="font-size: 2.1rem; color: grey; text-align:  center;
+               " class="price card-text mb-3">
+                                            <i class="fa fa-inr"></i>
+                                            <t t-esc="apartment.rent_month"/>/ month
+                                        </p>
+                                        <div style="text-align: center;" class="mb-3">
+                                            <span class="detail">Bedroom:
+                                                <i class="fa fa-bed"></i>
+                                                <t t-esc="apartment.bedroom"/>
+                                            </span>
+                                            <span class="detail">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | &amp;nbsp;
+                                            </span>
+                                            <span class="detail">Bathroom:
+                                                <i class="fa fa-bath"></i>
+                                                <t t-esc="apartment.bathroom"/>
+                                            </span>
+                                            <span class="detail">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;|&amp;nbsp;
+                                            </span>
+                                            <span class="detail">Furnishing:
+                                                <i class="fa fa-couch"></i>
+                                                <t t-esc="dict(apartment._fields['furnishing'].selection).get(apartment.furnishing)"/>
+                                            </span>
+                                        </div>
+                                        <!-- Add more apartment details here -->
+                                        <div style="text-align: center;" class="button-container">
+                                            <a t-attf-href="/apartment_booking_form/#{apartment.id}">
+                                                <button type="button" class="btn btn-primary">Book This Apartment
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="apartment_booking_form_template" name="Apartment Booking Form">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <form style="margin: 3em 12em 10em; padding: 2em 12em 10em;background-color: #fbe3e8; border-radius: 1.5%;"
+                              role="form" action="/apartment-confirm-book" method="POST">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <input type="hidden" name="apartment_id" t-att-value="apartment.id"/>
+                            <!--                        <div class="form-group">-->
+                            <!--    <label for="tenant_id" >Tenant</label>-->
+                            <!--    <select  name="tenant_id" class="form-control">-->
+                            <!--        <option value="">Select a Tenant</option>-->
+                            <!--        <t t-foreach="tenant" t-as="tenant">-->
+                            <!--            <option t-att-value="tenant.id"><t t-esc="tenant.name"/></option>-->
+                            <!--        </t>-->
+                            <!--    </select>-->
+                            <!--</div>-->
+                            <div class="form-group">
+                                <label for="inputName" class="control-label">Name</label>
+                                <input type="text" name="name" id="inputName" class="form-control"
+                                       placeholder="Enter your name" required="required"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputStreet" class="control-label">Street</label>
+                                <input type="text" name="street" id="inputStreet" class="form-control"
+                                       placeholder="Enter street" required="required"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputStreet2" class="control-label">Street2</label>
+                                <input type="text" name="street2" id="inputStreet2" class="form-control"
+                                       placeholder="Enter street2"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputZip" class="control-label">Zip</label>
+                                <input type="text" name="zip" id="inputZip" class="form-control"
+                                       placeholder="Enter zip"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputCity" class="control-label">City</label>
+                                <input type="text" name="city" id="inputCity" class="form-control"
+                                       placeholder="Enter city"/>
+                            </div>
+
+                            <!--                            <div t-attf-class="mb-3 #{error and error.get('country_id') and 'o_has_error' or ''} col-xl-6">-->
+                            <!--                                <label class="col-form-label" for="country_id">Country</label>-->
+                            <!--                                <select name="country_id"-->
+                            <!--                                        t-attf-class="form-select #{error and error.get('country_id') and 'is-invalid' or ''}">-->
+                            <!--                                    <option value="">Country...</option>-->
+                            <!--                                    <t t-foreach="countries or []" t-as="country">-->
+                            <!--                                        <option t-att-value="country.id"-->
+                            <!--                                                t-att-selected="country.id == int(country_id) if country_id else country.id == partner.country_id.id">-->
+                            <!--                                            <t t-esc="country.name"/>-->
+                            <!--                                        </option>-->
+                            <!--                                    </t>-->
+                            <!--                                </select>-->
+                            <!--                            </div>-->
+                            <!--                            <div t-attf-class="mb-3 #{error and error.get('state_id') and 'o_has_error' or ''} col-xl-6">-->
+                            <!--                                <label class="col-form-label" for="state_id">State / Province</label>-->
+                            <!--                                <select name="state_id"-->
+                            <!--                                        t-attf-class="form-select #{error and error.get('state_id') and 'is-invalid' or ''}">-->
+                            <!--                                    <option value="">select...</option>-->
+                            <!--                                    <t t-foreach="states or []" t-as="state">-->
+                            <!--                                        <option t-att-value="state.id" style="display:none;"-->
+                            <!--                                                t-att-data-country_id="state.country_id.id"-->
+                            <!--                                                t-att-selected="state.id == int(state_id) if state_id else state.id == partner.state_id.id">-->
+                            <!--                                            <t t-esc="state.name"/>-->
+                            <!--                                        </option>-->
+                            <!--                                    </t>-->
+                            <!--                                </select>-->
+                            <!--                            </div>-->
+
+                            <div style="margin-top:5px; text-align: center;" class="clearfix oe_login_buttons">
+                                <button style="padding: 10px 20px;" type="submit" class="btn btn-primary pull-left">
+                                    Confirm Booking
+                                </button>
+                            </div>
+                            <br/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="booking_confirmation_page" name="Booking Confirmation Page">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="jumbotron text-center">
+                    <h1 style="color:#9bc400;" class="display-4">Booking Confirmed!</h1>
+                    <p class="lead">Your Apratment booking has been successfully confirmed.</p>
+                    <hr class="my-4"/>
+                    <p>Thank you for choosing us. Enjoy your stay!</p>
+                    <a class="btn btn-primary btn-lg" href="/">Back to Home</a>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="booking_error_page" name="Booking Confirmation Page">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="jumbotron text-center">
+                    <h1 class="display-4">sorry</h1>
+                    <p class="lead">Your booking has been successfully confirmed.</p>
+                    <hr class="my-4"/>
+                    <p>Thank you for choosing us. Enjoy your stay!</p>
+                    <a class="btn btn-primary btn-lg" href="/">Back to Home</a>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!--    Property Auction Template   -->
+    <template id="auction_view" name="Action View">
+        <hr/>
+        Ongoing
+        <hr/>
+        <t t-foreach="started" t-as="property">
+            <div class="card mb-3" style="margin-bottom:4px;"
+                 t-att-data-property_id="property['id']">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <t t-if="property['image']">
+                            <img t-att-src="image_data_uri(property['image'])"
+                                 class="card-img-top"
+                                 alt="..."/>
+                        </t>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <t t-esc="property['code']"/>
+                            </h5>
+                            <h6>
+                                <t t-esc="property['name']"/>
+                            </h6>
+                            <p class="card-text">
+                                <t t-esc="description"/>
+                            </p>
+                            <table class="table">
+                                <tr>
+                                    <td>Start Amount</td>
+                                    <td>Last Bid</td>
+                                    <td>Action</td>
+                                </tr>
+                                <tr>
+                                    <td t-attf-id="bid-start-{{property['id']}}">
+                                        <t t-esc="property['start_price']"/>
+                                    </td>
+                                    <td t-attf-id="last-bid-{{property['id']}}">
+                                        <t t-esc="property['last']"/>
+                                    </td>
+                                    <td>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <input type="number"
+                                                   class="form-control"
+                                                   placeholder="Your Amount"
+                                                   t-attf-id="property-{{property['id']}}"
+                                                   style="height:36px; padding-bottom: 3px;"
+                                            />
+                                            <button class="btn btn-success auction_submit"
+                                                    t-att-data-id="property['id']"
+                                                    style="width:70px;">BID
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+        <hr/>
+        Upcoming
+        <hr/>
+        <t t-foreach="confirmed" t-as="property">
+            <div class="card mb-3 " t-att-data-property_id="property['id']"
+                 style="margin-bottom:4px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <t t-if="property['image']">
+                            <img t-att-src="image_data_uri(property['image'])"
+                                 class="card-img-top"
+                                 alt="..."/>
+                        </t>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <t t-esc="property['code']"/>
+                            </h5>
+                            <h6>
+                                <t t-esc="property['name']"/>
+                            </h6>
+                            <p class="card-text">
+                                <t t-esc="description"/>
+                            </p>
+                            <table class="table">
+                                <tr>
+                                    <td>Start Amount</td>
+                                    <td>Start Date</td>
+                                    <td>End Date</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <t t-esc="property['start_price']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="property['start']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="property['end']"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+        <hr/>
+        Completed
+        <hr/>
+        <t t-foreach="ended" t-as="property">
+            <div class="card mb-3" style="margin-bottom:4px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <t t-if="property['image']">
+                            <img t-att-src="image_data_uri(property['image'])"
+                                 class="card-img-top"
+                                 alt="..."/>
+                        </t>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body" style="padding-top:36px;">
+                            <h5 class="card-title">
+                                <t t-esc="property['code']"/>
+                            </h5>
+                            <h6>
+                                <t t-esc="property['name']"/>
+                            </h6>
+                            <p class="card-text">
+                                <t t-esc="description"/>
+                            </p>
+                            <table class="table">
+                                <tr>
+                                    <th>Start Amount</th>
+                                    <td>
+                                        <t t-esc="property['start_price']"/>
+                                    </td>
+                                    <th>Participants</th>
+                                    <td>
+                                        <t t-esc="property['total_participant']"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Last Bid</th>
+                                    <td>
+                                        <t t-esc="property['last']"/>
+                                    </td>
+                                    <th>Winner</th>
+                                    <td>
+                                        <t t-esc="property['winner']"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Start Time</th>
+                                    <td>
+                                        <t t-esc="property['start']"/>
+                                    </td>
+                                    <th>End Time</th>
+                                    <td>
+                                        <t t-esc="property['end']"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+        <div class="toast position-fixed top-0 end-0 p-3"
+             style="z-index: 9999;">
+            <div class="toast-header">
+                Bid Amount Must be Greater than Last Bid, Start Amount
+                <button type="button" class="btn-close"
+                        data-bs-dismiss="toast"/>
+            </div>
+        </div>
+    </template>
+</odoo>

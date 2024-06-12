@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+  <t t-name="pos_training_inherit.Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+    <xpath expr="//span[hasclass('price')]" position="inside">
+      <button t-on-click="() => this.onClick(props.line)">
+        <i class="fa fa-trash-o" style="font-size:18px;color:red"></i>
+          Delete
+      </button>
+    </xpath>
+  </t>
+</templates>

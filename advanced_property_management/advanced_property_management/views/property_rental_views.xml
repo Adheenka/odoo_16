@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Property rental action -->
+    <record id="property_rental_action" model="ir.actions.act_window">
+        <field name="name">Property Rental</field>
+        <field name="res_model">property.rental</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Rental record!
+            </p>
+        </field>
+    </record>
+    <!-- Property rental menu items -->
+    <menuitem id="property_rental_menu" name="Property Rental"
+              parent="property_menu"
+              action="property_rental_action" sequence="8"/>
+    <!-- Property rental tree view -->
+    <record id="property_rental_view_tree" model="ir.ui.view">
+        <field name="name">property.rental.view.tree</field>
+        <field name="model">property.rental</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="property_id"/>
+                <field name="renter_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Property rental form view -->
+    <record id="property_rental_view_form" model="ir.ui.view">
+        <field name="name">property.rental.view.form</field>
+        <field name="model">property.rental</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_cancel" string="Cancel" type="object"
+                            class="btn-secondary"
+                            states="draft,in_contract,expired"/>
+                    <field name="state" widget="statusbar"
+                           options="{'clickable': '1'}"/>
+                    <button name="action_create_contract" class="oe_highlight"
+                            states="draft" string="Create Contract"
+                            type="object"/>
+                    <!--                        property mangement custom code-->
+                      <button name="print_rental_contract"
+                        type="object"
+                        string="Print"
+                        class="oe_highlight"
+                        attrs="{'invisible':[('state','!=','in_contract')]}"
+                />
+                <button name="print_move_permit"
+                        type="object"
+                        string="Move in Permit"
+                        class="oe_highlight"
+                        attrs="{'invisible':['|',('state','!=','in_contract'),('created_permit','=',True)]}"
+                />
+                <button name="print_move_permit_report"
+                        type="object"
+                        string="Print Move in Permit"
+                        class="oe_highlight"
+                        attrs="{'invisible':[('created_permit','=',False)]}"
+                />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoice" type="object"
+                                class="oe_stat_button" icon="fa-book"
+                                attrs="{'invisible':[('invoice_count','=',0)]}">
+                            <field name="invoice_count" widget="statinfo"
+                                   string="Invoices"/>
+                        </button>
+
+<!--                        property mangement custom code-->
+                           <button name="action_view_journal" type="object"
+                        class="oe_stat_button" icon="fa-money" string="Advance">
+
+                </button>
+<!--                <button name="action_view_pdc" type="object"-->
+<!--                        class="oe_stat_button" icon="fa-money" string="PDC Payment">-->
+
+<!--                </button>-->
+                <button class="oe_stat_button"  type="object" name="action_get_access_key" icon="fa-key" attrs="{'invisible': [('state', '!=', 'in_contract')]}">
+                    <field string="Access Cards/Keys Receipt " name="access_count" widget="statinfo"/>
+                </button>
+                <button name="action_view_parking_allocation" type="object"
+                        class="oe_stat_button" icon="fa-hdd-o" string="Parking"  attrs="{'invisible':[('state','!=','in_contract')]}">
+                    <field string="Parking Allocation " name="parking_allocation_count" widget="statinfo"/>
+                </button>
+
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="property_id"/>
+
+                            <!--              property custom code -->
+
+                            <field name="apartment_id" attrs="{'invisible':[('show_ap','=',False)]}"/>
+                            <field name="related_booking_id" invisible="1"/>
+                            <field name="owner_id"/>
+                            <field name="payment_type"/>
+                            <field name="security_amount" widget="monetary"
+                                   options="{'currency_field': 'company_currency'}"/>
+                            <!--                            <field name="rent_price"/>-->
+                            <field name="rent_price" force_save="1" widget="monetary"
+                                   options="{'currency_field': 'company_currency'}"/>
+                        </group>
+                        <group>
+                            <field name="renter_id"/>
+                            <field name="invoice_policy" invisible="1"/>
+                            <field name="number_payment"/>
+
+
+                            <!--                            <div class="oe_inline" >-->
+
+                            <!--                                    <field name="start_date"-->
+                            <!--                                           placeholder="From Date"-->
+                            <!--                                          />-->
+                            <!--                                    <span class="o_form_label mx-3 oe_edit_only"-->
+                            <!--                                         > to </span>-->
+                            <!--                                    <field name="end_date"-->
+
+                            <!--                                           placeholder="To Date"/>-->
+                            <!--                                </div>-->
+                            <field name="next_invoice" invisible="1"/>
+                            <label for="start_date"/>
+                            <div>
+                                <field name="start_date" class="oe_inline" placeholder="Start Date"/>
+                                <label for="end_date"/>
+                                <field name="end_date" class="oe_inline" placeholder="End Date"/>
+                            </div>
+                            <field name="contract_value" options="{'currency_field': 'company_currency'}"/>
+                            <field name="company_currency" invisible="1"/>
+                            <field name="show_ap" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Bills">
+                            <field name="rental_bills_ids">
+                                <tree editable="bottom">
+                                    <field name="bill_no"/>
+                                    <field name="name"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Terms and conditions" invisible="1">
+                    <field name="terms_conditions_ids">
+                        <tree create="0">
+                            <field name="terms_and_conditions_english"  />
+                            <field name="terms_and_conditions_arabic" />
+                        </tree>
+                    </field>
+                </page>
+                <page string="Move Permit Details">
+                    <group>
+                        <field name="created_permit" invisible="1" />
+                        <group>
+                            <field name ="unit_num"/>
+                            <field name="rental_payment"  />
+                            <field name="contract_id"  />
+                        </group>
+                        <group>
+                            <field name="security_payment"/>
+                            <field name="addc"  />
+                            <field name="tawtheeq"/>
+                        </group>
+                        <group>
+                            <field name="move_inspection"/>
+                            <field name="move_date" />
+                            <field name="parking_slot"   />
+                        </group>
+                        <group string="Car Details">
+                            <field name="car_brand"/>
+                            <field name="car_number" />
+                            <field name="model"   />
+                            <field name="car_color"   />
+                        </group>
+                    </group>
+
+
+                </page>
+                <page string="Comment" >
+                    <field name="comment">
+
+                    </field>
+                </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="activity_ids"/>
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <menuitem id="advanced_property_management.property_rental_menu" name="Rental Contract"
+              parent="advanced_property_management.property_root_menu"
+              sequence="3"/>
+    <menuitem id="advanced_property_management.property_rental_child_menu" name="Rental Contract"
+              parent="advanced_property_management.property_rental_menu"
+              action="advanced_property_management.property_rental_action" sequence="3"/>
+</odoo>
